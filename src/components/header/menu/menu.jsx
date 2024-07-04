@@ -32,7 +32,12 @@ function Menu() {
         Store.subscribe(handleStateChange);
      
       }, []);
-
+useEffect(()=> {
+    Store.dispatch({
+        type: 'Open',
+        payload: false
+      });
+},[Location])
 
      
 

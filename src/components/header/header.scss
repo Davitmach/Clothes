@@ -1,4 +1,3 @@
-
 header {
     width: 100%;
     height: auto;
@@ -15,6 +14,9 @@ header {
 
     @media (min-width:320px) and (max-width:972px) {
         overflow: visible;
+    }
+    @media (min-width:320px) and (max-width:690px) {
+        padding: 30px 80px 30px 10px;
     }
 
     &>div {
@@ -45,6 +47,10 @@ header {
     .Logo_box {
         flex-shrink: 1;
         flex-grow: 1;
+        @media (min-width:320px) and (max-width:690px) {
+           flex-grow: .5;
+           flex-shrink: .5;
+        }
     }
 
     .Menu_box {
@@ -174,30 +180,36 @@ header {
             }
         }
     }
+
     .Active_menu {
         @media (min-width:320px) and (max-width:972px) {
-animation: ActiveMenu .7s ease-in-out forwards;
-        @keyframes ActiveMenu {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(0);
+            animation: ActiveMenu .7s ease-in-out forwards;
+
+            @keyframes ActiveMenu {
+                from {
+                    transform: translateX(100%);
+                }
+
+                to {
+                    transform: translateX(0);
+                }
             }
         }
     }
-    }
+
     .Disable_menu {
         @media (min-width:320px) and (max-width:972px) {
-        animation: DisableMenu .7s ease-out forwards;
-        @keyframes DisableMenu {
-            from {
-                transform: translateX(0);
+            animation: DisableMenu .7s ease-out forwards;
+
+            @keyframes DisableMenu {
+                from {
+                    transform: translateX(0);
+                }
+
+                to {
+                    transform: translateX(100%);
+                }
             }
-            to {
-                transform: translateX(100%);
-            }
-        }
         }
     }
 
@@ -211,11 +223,27 @@ animation: ActiveMenu .7s ease-in-out forwards;
         transition: .4s;
         overflow: hidden;
 
+        @media (min-width:320px) and (max-width:752px) {
+
+            flex-shrink: 1;
+            flex-grow: 1;
+        }
+@media (min-width:320px) and (max-width:471px) {
+    position: absolute;
+    z-index: 5;
+    left:0;
+    top:500px;
+    transform: translateX(100%);
+    width: 100%;
+    padding: 0 40px;
+}
         &:has(*:focus) {
             filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
 
         }
-
+        @media (min-width:320px) and (max-width:471px) {
+            filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
+        }
         input {
             width: 0;
             height: 100%;
@@ -244,12 +272,39 @@ animation: ActiveMenu .7s ease-in-out forwards;
             background-color: #F6F6F6;
             border: none;
             font-size: 16px;
-
+            @media (min-width:320px) and (max-width:471px) {
+          
+            }
             color:
                 #807D7E;
         }
     }
+.Active_search {
+    @media (min-width:320px) and (max-width:471px) {
+    animation: ActiveSearch .7s ease-in-out forwards;
 
+    @keyframes ActiveSearch{
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }}
+}
+.Disable_search {
+    @media (min-width:320px) and (max-width:471px) {
+    animation: DisableSearch .7s ease-out forwards;
+
+    @keyframes DisableSearch{
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(100%);
+        }
+    }
+}}
     .User_func {
         flex-shrink: 2;
         flex-grow: 2;
@@ -257,6 +312,19 @@ animation: ActiveMenu .7s ease-in-out forwards;
         align-items: center;
         justify-content: center;
         gap: 10px;
+
+        @media (min-width:320px) and (max-width:690px) {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            justify-content: flex-start;
+            align-items: end;
+            top:400px;
+            left: 0;
+            padding: 30px;
+            transform: translateX(100%);
+            z-index: 1;
+        }
 
         &>div {
             background-color: #F6F6F6;
@@ -271,11 +339,40 @@ animation: ActiveMenu .7s ease-in-out forwards;
             cursor: pointer;
             color: #807D7E;
             transition: .4s;
-
+@media (min-width:320px) and (max-width:690px) {
+width: 50px;
+height: 50px;
+}
             &:hover {
                 background-color: #807D7E;
                 color: #F6F6F6;
             }
+        }
+    }
+    .Active_func {
+@media (min-width:320px) and (max-width:690px) {
+        animation: UserFuncActive .7s ease-in-out forwards;
+
+        @keyframes UserFuncActive {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+    }}
+    .Disable_func {
+        @media (min-width:320px) and (max-width:690px) {
+        animation: UserFuncDisable .7s ease-out forwards;
+
+        @keyframes UserFuncDisable {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(100%);
+            }}
         }
     }
 

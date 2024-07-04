@@ -1,9 +1,11 @@
 import { faCartShopping, faHeart, faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import anime from 'animejs';
-import { useEffect } from "react";
-
+import { useEffect,useState } from "react";
+import { Store } from '../../../redux/redux';
 function UserFunctional() {
+  const [open, setOpen] = useState(Store.getState().open);
+
     useEffect(() => {
         anime({
           targets: '.Func',
@@ -15,8 +17,17 @@ function UserFunctional() {
         
         });
       }, []);
+
+      useEffect(() => {
+        const handleStateChange = () => {
+          setOpen(Store.getState().open);
+        };
+        Store.subscribe(handleStateChange);
+     
+      }, []);
+
 return(
-    <div className="User_func">
+    <div className={`User_func ${open ? 'Active_func' : 'Disable_func'}`}>
 <div className="Liked Func"><FontAwesomeIcon icon={faHeart}/></div>
 <div className="User Func"><FontAwesomeIcon icon={faUser}/></div>
 <div className="Cart Func"><FontAwesomeIcon icon={faCartShopping}/></div>
