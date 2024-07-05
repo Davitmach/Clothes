@@ -7,7 +7,7 @@ header {
     padding: 30px 100px;
     overflow: hidden;
     position: relative;
-
+gap: 20px;
     @media (min-width:320px) and (max-width:1127px) {
         padding: 30px 20px;
     }
@@ -15,6 +15,7 @@ header {
     @media (min-width:320px) and (max-width:972px) {
         overflow: visible;
     }
+
     @media (min-width:320px) and (max-width:690px) {
         padding: 30px 80px 30px 10px;
     }
@@ -47,9 +48,10 @@ header {
     .Logo_box {
         flex-shrink: 1;
         flex-grow: 1;
+
         @media (min-width:320px) and (max-width:690px) {
-           flex-grow: .5;
-           flex-shrink: .5;
+            flex-grow: .5;
+            flex-shrink: .5;
         }
     }
 
@@ -120,10 +122,18 @@ header {
                         width: 100%;
                         justify-content: flex-start;
 
-                        &:hover::before {
+                        @media (hover:hover) {
+                            &:hover::before {
+                                background-color: #807D7E;
+                                width: 100%;
+                            }
+                        }
+
+                        &:active::before {
                             background-color: #807D7E;
                             width: 100%;
                         }
+
 
                         &::before {
                             content: '';
@@ -155,8 +165,14 @@ header {
                     justify-content: center;
 
                     @media (min-width:972px) {
-                        &:hover {
+                        &:active {
                             transform: scale(1.4) !important;
+                        }
+
+                        @media (hover:hover) {
+                            &:hover {
+                                transform: scale(1.4) !important;
+                            }
                         }
                     }
 
@@ -228,22 +244,26 @@ header {
             flex-shrink: 1;
             flex-grow: 1;
         }
-@media (min-width:320px) and (max-width:471px) {
-    position: absolute;
-    z-index: 5;
-    left:0;
-    top:500px;
-    transform: translateX(100%);
-    width: 100%;
-    padding: 0 40px;
-}
+
+        @media (min-width:320px) and (max-width:471px) {
+            position: absolute;
+            z-index: 5;
+            left: 0;
+            top: 500px;
+            transform: translateX(100%);
+            width: 100%;
+            padding: 0 40px;
+        }
+
         &:has(*:focus) {
             filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
 
         }
+
         @media (min-width:320px) and (max-width:471px) {
             filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
         }
+
         input {
             width: 0;
             height: 100%;
@@ -272,39 +292,45 @@ header {
             background-color: #F6F6F6;
             border: none;
             font-size: 16px;
-            @media (min-width:320px) and (max-width:471px) {
-          
+
+            @media (min-width:320px) and (max-width:471px) {}
+
+            color: #807D7E;
+        }
+    }
+
+    .Active_search {
+        @media (min-width:320px) and (max-width:471px) {
+            animation: ActiveSearch .7s ease-in-out forwards;
+
+            @keyframes ActiveSearch {
+                from {
+                    transform: translateX(100%);
+                }
+
+                to {
+                    transform: translateX(0);
+                }
             }
-            color:
-                #807D7E;
         }
     }
-.Active_search {
-    @media (min-width:320px) and (max-width:471px) {
-    animation: ActiveSearch .7s ease-in-out forwards;
 
-    @keyframes ActiveSearch{
-        from {
-            transform: translateX(100%);
-        }
-        to {
-            transform: translateX(0);
-        }
-    }}
-}
-.Disable_search {
-    @media (min-width:320px) and (max-width:471px) {
-    animation: DisableSearch .7s ease-out forwards;
+    .Disable_search {
+        @media (min-width:320px) and (max-width:471px) {
+            animation: DisableSearch .7s ease-out forwards;
 
-    @keyframes DisableSearch{
-        from {
-            transform: translateX(0);
-        }
-        to {
-            transform: translateX(100%);
+            @keyframes DisableSearch {
+                from {
+                    transform: translateX(0);
+                }
+
+                to {
+                    transform: translateX(100%);
+                }
+            }
         }
     }
-}}
+
     .User_func {
         flex-shrink: 2;
         flex-grow: 2;
@@ -319,7 +345,7 @@ header {
             height: auto;
             justify-content: flex-start;
             align-items: end;
-            top:400px;
+            top: 400px;
             left: 0;
             padding: 30px;
             transform: translateX(100%);
@@ -327,53 +353,170 @@ header {
         }
 
         &>div {
-            background-color: #F6F6F6;
-            width: 40px;
-            height: 40px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+
             opacity: 0;
             transform: translateY(80px);
-            cursor: pointer;
-            color: #807D7E;
-            transition: .4s;
-@media (min-width:320px) and (max-width:690px) {
-width: 50px;
-height: 50px;
-}
-            &:hover {
-                background-color: #807D7E;
-                color: #F6F6F6;
+
+
+            a {
+                display: block;
+                cursor: pointer;
+                background-color: #F6F6F6;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+                color: #807D7E;
+                transition: .4s;
+
+                &:active {
+                    background-color: #807D7E;
+                    color: #F6F6F6;
+                }
+
+                @media (hover:hover) {
+                    &:hover {
+                        background-color: #807D7E;
+                        color: #F6F6F6;
+                    }
+                }
+            }
+
+            @media (min-width:320px) and (max-width:690px) {
+                width: 50px;
+                height: 50px;
+            }
+
+
+        }
+    }
+
+    .Active_func {
+        @media (min-width:320px) and (max-width:690px) {
+            animation: UserFuncActive .7s ease-in-out forwards;
+
+            @keyframes UserFuncActive {
+                from {
+                    transform: translateX(100%);
+                }
+
+                to {
+                    transform: translateX(0);
+                }
             }
         }
     }
-    .Active_func {
-@media (min-width:320px) and (max-width:690px) {
-        animation: UserFuncActive .7s ease-in-out forwards;
 
-        @keyframes UserFuncActive {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(0);
-            }
-        }
-    }}
     .Disable_func {
         @media (min-width:320px) and (max-width:690px) {
-        animation: UserFuncDisable .7s ease-out forwards;
+            animation: UserFuncDisable .7s ease-out forwards;
 
-        @keyframes UserFuncDisable {
-            from {
-                transform: translateX(0);
+            @keyframes UserFuncDisable {
+                from {
+                    transform: translateX(0);
+                }
+
+                to {
+                    transform: translateX(100%);
+                }
             }
-            to {
-                transform: translateX(100%);
-            }}
         }
     }
+  
+    .Login_signup_box {
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        &>div {
+            width: 140px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            button {
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+            }
+           
+                button {
+                    background: none;
+                    border: 1.5px solid #3C4242;
+                    color: #8A33FD;
+                    font-size: 18px;
+    font-weight: 500;
+    transition: .4s;
+    cursor: pointer;
+    &:active {
+        box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.3);
+    
+                }
+                @media (hover:hover) {
+                    &:hover {
+                        box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.3);
+                    
+                                }
+                }
+            }
+        }
+        .Active {
+           button {
+            border: none;
+            background: #8A33FD;
+font-size: 18px;
+font-weight: 500;
+color: white;
+cursor: pointer;
+transition: .4s;
+&:active {
+    box-shadow: 0 0 10px 4px  rgba(0, 0, 0, 0.3);
+}
+@media (hover:hover) {
+    &:hover {
+        box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.3);
+    
+                }
+}
+           }
+        }  
+          
+    }
 
+}
+
+.Login_signup_class {
+    position: absolute;
+    background-color: white;
+    z-index: 10;
+    @media (min-width:320px) and (max-width:556px) {
+        padding: 30px 10px;
+        gap: 0;
+    }
+    @media (min-width:320px) and (max-width:385px) {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px  ;
+    }
+    .Search_box {
+        @media (min-width:320px) and (max-width:848px) {
+            display: none;
+        }
+    }
+    .Login_signup_box {
+        @media (min-width:320px) and (max-width:474px) {
+            transform: scale(.9);
+        }
+        @media (min-width:320px) and (max-width:425px) {
+            transform: scale(.8);
+        }
+    }
 }

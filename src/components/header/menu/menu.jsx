@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Store } from '../../../redux/redux';
 function Menu() {
-    const [open, setOpen] = useState(Store.getState().open);
+    const [open, setOpen] = useState(Store.getState().menu.open);
 
     const [activeLink, setActiveLink] = useState('');
     const Location = useLocation();
@@ -13,7 +13,7 @@ function Menu() {
 
     useEffect(() => {
         anime({
-          targets: 'a',
+          targets: '.Menu_link',
          opacity:[0,1],
          scale:[
             {value:.4},
@@ -27,7 +27,7 @@ function Menu() {
       }, []);
       useEffect(() => {
         const handleStateChange = () => {
-          setOpen(Store.getState().open);
+          setOpen(Store.getState().menu.open);
         };
         Store.subscribe(handleStateChange);
      
@@ -39,24 +39,33 @@ useEffect(()=> {
       });
 },[Location])
 
-     
+
+
+const [hide, setHide] = useState(Store.getState().userHidEl.open);
+useEffect(() => {
+    const handleStateChange = () => {
+      setHide(Store.getState().userHidEl.open);
+    };
+    Store.subscribe(handleStateChange);
+
+  }, []);
 
     return (
-        <div className={`Menu_box ${open ?"Active_menu":'Disable_menu'}`}><ul>
+        <div style={hide ? {display:'none'}:{display:'flex'}}  className={`Menu_box ${open ?"Active_menu":'Disable_menu'}`}><ul>
 
-            <li><Link className={activeLink == '/' ? 'Active' :''} onClick={() => {
+            <li><Link className={activeLink == '/' ? 'Active Menu_link' :' Menu_link'} onClick={() => {
                 setActiveLink('/')
             }} to={'/'}>Shop</Link></li>
-            <li><Link className={activeLink =='/men'? 'Active' :'' } onClick={() => {
+            <li><Link className={activeLink =='/men'? 'Active Menu_link' :' Menu_link' } onClick={() => {
                 setActiveLink('/men')
             }} to={'/men'}>Men</Link></li>
-            <li><Link className={activeLink =='/women' ? 'Active' :''} onClick={() => {
+            <li><Link className={activeLink =='/women' ? 'Active Menu_link' :' Menu_link'} onClick={() => {
                 setActiveLink('/women')
             }} to={'/women'}>Women</Link></li>
-            <li><Link className={activeLink == '/combos'? 'Active' :''} onClick={() => {
+            <li><Link className={activeLink == '/combos'? 'Active Menu_link' :' Menu_link'} onClick={() => {
                 setActiveLink('/combos')
             }} to={'/combos'}>Combos</Link></li>
-            <li><Link className={activeLink =='/joggers'? 'Active' :''} onClick={() => {
+            <li><Link className={activeLink =='/joggers'? 'Active Menu_link' :' Menu_link'} onClick={() => {
                 setActiveLink('/joggers')
             }} to={'/joggers'}>Joggers</Link></li>
         </ul></div>

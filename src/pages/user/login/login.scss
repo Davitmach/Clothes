@@ -1,0 +1,296 @@
+.Login_container {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+@media (min-width:320px) and (max-width:1148px) {
+    grid-template-columns: 1fr;
+}
+    .Img_box {
+        // aspect-ratio: 16 / 9; /* Ширина к высоте 16:9 */
+        width: 100%;
+        /* Процент ширины контейнера */
+        height: 100vh;
+@media (min-width:320px) and (max-width:1148px) {
+    padding: 100px 0 0 0;
+}
+        img {
+            width: 100%;
+            height: 101%;
+            object-fit: cover;
+        }
+    }
+
+    .Login_method_box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 150px 20% 0;
+        gap: 5%;
+
+        @media (min-width:320px) and (max-width:1324px) {
+            padding: 150px 10% 0;
+        }
+        @media (min-width:320px) and (max-width:1148px)  {
+            gap: 30px;
+            padding: 40px;
+        }
+@media (min-width:320px) and (max-width:460px) {
+    padding: 20px;
+}
+
+        &>div {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .Title_box h1 {
+            width: 100%;
+            text-align: start;
+            letter-spacing: 2%;
+            font-size: 34px;
+            color: #333333;
+            font-weight: 600;
+        }
+
+        .Anothes_method_box {
+            gap: 20px;
+
+            @media (min-width:320px) and (max-width:1080px) {
+                gap: 5px;
+            }
+
+            &>div {
+                width: 100%;
+                transition: .4s;
+
+                svg {
+                    transition: .4s;
+                    width: 100%;
+                    @media (min-width:320px) and (max-width:460px) {
+                       height: 30px;
+                    }
+                }
+
+
+                cursor: pointer;
+
+                &:active svg {
+                    fill: #0000003f;
+
+                }
+
+                &:active #Method_border {
+                    stroke: #0200000a;
+                }
+                @media (hover:hover) {
+                    &:hover svg {
+                        fill: #0000003f;
+    
+                    }
+    
+                    &:hover #Method_border {
+                        stroke: #0200000a;
+                    }   
+                }
+            }
+        }
+
+        .Or_box {
+            position: relative;
+
+            &::before {
+                position: absolute;
+                content: '';
+                top: 13px;
+                left: 0;
+                background-color:
+                    #666666;
+                height: 1px;
+                width: 45%;
+            }
+
+            &::after {
+                position: absolute;
+                content: '';
+                top: 13px;
+                right: 0;
+                background-color:
+                    #666666;
+                height: 1px;
+                width: 45%;
+            }
+
+            h1 {
+                font-size: 18px;
+                font-weight: 400;
+                color:
+                    #666666;
+            }
+        }
+
+        .Form_box {
+            width: 100%;
+            height: auto;
+
+            form {
+                width: 100%;
+                display: flex;
+
+                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
+
+                .Name_mail {
+                    display: flex;
+                    align-items: start;
+                    justify-content: center;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    label {
+                        color: #3C4242;
+                        font-size: 18px;
+                        font-weight: 400;
+                        letter-spacing: 2%;
+                    }
+
+                    input {
+                        width: 100%;
+                        height: 58px;
+                        border-radius: 8px;
+                        border: 1px solid #3C4242;
+                        outline: none;
+                        padding: 0 20px;
+                        font-size: 18px;
+                    }
+
+                    p {
+                        color: red;
+                    }
+                }
+            }
+
+            .Password {
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 5px;
+
+                .Error_box {
+                    width: 100%;
+
+                    p {
+                        width: 100%;
+                        text-align: start;
+                        color: red;
+                    }
+                }
+
+                .Label {
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    label {
+                        color:
+                            #3C4242;
+                        font-size: 18px;
+                        font-weight: 400;
+                        letter-spacing: 2%;
+
+                    }
+
+                    .Hide_show_pass {
+                        display: flex;
+                        gap: 10px;
+                        color:
+                            #807D7E;
+
+                        svg {
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .Input {
+                    width: 100%;
+
+                    input {
+
+                        width: 100%;
+                        height: 58px;
+                        border-radius: 8px;
+                        border: 1px solid #3C4242;
+                        outline: none;
+                        padding: 0 20px;
+                        font-size: 18px;
+                    }
+                }
+
+                .Forgot_pass {
+                    width: 100%;
+                    text-align: end;
+
+                    a {
+                        font-weight: 400;
+                        font-size: 16px;
+                        color:
+                            #3C4242;
+                    }
+                }
+            }
+
+            .Submit {
+                button {
+                    background-color: #8A33FD;
+                    border: none;
+                    border-radius: 8px;
+                    height: 54px;
+                    width: 167px;
+                    color:
+                        #FFFFFF;
+                    font-size:
+                        18px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: .4s;
+
+                    &:active {
+                        background-color: white;
+                        color: #8A33FD;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                    }
+                    @media (hover:hover) {
+                        &:hover {
+                            background-color: white;
+                            color: #8A33FD;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                        } 
+                    }
+                }
+            }
+
+            .Signup {
+                display: flex;
+                gap: 4px;
+
+                span,
+                a {
+                    color: #3C4242;
+                    font-size: 16px;
+                    font-weight: 400;
+                }
+
+            }
+        }
+    }
+}

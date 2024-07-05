@@ -1,4 +1,9 @@
-import { CreateStore } from "./Store"
-import { OpenMenuRed } from "./Reduce"
-export var Store = CreateStore(OpenMenuRed)
 
+import { CreateStore } from "./Store"
+import { reducer } from "./Reduce"
+
+
+export var Store = CreateStore(reducer)
+
+
+window.Store = Store

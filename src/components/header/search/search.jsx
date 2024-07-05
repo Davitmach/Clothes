@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '../../../redux/redux';
 function Search() {
-    const [open, setOpen] = useState(Store.getState().open);
+    const [open, setOpen] = useState(Store.getState().menu.open);
     useEffect(() => {
        const anim =  anime.timeline({
           duration:1000,
@@ -18,22 +18,29 @@ function Search() {
           
         })
         .add({
-            targets:'input',
+            targets:'.Input_header_search',
             width:[0,'100%']
         })
       }, []);
 
       useEffect(() => {
         const handleStateChange = () => {
-          setOpen(Store.getState().open);
+          setOpen(Store.getState().menu.open);
         };
         Store.subscribe(handleStateChange);
      
       }, []);
-
+      const [hide, setHide] = useState(Store.getState().userHidEl.open);
+      useEffect(() => {
+          const handleStateChange = () => {
+            setHide(Store.getState().userHidEl.open);
+          };
+          Store.subscribe(handleStateChange);
+      
+        }, []);
 
 return(
-    <div className={`Search_box ${open ? 'Active_search' :'Disable_search'}`}><button><FontAwesomeIcon icon={faMagnifyingGlass}/></button><input placeholder='Search' type="text"/></div>
+    <div style={hide ? {width:'5%' }:{width:'10%'}}  className={`Search_box ${open ? 'Active_search' :'Disable_search'}`}><button><FontAwesomeIcon icon={faMagnifyingGlass}/></button><input className='Input_header_search'  placeholder='Search' type="text"/></div>
 )
 }
 export default Search
