@@ -23,7 +23,9 @@ function Title() {
 else if(Location.pathname == '/login') {
     document.title = 'Login'
 }
-
+else if(Location.pathname == '/signup') {
+    document.title = 'Sign Up'
+}
         else {
             document.title = 'Not Found';
         }

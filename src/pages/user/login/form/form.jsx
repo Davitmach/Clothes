@@ -1,6 +1,6 @@
 import Or from './or/or'
 import Signin from './signin/form'
-import AnotherMethod from './withGoogleTwitter/anotherMethod'
+import AnotherMethod from './anotherMethod/anotherMethod'
 function LoginMethod() {
 return(
  <div className="Login_method_box">

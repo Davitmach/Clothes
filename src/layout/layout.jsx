@@ -14,6 +14,9 @@ function Layout() {
     if(Location.pathname == '/login') {
       Store.dispatch({type:'Hide'})
     }
+    else if(Location.pathname == '/signup') {
+        Store.dispatch({type:'Hide'})
+    }
     else {
         Store.dispatch({type:'Visible'})
     }

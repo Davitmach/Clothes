@@ -1,4 +1,4 @@
-.Login_container {
+.Signup_container {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -22,7 +22,7 @@
         }
     }
 
-    .Login_method_box {
+    .Signup_method_box {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -68,7 +68,7 @@
             &>div {
                 width: 100%;
                 transition: .4s;
-
+                cursor: pointer;
                 svg {
                     transition: .4s;
                     width: 100%;
@@ -76,9 +76,7 @@
                        height: 30px;
                     }
                 }
-
-
-                cursor: pointer;
+              
 
                 &:active svg {
                     fill: #0000003f;
@@ -146,7 +144,7 @@
                 flex-direction: column;
                 gap: 10px;
 
-                .Name_mail {
+                .Mail {
                     display: flex;
                     align-items: start;
                     justify-content: center;
@@ -183,7 +181,13 @@
                 justify-content: center;
                 flex-direction: column;
                 gap: 5px;
-
+                .Warn {
+                    width: 100%;
+                    label {
+                        width: 100%;
+                        text-align: start;
+                    }
+                }
                 .Error_box {
                     width: 100%;
 

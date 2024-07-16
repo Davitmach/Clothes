@@ -8,7 +8,7 @@ import Joggers from "./pages/joggers/joggers";
 import Men from "./pages/men/men";
 import Women from "./pages/women/women";
 import Login from "./pages/user/login/login";
-
+import Signup from "./pages/user/signup/signup";
 function App() {
 
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route path="/combos" element={<Combos/>}/>
           <Route path="/joggers" element={<Joggers/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/signup" element={<Signup/>}/>
           <Route path="*" element={<NoPage/>}/>
 
 

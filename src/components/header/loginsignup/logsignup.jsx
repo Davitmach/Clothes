@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import { Store } from "../../../redux/redux";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 function LoginSignup() {
   const Location = useLocation();
   const [active,setActive] = useState('')
@@ -22,8 +22,8 @@ else if(Location.pathname == '/signup') {
   },[Location.pathname])
     return(
         <div style={hide ? {display:'flex'}:{display:'none'}} className="Login_signup_box">
-            <div className={active == 'login' ? 'Active' :''}><button>Login</button></div>
-            <div className={active == 'signup' ? 'Active' :''}><button>Sign Up</button></div>
+            <div className={active == 'login' ? 'Active' :''}><button><Link to={'/login'}>Login</Link></button></div>
+            <div className={active == 'signup' ? 'Active' :''}><button><Link to={'/signup'}>Sign Up</Link></button></div>
         </div>
     )
 }

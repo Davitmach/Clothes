@@ -1,5 +1,5 @@
-export function CreateStore(reducer, initialState = { open: false }) {
-    var state = reducer(initialState, { type: '__InitialState__' });
+export function CreateStore(reducer,initalState = {open:false}) {
+    var state = reducer(initalState, { type: '__InitialState__' });
     var subscribers = [];
   
     return {

@@ -46,7 +46,7 @@ function Signin() {
                 <div className="Submit"><button>Sign In</button></div>
                 <div className="Signup">
                     <div className="Description"><span>Don’t have an account? </span></div>
-                    <div className="Signup_link"><Link>Sign up</Link></div>
+                    <div className="Signup_link"><Link to={'/signup'}>Sign up</Link></div>
                 </div>
             </form>
         </div>
