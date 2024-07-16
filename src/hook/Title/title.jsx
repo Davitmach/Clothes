@@ -26,6 +26,9 @@ else if(Location.pathname == '/login') {
 else if(Location.pathname == '/signup') {
     document.title = 'Sign Up'
 }
+else if(Location.pathname == '/user') {
+    document.title = 'User'
+}
         else {
             document.title = 'Not Found';
         }

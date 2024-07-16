@@ -1,15 +1,43 @@
 import { useForm } from "react-hook-form";
-import {  useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import SetData from "../../../../../hook/setData/setData";
+import axios from "axios";
+import { Store } from "../../../../../redux/redux";
+
 function Signin() {
-  let refEl = useRef();
+    let refEl = useRef();
+
+    const Login = async (data) => {
+        return axios.post('http://clothes/users/signin.php', data, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+    }
+    const { mutate, isSuccess, error, data } = SetData(Login, 'Login');
+    useEffect(() => {
+
+        if (data) {
+            if (data.data == true) {
+Store.dispatch({
+    type:'Logged'
+})
+localStorage.setItem('logged',true)
+            }
+        }
+    }, [data])
+
+
     const [showHide, setShowHide] = useState(false);
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm();
+    const { register, handleSubmit, getValues, formState: { errors, isValid } } = useForm();
     const onSubmit = (data) => {
-      
-        
+        mutate({
+            ...getValues()
+        })
+
     }
     const HandleShow = () => {
         setShowHide(!showHide)
@@ -22,9 +50,9 @@ function Signin() {
                     <label>User name or email address</label>
                     <input    {...register('Name_mail', {
                         required: 'The field is empty!',
-                     
+
                     })} type="text" />
-                    <div className="Error_box"><p>{errors.Name_mail?errors.Name_mail.message:'' }</p></div>
+                    <div className="Error_box"><p>{errors.Name_mail ? errors.Name_mail.message : ''}</p></div>
                 </div>
                 <div className="Password">
                     <div className="Label">
@@ -36,9 +64,9 @@ function Signin() {
                     </div>
                     <div className="Input"><input  {...register('Password', {
                         required: 'The field is empty!',
-                     
-                    })} type={showHide ? 'text':'password'} /></div>
-                    <div className="Error_box"><p>{errors.Password?errors.Password.message:'' }</p></div>
+
+                    })} type={showHide ? 'text' : 'password'} /></div>
+                    <div className="Error_box"><p>{errors.Password ? errors.Password.message : ''}</p></div>
                     <div className="Forgot_pass"><Link>Forget your password</Link></div>
                 </div>
 

@@ -9,6 +9,7 @@ import Men from "./pages/men/men";
 import Women from "./pages/women/women";
 import Login from "./pages/user/login/login";
 import Signup from "./pages/user/signup/signup";
+import UserPage from "./pages/user/userPage/userPage";
 function App() {
 
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/joggers" element={<Joggers/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/signup" element={<Signup/>}/>
+          <Route path="/user" element={<UserPage/>}/>
           <Route path="*" element={<NoPage/>}/>
 
 

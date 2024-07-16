@@ -1,11 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 function SetData(func,key) {
 
-const {mutate,error,isSuccess} = useMutation({
+const {mutate,error,isSuccess,data} = useMutation({
     mutationFn:(data)=>func(data),
-    mutationKey:[key]
+    mutationKey:[key],
+
 })
 
-return{mutate,error,isSuccess}
+return{mutate,error,isSuccess,data}
 }
 export default SetData;

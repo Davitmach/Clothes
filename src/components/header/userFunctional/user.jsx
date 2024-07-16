@@ -7,6 +7,12 @@ import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
 function UserFunctional() {
+  const loggedOffline = localStorage.getItem('logged');
+  useEffect(()=> {
+    Store.dispatch({
+      type:loggedOffline ? 'Logged':null
+    })
+  },[])
 
   const [open, setOpen] = useState(Store.getState().menu.open);
 const [logged,setLog] = useState(Store.getState().regged.regged)
@@ -47,10 +53,11 @@ const [logged,setLog] = useState(Store.getState().regged.regged)
     }, []);
 
 
+
   return (
     <div style={hide ? {display:'none'}:{display:'flex'}} className={`User_func ${open ? 'Active_func' : 'Disable_func'}`}>
       <div className="Liked Func"><Link  ><FontAwesomeIcon icon={faHeart} /></Link></div>
-      <div  className="User Func"><Link  to={logged ? '/men':'/login'}><FontAwesomeIcon icon={faUser} /></Link></div>
+      <div  className="User Func"><Link  to={logged ? '/user':'/login'}><FontAwesomeIcon icon={faUser} /></Link></div>
       <div className="Cart Func"><Link ><FontAwesomeIcon icon={faCartShopping} /></Link></div>
 
     </div>

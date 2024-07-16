@@ -2,14 +2,13 @@ import { useForm } from "react-hook-form";
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import SetData from "../../../../../hook/setData/setData";
 import { Store } from "../../../../../redux/redux";
-import { useQuery } from "@tanstack/react-query";
 
 function Signup() {
-
+const Navigate = useNavigate();
 
     const Signup_api = async (data) => {
         return axios.post('http://clothes/users/signup.php', data, {
@@ -17,28 +16,28 @@ function Signup() {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
-            }
-           
+    }
+
     const [showHide, setShowHide] = useState(false);
-    const { register, handleSubmit,getValues, formState: { errors, isValid, isSubmitted } } = useForm();
-    const {mutate,error,isSuccess} = SetData(Signup_api,'Add User')
+    const { register, handleSubmit, getValues, formState: { errors, isValid, isSubmitted } } = useForm();
+    const { mutate, error, isSuccess } = SetData(Signup_api, 'Add User')
     const onSubmit = (data) => {
         mutate({
             ...getValues()
-          })
+        })
     }
     const HandleShow = () => {
         setShowHide(!showHide)
     }
 
 
-useEffect(()=> {
-if(isSuccess) {
-    Store.dispatch({type:'Logged'});
-localStorage.setItem('logged',true);
-
-}
-},[isSuccess])
+    useEffect(() => {
+        if (isSuccess) {
+            Store.dispatch({ type: 'Logged' });
+            localStorage.setItem('logged', true);
+Navigate('/',{replace:true})
+        }
+    }, [isSuccess])
 
 
 
@@ -69,7 +68,7 @@ localStorage.setItem('logged',true);
                     <div className="Input"><input  {...register('Password', {
                         required: 'The field is empty!',
 
-                    })} type={showHide ? 'text' : 'password'} /></div>
+                    })} minLength={8} type={showHide ? 'text' : 'password'} /></div>
 
                     <div className="Error_box"><p>{errors.Password ? errors.Password.message : ''}</p></div>
                     <div className="Warn"><label>Use 8 or more characters with a mix of letters, numbers & symbols</label></div>
@@ -77,8 +76,8 @@ localStorage.setItem('logged',true);
                 </div>
 
 
-                <div className="Submit"><button onClick={() => {  
-              
+                <div className="Submit"><button onClick={() => {
+
                 }}>Sign Up</button></div>
                 <div className="Signup">
                     <div className="Description"><span>Already have an  account?</span></div>
