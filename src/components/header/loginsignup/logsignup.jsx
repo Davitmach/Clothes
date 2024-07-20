@@ -19,6 +19,10 @@ if(Location.pathname =='/login') {
 else if(Location.pathname == '/signup') {
   setActive('signup')
 }
+else {
+  setActive('')
+}
+
   },[Location.pathname])
     return(
         <div style={hide ? {display:'flex'}:{display:'none'}} className="Login_signup_box">

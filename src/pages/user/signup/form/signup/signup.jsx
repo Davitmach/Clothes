@@ -72,7 +72,6 @@ Navigate('/',{replace:true})
 
                     <div className="Error_box"><p>{errors.Password ? errors.Password.message : ''}</p></div>
                     <div className="Warn"><label>Use 8 or more characters with a mix of letters, numbers & symbols</label></div>
-                    <div className="Forgot_pass"><Link>Forget your password</Link></div>
                 </div>
 
 

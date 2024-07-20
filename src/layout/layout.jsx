@@ -17,6 +17,19 @@ function Layout() {
     else if(Location.pathname == '/signup') {
         Store.dispatch({type:'Hide'})
     }
+    else if(Location.pathname == '/createPass') {
+        Store.dispatch({type:'Hide'})
+    }
+    else if(Location.pathname == '/resetPass') {
+        Store.dispatch({type:'Hide'})
+    }
+    else if(Location.pathname == '/checkMail') {
+        Store.dispatch({type:'Hide'})
+    }
+
+    else if(Location.pathname == '/resetVerif') {
+        Store.dispatch({type:'Hide'})
+    }
     else {
         Store.dispatch({type:'Visible'})
     }

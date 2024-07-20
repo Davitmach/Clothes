@@ -2,13 +2,14 @@ import { useForm } from "react-hook-form";
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import SetData from "../../../../../hook/setData/setData";
 import axios from "axios";
 import { Store } from "../../../../../redux/redux";
 
 function Signin() {
-    let refEl = useRef();
+    const Navigate = useNavigate();
+  
 
     const Login = async (data) => {
         return axios.post('http://clothes/users/signin.php', data, {
@@ -25,6 +26,7 @@ function Signin() {
 Store.dispatch({
     type:'Logged'
 })
+Navigate('/user',{replace:true})
 localStorage.setItem('logged',true)
             }
         }
@@ -37,6 +39,7 @@ localStorage.setItem('logged',true)
         mutate({
             ...getValues()
         })
+        
 
     }
     const HandleShow = () => {
@@ -67,7 +70,7 @@ localStorage.setItem('logged',true)
 
                     })} type={showHide ? 'text' : 'password'} /></div>
                     <div className="Error_box"><p>{errors.Password ? errors.Password.message : ''}</p></div>
-                    <div className="Forgot_pass"><Link>Forget your password</Link></div>
+                    <div className="Forgot_pass"><Link to={'/resetPass'}>Forget your password</Link></div>
                 </div>
 
 

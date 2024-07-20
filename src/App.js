@@ -10,6 +10,10 @@ import Women from "./pages/women/women";
 import Login from "./pages/user/login/login";
 import Signup from "./pages/user/signup/signup";
 import UserPage from "./pages/user/userPage/userPage";
+import ResetPass from "./pages/user/forgotPass/forgotPass";
+import CheckMail from "./pages/user/checkMail/checkMail";
+import ResetVerif from "./pages/user/resetVerif/resetVerif";
+import CreatePass from "./pages/user/createPass/createPass";
 function App() {
 
   return (
@@ -25,6 +29,10 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/signup" element={<Signup/>}/>
           <Route path="/user" element={<UserPage/>}/>
+          <Route path="/resetPass" element={<ResetPass/>}/>
+          <Route path="/checkMail" element={<CheckMail/>}/>
+          <Route path="/resetVerif" element={<ResetVerif/>}/>
+          <Route path="/createPass" element={<CreatePass/>}/>
           <Route path="*" element={<NoPage/>}/>
 
 

@@ -1,0 +1,142 @@
+.Reset_container {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+@media (min-width:320px) and (max-width:1148px) {
+    grid-template-columns: 1fr;
+}
+    .Img_box {
+        // aspect-ratio: 16 / 9; /* Ширина к высоте 16:9 */
+        width: 100%;
+        /* Процент ширины контейнера */
+        height: 100vh;
+@media (min-width:320px) and (max-width:1148px) {
+    padding: 100px 0 0 0;
+}
+        img {
+            width: 100%;
+            height: 101%;
+            object-fit: cover;
+        }
+    }
+
+    .Reset_form_box {
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: column;
+      padding: 20% 100px;
+        gap: 40px;
+
+        @media (min-width:320px) and (max-width:1324px) {
+            padding: 150px 10% 0;
+        }
+        @media (min-width:320px) and (max-width:1148px)  {
+            gap: 30px;
+            padding: 40px;
+        }
+@media (min-width:320px) and (max-width:460px) {
+    padding: 20px;
+}
+.Reset_title_box {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+.Title_box {
+    h1 {
+        letter-spacing: 2%;
+        font-size: 34px;
+        font-weight: 600;
+        color: 
+        #333333;
+    }
+}
+.Description_box {
+    width: 80%;
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        color: 
+        #676B80;
+    }
+}}
+
+    }
+    .Reset_pass_box {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        form {
+            width: 100%;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            label {
+                color: 
+                #3C4242;
+                font-size: 18px;
+                font-weight: 400;
+                letter-spacing: 2%;
+            }
+            input {
+                width: 60%;
+                height: 58px;
+                border-radius: 8px;
+                border: 2px solid #3C4242;
+                outline: none;
+                padding: 0 20px;
+                font-size: 18px;
+                transition: .4s;
+                &:focus {
+                    border-color:
+                    #6620C1 ;
+                }
+                @media (min-width:320px) and (max-width:496px) {
+                    width: 70%;
+                }
+                @media (min-width:320px) and (max-width:426px) {
+                    width: 100%;
+                }
+            }
+            .Error_box {
+                color: #EE1D52;
+                font-weight: 400;
+                font-size: 16px;
+             
+            }
+            button {
+                background-color: 
+                #8A33FD;
+                border: none;
+                font-weight: 500;
+                font-size: 18px;
+                color: white;
+                border-radius: 8px;
+                width: 167px;
+                padding: 15px 0;
+                cursor: pointer;
+                transition: .4s;
+                border: 1px solid transparent;
+                &:hover {
+                    background: transparent;
+                    color: black;
+                    border-color: #8A33FD;
+                }
+            }
+            .Back_login {
+                a {
+                    color: #3C4242;
+                    font-size: 16px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}

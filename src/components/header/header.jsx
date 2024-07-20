@@ -12,7 +12,7 @@ function Header() {
 const Location = useLocation();
 const [classList,setClass] = useState(false);
 useEffect(()=> {
-if(Location.pathname == '/login' ||Location.pathname == '/signup' ) {
+if(Location.pathname == '/createPass' ||Location.pathname == '/resetVerif' ||Location.pathname == '/login' ||Location.pathname == '/signup' || Location.pathname == '/resetPass' ||Location.pathname == '/checkMail' ) {
     setClass(true)
 }
 else {
