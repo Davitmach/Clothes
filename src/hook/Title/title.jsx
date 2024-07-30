@@ -32,9 +32,10 @@ else if(Location.pathname == '/resetVerif') {
 else if(Location.pathname == '/signup') {
     document.title = 'Sign Up'
 }
-else if(Location.pathname == '/user') {
+else if(Location.pathname == '/user' ||Location.pathname == '/user/wishlist' || Location.pathname == '/user/cart' || Location.pathname == '/user/myInfo' ||Location.pathname == '/user/setMyInfo') {
     document.title = 'User'
 }
+
 else if(Location.pathname == '/resetPass') {
     document.title = 'Reset Password'
 }

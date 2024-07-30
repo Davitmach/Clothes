@@ -40,7 +40,7 @@ function Search() {
         }, []);
 
 return(
-    <div style={hide ? {width:'5%' }:{width:'10%'}}  className={`Search_box ${open ? 'Active_search' :'Disable_search'}`}><button><FontAwesomeIcon icon={faMagnifyingGlass}/></button><input className='Input_header_search'  placeholder='Search' type="text"/></div>
+    <div style={hide ? {width:'5%' }:{width:'10%'}}  className={`Search_box `}><button><FontAwesomeIcon icon={faMagnifyingGlass}/></button><input className='Input_header_search'  placeholder='Search' type="text"/></div>
 )
 }
 export default Search

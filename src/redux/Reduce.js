@@ -22,14 +22,26 @@ function LoggedRed(state = {regged:false},action) {
     case 'Logged':
       return {...state, regged: true};
       case 'Logout':
-        return {...state, regget: false};
+        return {...state, regged: false};
     default:
       return state;
+  }
+}
+function SubmitUserInfo(state = {submited:false},action) {
+  switch(action.type) {
+    case 'Submited':
+      return {...state,regged:true};
+      case 'NoSubmit':
+        return {...state,regged:true};
+        default:
+          return state;
   }
 }
 
   export const reducer = combineReducers({
 menu:OpenMenuRed,
 userHidEl:UserFuncHidElRed,
-regged:LoggedRed
+regged:LoggedRed,
+userInfoSubmit: SubmitUserInfo,
+
   })

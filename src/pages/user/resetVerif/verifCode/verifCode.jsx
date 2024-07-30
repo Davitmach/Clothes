@@ -20,10 +20,10 @@ const Navigate = useNavigate();
         
         if (originalCode === data.code) {
             setActive(true)
-            console.log(true);
+          
         }
         else {
-            console.log(false);
+       
             setActive(false)
         }
     }

@@ -247,13 +247,7 @@ header {
         }
 
         @media (min-width:320px) and (max-width:471px) {
-            position: absolute;
-            z-index: 5;
-            left: 0;
-            top: 500px;
-            transform: translateX(100%);
-            width: 100%;
-            padding: 0 40px;
+        visibility: hidden;
         }
 
         &:has(*:focus) {
@@ -316,21 +310,7 @@ header {
         }
     }
 
-    .Disable_search {
-        @media (min-width:320px) and (max-width:471px) {
-            animation: DisableSearch .7s ease-out forwards;
-
-            @keyframes DisableSearch {
-                from {
-                    transform: translateX(0);
-                }
-
-                to {
-                    transform: translateX(100%);
-                }
-            }
-        }
-    }
+   
 
     .User_func {
         flex-shrink: 2;
@@ -387,6 +367,11 @@ header {
                         color: #F6F6F6;
                     }
                 }
+            }
+            .Active {
+                transition: .4s;
+                background-color: #8A33FD;
+                color: white;
             }
 
             @media (min-width:320px) and (max-width:690px) {

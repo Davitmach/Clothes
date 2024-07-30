@@ -4,9 +4,10 @@ import anime from 'animejs';
 import { useEffect, useState } from "react";
 import { Store } from '../../../redux/redux';
 import { Link } from "react-router-dom";
-import { useLocation } from 'react-router-dom';
-
+import UseUserFuncActive from "../../../hook/userFuncActive/userFuncActive";
 function UserFunctional() {
+
+  const {activeLink,HandleActiveLink} = UseUserFuncActive();
   const loggedOffline = localStorage.getItem('logged');
   useEffect(()=> {
     Store.dispatch({
@@ -56,9 +57,9 @@ const [logged,setLog] = useState(Store.getState().regged.regged)
 
   return (
     <div style={hide ? {display:'none'}:{display:'flex'}} className={`User_func ${open ? 'Active_func' : 'Disable_func'}`}>
-      <div className="Liked Func"><Link  ><FontAwesomeIcon icon={faHeart} /></Link></div>
-      <div  className="User Func"><Link  to={logged ? '/user':'/login'}><FontAwesomeIcon icon={faUser} /></Link></div>
-      <div className="Cart Func"><Link ><FontAwesomeIcon icon={faCartShopping} /></Link></div>
+      <div className="Liked Func"><Link  onClick={()=> HandleActiveLink('/wishlist')} className={activeLink == 'wishlist' ? 'Active' : ''}  ><FontAwesomeIcon icon={faHeart} /></Link></div>
+      <div  className="User Func"><Link onClick={()=> HandleActiveLink('/user')}  to={logged ? '/user':'/login'} className={activeLink.includes('user') ? 'Active' : ''}><FontAwesomeIcon icon={faUser} /></Link></div>
+      <div className="Cart Func"><Link onClick={()=> HandleActiveLink('/cart')} className={activeLink == 'cart' ? 'Active' : ''} ><FontAwesomeIcon icon={faCartShopping} /></Link></div>
 
     </div>
   )

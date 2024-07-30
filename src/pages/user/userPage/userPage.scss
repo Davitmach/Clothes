@@ -1,0 +1,110 @@
+.User_page_container {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+
+
+    @media (min-width:320px) and (max-width:794px) {
+        flex-direction: column;
+        
+    }
+  
+    .Choose_page_container {
+
+        flex-shrink: 1;
+        flex-grow: 1;
+        padding: 30px 40px;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: column;
+        @media (min-width:320px) and (max-width:794px) {
+            width: 100%;
+        }
+        gap: 30px;
+        .Title_box {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+.Title {
+    h1 {
+        font-weight: 600;
+        font-size: 28px;
+        letter-spacing: 2%;
+        color: #3C4242;
+    }
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 28px;
+        border-radius: 10px;
+        background: #8A33FD;
+        top:50%;
+        transform: translateY(-50%);
+        left:-10px;
+    }
+}
+            p {
+                font-weight: 400;
+                font-size: 14px;
+                letter-spacing: 2%;
+                color: #807D7E;
+            }
+        }
+        .Change_page_box {
+            width: 100%;
+display: flex;
+align-items: start;
+justify-content: center;
+flex-direction: column;
+gap: 20px;
+&>div {
+    width: 100%;
+
+a { 
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+gap: 10px;
+text-decoration: none;
+color: #807D7E;
+font-size: 18px;
+padding: 10px 40px ;
+border-left: 2px solid 
+transparent;
+white-space: nowrap;
+transition: .4s;
+&:hover {
+    background-color: 
+    #F6F6F6;
+    border-left: 2px solid 
+    #3C4242; 
+}
+}
+}
+.Active {
+    transition: .4s;
+    background-color: 
+    #F6F6F6;
+    border-left: 2px solid 
+    #3C4242;
+    
+}
+        }
+    }
+    .Container_box {
+        display: flex;
+        flex-grow: 7;
+        flex-shrink: 7;
+        
+        @media (min-width:320px) and (max-width:794px) {
+            width: 100%;
+        }
+    }
+}

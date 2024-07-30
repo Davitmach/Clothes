@@ -20,22 +20,27 @@ const Navigate = useNavigate();
 
     const [showHide, setShowHide] = useState(false);
     const { register, handleSubmit, getValues, formState: { errors, isValid, isSubmitted } } = useForm();
-    const { mutate, error, isSuccess } = SetData(Signup_api, 'Add User')
+    const { mutate, error, isSuccess,data } = SetData(Signup_api, 'Add User')
     const onSubmit = (data) => {
         mutate({
             ...getValues()
         })
     }
+    useEffect(()=> {
+console.log(data);
+    },[data])
     const HandleShow = () => {
         setShowHide(!showHide)
     }
 
 
     useEffect(() => {
-        if (isSuccess) {
+        if (data?.status == 'true') {
             Store.dispatch({ type: 'Logged' });
             localStorage.setItem('logged', true);
+            localStorage.setItem('id',data.id)
 Navigate('/',{replace:true})
+
         }
     }, [isSuccess])
 

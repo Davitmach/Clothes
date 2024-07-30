@@ -9,7 +9,6 @@ import { Store } from "../../../../../redux/redux";
 
 function Signin() {
     const Navigate = useNavigate();
-  
 
     const Login = async (data) => {
         return axios.post('http://clothes/users/signin.php', data, {
@@ -20,22 +19,32 @@ function Signin() {
     }
     const { mutate, isSuccess, error, data } = SetData(Login, 'Login');
     useEffect(() => {
-
-        if (data) {
-            if (data.data == true) {
+        console.log(data);
+  
+          
+            if (data &&data?.data?.status  === 'true') {
+           
 Store.dispatch({
     type:'Logged'
 })
 Navigate('/user',{replace:true})
 localStorage.setItem('logged',true)
-            }
-        }
-    }, [data])
+localStorage.setItem('id',data.data.id)
+           
+           }
+      
+    }, [isSuccess])
+const ErrorInput=()=> {
+    if(data?.data?.status !== 'true') {
 
+    }
+  
+}
 
     const [showHide, setShowHide] = useState(false);
     const { register, handleSubmit, getValues, formState: { errors, isValid } } = useForm();
     const onSubmit = (data) => {
+       ErrorInput()
         mutate({
             ...getValues()
         })
@@ -51,7 +60,7 @@ localStorage.setItem('logged',true)
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="Name_mail">
                     <label>User name or email address</label>
-                    <input    {...register('Name_mail', {
+                    <input     {...register('Name_mail', {
                         required: 'The field is empty!',
 
                     })} type="text" />
@@ -65,7 +74,7 @@ localStorage.setItem('logged',true)
                             <div className="State_name"><span>{showHide ? 'Hide' : 'Show'}</span></div>
                         </div>
                     </div>
-                    <div className="Input"><input  {...register('Password', {
+                    <div className="Input"><input   {...register('Password', {
                         required: 'The field is empty!',
 
                     })} type={showHide ? 'text' : 'password'} /></div>
