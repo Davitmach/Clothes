@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import SetData from "../../../../../hook/setData/setData";
+import { SetData } from "../../../../../hook/setData/setData";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 

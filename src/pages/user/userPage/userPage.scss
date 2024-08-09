@@ -108,3 +108,67 @@ transition: .4s;
         }
     }
 }
+.Background_box {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0 ,0 ,0.20 );
+    top:0;
+    left: 0;
+}
+
+.Error_box_back {
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(231, 65, 65);
+    border-radius: 8px;
+    padding: 20px 50px 20px 10px;
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    .Icon_box {
+        font-size: 30px;
+        color: white;
+
+opacity: 0;
+        @keyframes Anim {
+            0% {
+                opacity: 0;
+                transform: scale(0.6);
+            }
+          50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+    }
+    .Description_box {
+        p {
+            color: white;
+            font-weight: 600;
+            width: 300px;
+        }
+    }
+    .Xmark_box {
+        position: absolute;
+        right:16px;
+        top:10px;
+        cursor: pointer;
+        font-size: 20px;
+        color: white;
+        transition: .4s;
+        transform: scale(1.1);
+     
+        &:hover {
+            transform: scale(2);
+        }
+        
+    }
+}

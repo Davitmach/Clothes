@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Link ,useNavigate} from "react-router-dom";
-import SetData from "../../../../../hook/setData/setData";
+import { SetData } from "../../../../../hook/setData/setData";
 import axios from "axios";
 import { Store } from "../../../../../redux/redux";
 
@@ -18,11 +18,13 @@ function Signin() {
         })
     }
     const { mutate, isSuccess, error, data } = SetData(Login, 'Login');
+useEffect(()=> {
+console.log(data?.data);
+
+},[data])
     useEffect(() => {
-        console.log(data);
-  
-          
             if (data &&data?.data?.status  === 'true') {
+           console.log(data?.data?.name);
            
 Store.dispatch({
     type:'Logged'
@@ -30,7 +32,11 @@ Store.dispatch({
 Navigate('/user',{replace:true})
 localStorage.setItem('logged',true)
 localStorage.setItem('id',data.data.id)
-           
+var id = localStorage.getItem('id');
+           localStorage.setItem(`${id}submitInfo`,true);
+           localStorage.setItem(`${id}address`,data?.data?.address);
+           localStorage.setItem(`${id}name`,data?.data?.name);
+           localStorage.setItem(`${id}addressId`,data?.data?.addressId)
            }
       
     }, [isSuccess])
@@ -78,7 +84,8 @@ const ErrorInput=()=> {
                         required: 'The field is empty!',
 
                     })} type={showHide ? 'text' : 'password'} /></div>
-                    <div className="Error_box"><p>{errors.Password ? errors.Password.message : ''}</p></div>
+                    <div className="Error_box"><p>{data?.data == false? "Uncorrect password or email!": ''}</p></div>
+
                     <div className="Forgot_pass"><Link to={'/resetPass'}>Forget your password</Link></div>
                 </div>
 

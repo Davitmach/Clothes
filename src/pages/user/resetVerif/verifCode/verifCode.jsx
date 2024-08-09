@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import CryptoJS from "crypto-js";
-import SetData from "../../../../hook/setData/setData";
+import { SetData } from "../../../../hook/setData/setData";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function VerifCode() {

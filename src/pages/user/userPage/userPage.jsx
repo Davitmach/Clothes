@@ -1,36 +1,76 @@
 import './userPage.scss'
-import { Link, Outlet, useLocation} from "react-router-dom";
+import { Link, Outlet, useLocation,useNavigate} from "react-router-dom";
 import { useState,useEffect } from 'react';
 import { Store } from "../../../redux/redux";
-import { useNavigate } from "react-router-dom";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faRightFromBracket,faTriangleExclamation, faXmark } from '@fortawesome/free-solid-svg-icons';
 import {faUser,faHeart} from '@fortawesome/free-regular-svg-icons'
 
 function UserPage() {
+    const UserId = localStorage.getItem('id');
     const Navigate = useNavigate();
+const Location = useLocation();
+
+const [FullAddress, setFull] = useState(Store.getState().fullAddress.full);
+    useEffect(() => {
+        const handleStateChange = () => {
+          setFull(Store.getState().fullAddress.full);
+        };
+        Store.subscribe(handleStateChange);
+    
+      }, []);
+
+
 
     const [submit, setSubmit] = useState(Store.getState().userInfoSubmit.submited);
+
     const [activeLink,setActive] = useState('');
     useEffect(() => {
         const handleStateChange = () => {
           setSubmit(Store.getState().userInfoSubmit.submited);
         };
         Store.subscribe(handleStateChange);
-    
+   
+
+
       }, []);
 
+ 
       const GetName = ()=> {
+        const Name = localStorage.getItem(`${UserId}name`);
         return(
-            <h1>Hello </h1>
+            <h1>Hello {Name}  </h1>
         );
       }
+      
+      
       useEffect(()=> {
+
 if(submit == false) {
 Navigate('setMyInfo',{replace:true})
 setActive('myinfo')
+
 }
-      },[])
+else {  
+    localStorage.setItem(`${UserId}submitInfo`,true);
+    Navigate('myInfo',{replace:true}) 
+}
+
+      },[submit, Navigate, UserId])
+      
+
+
+      useEffect(()=> {
+   
+   const SubmitedInfo = localStorage.getItem(`${UserId}submitInfo`);
+   if(SubmitedInfo == 'true') {
+    Navigate('myInfo',{replace:true})
+    Store.dispatch({type:'Submited'})
+   }
+    
+},[Navigate, UserId])
+
 const HandleActiveLink = (link)=> {
     setActive(link)
 }
@@ -63,7 +103,15 @@ return(
             </Link></div>
         </div>
     </div>
-    <div className="Container_box">{<Outlet/>}</div>
+    <div className="Container_box">{<Outlet/>}
+  <div className="Background_box" style={FullAddress ? {visibility:'visible'} : {visibility:'hidden'}}>
+    <div className="Error_box_back" style={FullAddress ? {visibility:'visible'} : {visibility:'hidden'}}  >
+        <div className="Xmark_box" onClick={()=> Store.dispatch({type:'NoFull'}) }><FontAwesomeIcon icon={faXmark}/></div>
+        <div className='Icon_box' style={FullAddress ? {animation:'Anim .4s .4s ease-in-out forwards'}: {animation:'none'}}><FontAwesomeIcon icon={faTriangleExclamation}/></div>
+        <div className='Description_box'>{FullAddress  ? (<p>You have 4 address!. Maximum 4 address you can have</p> ): ''}</div>
+    </div>
+    </div>
+    </div>
     </div>
 
     </>

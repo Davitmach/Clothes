@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import SetData from "../../../../../hook/setData/setData";
+import { SetData } from "../../../../../hook/setData/setData";
 import { Store } from "../../../../../redux/redux";
 
 function Signup() {
@@ -22,12 +22,15 @@ const Navigate = useNavigate();
     const { register, handleSubmit, getValues, formState: { errors, isValid, isSubmitted } } = useForm();
     const { mutate, error, isSuccess,data } = SetData(Signup_api, 'Add User')
     const onSubmit = (data) => {
+       
+        
         mutate({
             ...getValues()
         })
     }
     useEffect(()=> {
 console.log(data);
+
     },[data])
     const HandleShow = () => {
         setShowHide(!showHide)
@@ -35,7 +38,9 @@ console.log(data);
 
 
     useEffect(() => {
-        if (data?.status == 'true') {
+        if (data?.data?.status == 'true') {
+            
+            
             Store.dispatch({ type: 'Logged' });
             localStorage.setItem('logged', true);
             localStorage.setItem('id',data.id)

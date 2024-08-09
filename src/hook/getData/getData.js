@@ -1,5 +1,5 @@
 import { useQuery} from "@tanstack/react-query";
-function SetData(func,key) {
+function GetData(func,key) {
 
 const {data,error,isSuccess} = useQuery({
     queryFn:(data)=>func(data),
@@ -7,6 +7,6 @@ const {data,error,isSuccess} = useQuery({
     select:data=> data
 })
 
-return{mutate,error,isSuccess}
+return{data,error,isSuccess}
 }
-export default SetData;
+export default GetData;

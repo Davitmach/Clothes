@@ -1,5 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
-function SetData(func,key) {
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+export function SetData(func,key) {
 
 const {mutate,error,isSuccess,data} = useMutation({
     mutationFn:(data)=>func(data),
@@ -9,4 +9,16 @@ const {mutate,error,isSuccess,data} = useMutation({
 
 return{mutate,error,isSuccess,data}
 }
-export default SetData;
+ 
+
+ export function SetDataWithQueryClient(func,key,queryKey) {
+    const QueryClient = useQueryClient();
+    const {mutate,error,isSuccess,data} = useMutation({
+        mutationFn:(data)=>func(data),
+        mutationKey:[key],
+        onSuccess:()=> QueryClient.invalidateQueries(queryKey)
+      
+    })
+    
+    return{mutate,error,isSuccess,data} 
+}

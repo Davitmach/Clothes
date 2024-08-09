@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import SetData from "../../../../../hook/setData/setData";
+import { SetData } from "../../../../../hook/setData/setData";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function Form() {

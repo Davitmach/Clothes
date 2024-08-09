@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route,useRoutes} from "react-router-dom";
+import { BrowserRouter, Routes, Route,useRoutes, useLocation} from "react-router-dom";
 import Layout from "./layout/layout";
 import NoPage from "./pages/noPage/noPage";
 import Shop from "./pages/shop/home";
@@ -19,11 +19,15 @@ import SignOut from "./pages/user/userPage/signOut/signOut";
 import WishList from "./pages/user/userPage/wishList/wishList";
 import Cart from "./pages/user/userPage/cart/cart";
 import SetMyInfo from "./pages/user/userPage/setMyInfo/setMyInfo";
+import { useEffect } from "react";
+
+
 function App() {
 
   return (
     <>
     <BrowserRouter basename="/">
+
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index path="/"  element={<Shop />} />

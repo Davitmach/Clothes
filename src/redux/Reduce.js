@@ -30,18 +30,29 @@ function LoggedRed(state = {regged:false},action) {
 function SubmitUserInfo(state = {submited:false},action) {
   switch(action.type) {
     case 'Submited':
-      return {...state,regged:true};
+      return {...state,submited:true};
       case 'NoSubmit':
-        return {...state,regged:true};
+        return {...state,submited:false};
         default:
           return state;
   }
 }
-
+function FullAddress(state = {full:false},action) {
+  switch(action.type) {
+    case 'Full':
+      return {...state,full:true};
+      case 'NoFull':
+        return {...state,full:false};
+        default:
+          return state;
+  }
+}
   export const reducer = combineReducers({
 menu:OpenMenuRed,
 userHidEl:UserFuncHidElRed,
 regged:LoggedRed,
 userInfoSubmit: SubmitUserInfo,
+fullAddress:FullAddress
+
 
   })

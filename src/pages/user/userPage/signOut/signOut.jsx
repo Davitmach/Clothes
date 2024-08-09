@@ -7,8 +7,13 @@ function SignOut() {
     function RemoveStorage() {
      localStorage.removeItem('logged');
  localStorage.removeItem('mail');
- localStorage.removeItem('id');
+ var id =localStorage.getItem('id');
+ localStorage.removeItem(`${id}name`);
+ localStorage.removeItem('id'); 
+ localStorage.removeItem('code')
 
+
+  
     }
 
 useEffect(()=> {
@@ -16,6 +21,10 @@ useEffect(()=> {
     Navigate('/',{replace:true})
     Store.dispatch({
         type:'Logout'
+      })
+
+      Store.dispatch({
+        type:'NoSubmit'
       })
 },[])
 }
