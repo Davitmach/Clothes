@@ -42,6 +42,12 @@ else if(Location.pathname == '/resetPass') {
 else if(Location.pathname == '/checkMail') {
     document.title = 'Check Mail'
 }
+else if(Location.pathname == '/admin') {
+    document.title = 'Dashboard'
+}
+else if(Location.pathname == '/admin/Users' ||Location.pathname == '/admin/page' ||Location.pathname == '/admin/product' ||Location.pathname == '/admin/admin'  ) {
+    document.title = 'Dashboard'
+}
         else {
             document.title = 'Not Found';
         }

@@ -11,9 +11,11 @@
     @media (min-width:320px) and (max-width:1136px) {
         padding: 30px 30px;
     }
+
     @media (min-width:320px) and (max-width:350px) {
         padding: 20px;
     }
+
     .Title_container {
         display: flex;
         align-items: start;
@@ -46,7 +48,7 @@
         form {
             width: 100%;
             display: grid;
-            
+
             grid-template-columns: repeat(2, 1fr);
             grid-row-gap: 20px;
 
@@ -55,9 +57,9 @@
             }
 
             @media (min-width:320px) and (max-width:916px) {
-              display: flex;
-              align-items: start;
-              flex-direction: column;
+                display: flex;
+                align-items: start;
+                flex-direction: column;
             }
 
             .Delivery_box {
@@ -115,9 +117,11 @@
                 justify-content: center;
                 flex-direction: column;
                 gap: 5px;
-@media (min-width:320px)and (max-width:916px) {
-    width: 100%;
-}
+
+                @media (min-width:320px)and (max-width:916px) {
+                    width: 100%;
+                }
+
                 label {
                     color:
                         #3C4242;
@@ -206,10 +210,18 @@
                     justify-content: center;
                     line-height: 0;
 
-                    &:hover {
+                    &:active {
                         border-color: #8A33FD;
                         background-color: transparent;
                         color: #8A33FD;
+                    }
+
+                    @media (hover:hover) {
+                        &:hover {
+                            border-color: #8A33FD;
+                            background-color: transparent;
+                            color: #8A33FD;
+                        }
                     }
                 }
 
@@ -230,11 +242,17 @@
                     font-weight: 700;
                     transition: .4s;
                     border: 1px solid transparent;
+&:active {
+    
+    background: #807D7E;
+    color: #F6F6F6;
+}
+                    @media (hover:hover) {
+                        &:hover {
 
-                    &:hover {
-
-                        background: #807D7E;
-                        color: #F6F6F6;
+                            background: #807D7E;
+                            color: #F6F6F6;
+                        }
                     }
                 }
             }

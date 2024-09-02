@@ -18,10 +18,13 @@ function Signin() {
         })
     }
     const { mutate, isSuccess, error, data } = SetData(Login, 'Login');
-useEffect(()=> {
-console.log(data?.data);
-
-},[data])
+    useEffect(() => {
+        console.log(data?.data);
+        if (typeof data?.data === 'string' && data.data.includes("banned")) {
+          alert(data.data);
+        }
+      }, [data]);
+      
     useEffect(() => {
             if (data &&data?.data?.status  === 'true') {
            console.log(data?.data?.name);
@@ -33,11 +36,12 @@ Navigate('/user',{replace:true})
 localStorage.setItem('logged',true)
 localStorage.setItem('id',data.data.id)
 var id = localStorage.getItem('id');
+if(data?.data?.submit == 'true') {
            localStorage.setItem(`${id}submitInfo`,true);
            localStorage.setItem(`${id}address`,data?.data?.address);
            localStorage.setItem(`${id}name`,data?.data?.name);
            localStorage.setItem(`${id}addressId`,data?.data?.addressId)
-           }
+           }}
       
     }, [isSuccess])
 const ErrorInput=()=> {

@@ -9,18 +9,28 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Store } from '../../../../redux/redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useInView } from 'react-intersection-observer';
 function MyInfo() {
     const UserId = localStorage.getItem('id');
     const Address = localStorage.getItem(`${UserId}address`);
     const AddressId = localStorage.getItem(`${UserId}addressId`);
-    const Navigate = useNavigate();
 
+
+    const Navigate = useNavigate();
+    const { ref, inView, entry } = useInView({
+        
+        threshold: 0.6,
+      });
+      useEffect(()=> {
+console.log(inView);
+
+      },[inView])
     const { register, handleSubmit, getValues, formState: { errors } } = useForm()
     const [name, setName] = useState(false);
     const [password, setPassword] = useState(false);
     const [email, setEmail] = useState(false);
     const [phone, setPhone] = useState(false);
-    const [Default,setDefault] = useState('');
+    const [Default, setDefault] = useState('');
     const GetApiFn = async (id) => {
         const { data } = await axios.get(`http://clothes/users/getInfo.php?info=${AddressId}/${Address}`)
         return data
@@ -106,33 +116,33 @@ function MyInfo() {
     // GET ADDRESS
 
 
- 
+
 
     const FetchGetAddress = async (id) => {
         const { data } = await axios.get(`http://clothes/users/getAddress.php?id=${id}`)
         return data;
     }
 
-   
-    const { data:AddressData, error: AddressError, isSuccess: AddressSuccess } = GetData(() => FetchGetAddress(UserId), 'getUserAddress')
-useEffect(()=> {
-console.log(data);
 
-},[data])
+    const { data: AddressData, error: AddressError, isSuccess: AddressSuccess } = GetData(() => FetchGetAddress(UserId), 'getUserAddress')
+    useEffect(() => {
+        console.log(data);
 
+    }, [data])
 
+var Delay = 0;
     const groupAddresses = (addresses, itemsPerGroup) => {
         const groups = [];
         for (let i = 0; i < addresses.length; i += itemsPerGroup) {
-          groups.push(addresses.slice(i, i + itemsPerGroup));
+            groups.push(addresses.slice(i, i + itemsPerGroup));
         }
         return groups;
-      };
-    
-      const groupedAddresses = AddressData ? groupAddresses(AddressData, 4) : [];
+    };
+
+    const groupedAddresses = AddressData ? groupAddresses(AddressData, 4) : [];
 
 
-      const DeleteAddressApi = async (info) => {
+    const DeleteAddressApi = async (info) => {
         return await axios.post('http://clothes/users/deleteAddress.php', info, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -147,58 +157,58 @@ console.log(data);
             }
         });
     }
-const {mutate:DeleteMutate,isSuccess:DeleteSuccess,error:DeleteError,data:DeleteData} = SetDataWithQueryClient((DeleteAddressApi),'DeleteAddress','getUserAddress');
-      const DeleteAddress = (id,addressType)=> {
+    const { mutate: DeleteMutate, isSuccess: DeleteSuccess, error: DeleteError, data: DeleteData } = SetDataWithQueryClient((DeleteAddressApi), 'DeleteAddress', 'getUserAddress');
+    const DeleteAddress = (id, addressType) => {
         DeleteMutate({
-            id:id,
-            addressType:addressType,
-            userId:UserId
+            id: id,
+            addressType: addressType,
+            userId: UserId
         })
-        
-      }
-useEffect(()=> {
-if(DeleteData?.data) {
-    localStorage.setItem(`${UserId}name`,DeleteData.data.name);
-    localStorage.setItem(`${UserId}addressId`,DeleteData.data.id);
-    localStorage.setItem(`${UserId}address`,DeleteData.data.address)
-window.location.reload()
 
-        
-    
-}
-if(DeleteData?.data == false) {
-    Store.dispatch({type:'NoSubmit'});
-    localStorage.removeItem(`${UserId}address`);
-    localStorage.removeItem(`${UserId}addressId`);
-    localStorage.removeItem(`${UserId}name`);
-    localStorage.removeItem(`${UserId}submitInfo`)
-}
-
-},[DeleteData])
-
-      const {mutate:SetDefMutate,isSuccess:SetDefSuccess,error:SetDefError,data:SetDefData} = SetDataWithQueryClient((SetDefaultApi),'SetDefaultAddress','getUserAddress')
-
-      const HandleDef = (id,payload,userId) => {
-SetDefMutate({
-    addressId:id,
-    payload:payload,
-    userId:userId
-})
-
-      }
+    }
+    useEffect(() => {
+        if (DeleteData?.data) {
+            localStorage.setItem(`${UserId}name`, DeleteData.data.name);
+            localStorage.setItem(`${UserId}addressId`, DeleteData.data.id);
+            localStorage.setItem(`${UserId}address`, DeleteData.data.address)
+            window.location.reload()
 
 
-      useEffect(()=> {
-        console.log(SetDefData);
-        
-        if(SetDefData?.data) {
-localStorage.setItem(`${UserId}name`,SetDefData?.data?.name);
-localStorage.setItem(`${UserId}addressId`,SetDefData?.data?.id);
-localStorage.setItem(`${UserId}address`,SetDefData?.data?.address)
-window.location.reload();
+
+        }
+        if (DeleteData?.data == false) {
+            Store.dispatch({ type: 'NoSubmit' });
+            localStorage.removeItem(`${UserId}address`);
+            localStorage.removeItem(`${UserId}addressId`);
+            localStorage.removeItem(`${UserId}name`);
+            localStorage.removeItem(`${UserId}submitInfo`)
         }
 
-      },[SetDefData])
+    }, [DeleteData])
+
+    const { mutate: SetDefMutate, isSuccess: SetDefSuccess, error: SetDefError, data: SetDefData } = SetDataWithQueryClient((SetDefaultApi), 'SetDefaultAddress', 'getUserAddress')
+
+    const HandleDef = (id, payload, userId) => {
+        SetDefMutate({
+            addressId: id,
+            payload: payload,
+            userId: userId
+        })
+
+    }
+
+
+    useEffect(() => {
+        console.log(SetDefData);
+
+        if (SetDefData?.data) {
+            localStorage.setItem(`${UserId}name`, SetDefData?.data?.name);
+            localStorage.setItem(`${UserId}addressId`, SetDefData?.data?.id);
+            localStorage.setItem(`${UserId}address`, SetDefData?.data?.address)
+            window.location.reload();
+        }
+
+    }, [SetDefData])
     return (
         <div className='My_info_container'>
             <div className='Title_container'>
@@ -270,55 +280,58 @@ window.location.reload();
                 <div className="Address_container">
                     <div className='Title_box'>
                         <div><h1>Address</h1></div>
-                        <div className='Add_address'><button onClick={(event)=> {
+                        <div className='Add_address'><button onClick={(event) => {
                             event.preventDefault()
- Store.dispatch({type:'NoSubmit'});
- localStorage.removeItem(`${UserId}submitInfo`)
-localStorage.setItem(`${UserId}wait`,UserId)
- Navigate('/user',{replace:true})
+                            Store.dispatch({ type: 'NoSubmit' });
+                            localStorage.removeItem(`${UserId}submitInfo`)
+                            localStorage.setItem(`${UserId}wait`, UserId)
+                            Navigate('/user', { replace: true })
                         }}>Add New</button></div>
                     </div>
-                    <div className='Addresses_box'>
-                        <div className="Swipe_box">
-                    {groupedAddresses.map((group, index) => (
-                <div className="box" key={index}>
-                    {group.map((address, idx) => (
-                        <div className="address" key={idx}>
-                            <div className={`Set_default ${Default == address.id ? 'Open' : 'Close'}`} style={!address.billing  && !address.shipping ? {visibility:'visible'}:{visibility:'hidden'}}>
-                                <div className='Address'>
-                                   <button onClick={()=> HandleDef(address.id,'shipping',UserId)}>Shipping</button>
-                                   <button  onClick={()=> HandleDef(address.id,'billing',UserId)}>Billing</button>
+                    <div className='Addresses_box' ref={ref}>
+                  
+                            {  groupedAddresses.map((group, index) => (
+                                <div className="box" key={index}>
+                                    { group.map((address, idx) => (
+                                       
+                                        <div style={inView ?{animation:`FadeIn .5s ${Delay+=100}ms ease-in-out forwards`}: {animation:'none'}}  className="address" key={idx}>
+                                         
+                                            <div className={`Set_default ${Default == address.id ? 'Open' : 'Close'}`} style={!address.billing && !address.shipping ? { visibility: 'visible' } : { visibility: 'hidden' }}>
+                                                <div className='Address'>
+                                                    <button onClick={() => HandleDef(address.id, 'shipping', UserId)}>Shipping</button>
+                                                    <button onClick={() => HandleDef(address.id, 'billing', UserId)}>Billing</button>
+                                                </div>
+                                                <div className='Close_btn'><button onClick={() => setDefault('')}><FontAwesomeIcon icon={faXmark} /></button></div>
+                                            </div>
+                                            <div className='Info_box'>
+                                                <div className="Name_box">
+                                                    <h1>{address.name} {address.lastname}</h1>
+                                                </div>
+                                                <div className="Phone_box"><span>{address.phone}</span></div>
+                                            </div>
+                                            <div className="Home">{address.home ? address.home + ' ' + address.street : address.street}</div>
+                                            <div className="Delivery">
+                                                {address.delivery ? (<><div className='Delivery_box'>{address.delivery.length > 16 ? address.delivery.substring(0, 16) + '...' : address.delivery}</div>{address.shipping ? (<div className='Default_address'>Default shipping address</div>) : address.billing ? (<div className='Default_address'>Default billing address</div>) : ''}</>) : (<div className='Default'>{address.shipping ? (<div className='Default_address'>Default shipping address</div>) : address.billing ? (<div className='Default_address'>Default billing address</div>) : ''}</div>)}
+                                            </div>
+                                            <div className='Func_box'>
+                                                <div className='Remove_btn'><button className='Btn' onClick={() => DeleteAddress(address.id, address.shipping ? 'shipping' : address.billing ? 'billing' : 'address')}>Remove</button></div>
+                                                <div className='Edit_btn'><button className='Btn' onClick={() => {
+                                                    Store.dispatch({ type: 'NoSubmit' });
+                                                    localStorage.removeItem(`${UserId}submitInfo`)
+                                                    localStorage.setItem(`${UserId}wait`, UserId)
+                                                    Navigate('/user', { replace: true })
+                                                    Navigate(`/user/setMyInfo`, { replace: false, state: { address: address, currentAddress: address.shipping ? 'shipping' : address.billing ? 'billing' : 'address', addressId: address.id } })
+                                                }}>Edit</button></div>
+                                                {!address.billing && !address.shipping ? (<div className='Set_default_btn'> <button onClick={() => setDefault(address.id)}>Set as default</button></div>) : ''}
+                                            </div>
+                                        </div>
+                                        
+                                    ))}
                                 </div>
-                                <div className='Close_btn'><button onClick={()=> setDefault('')}><FontAwesomeIcon icon={faXmark}/></button></div>
-                            </div>
-                            <div className='Info_box'>
-                                <div className="Name_box">
-                                    <h1>{address.name} {address.lastname}</h1>
-                                </div>
-                                <div className="Phone_box"><span>{address.phone}</span></div>
-                            </div>
-                            <div className="Home">{address.home? address.home +' '+ address.street : address.street }</div>
-                            <div className="Delivery">
-                                {address.delivery ? (<><div className='Delivery_box'>{address.delivery.length > 16 ? address.delivery.substring(0,16)+'...': address.delivery}</div>{address.shipping ? (<div className='Default_address'>Default shipping address</div>) : address.billing ? (<div className='Default_address'>Default billing address</div>) : ''}</>) :(<div className='Default'>{address.shipping ?(<div className='Default_address'>Default shipping address</div>) : address.billing ? (<div className='Default_address'>Default billing address</div>):''}</div>) }
-                            </div>
-                            <div className='Func_box'>
-                                <div className='Remove_btn'><button className='Btn' onClick={()=> DeleteAddress(address.id,address.shipping ? 'shipping' : address.billing ? 'billing' :'address' )}>Remove</button></div>
-                                <div className='Edit_btn'><button className='Btn' onClick={()=>{
-                                     Store.dispatch({type:'NoSubmit'});
-                                     localStorage.removeItem(`${UserId}submitInfo`)
-                                    localStorage.setItem(`${UserId}wait`,UserId)
-                                     Navigate('/user',{replace:true})
-                                     Navigate(`/user/setMyInfo`,{replace:false,state:{address:address,currentAddress: address.shipping ? 'shipping' : address.billing ? 'billing' : 'address',addressId:address.id}})
-                                }}>Edit</button></div>
-                                {!address.billing  && !address.shipping  ? (<div className='Set_default_btn'> <button onClick={()=> setDefault(address.id)}>Set as default</button></div>) : ''}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ))}
-            </div>
+                            ))}
+                     
                     </div>
-              
+
                 </div>
             </div>
         </div>

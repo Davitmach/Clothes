@@ -1,0 +1,40 @@
+.Page_container {
+    width: 400px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    background-color: 
+    #F6F6F6;
+    border-radius: 12px;
+    padding: 13px;
+    label {
+        color: #807D7E;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    div {
+        color: 
+        #3C4242;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    button {
+        border: 1px solid #807D7E;
+        background: none;
+        border-radius: 8px;
+        padding: 7px 19px;
+        color: #807D7E;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .4s;
+
+        &:hover {
+background-color: #807D7E;
+color: white;
+        }
+    }
+
+}

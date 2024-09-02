@@ -1,0 +1,129 @@
+.Admin_container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: start;
+    padding: 30px 30px;
+    gap: 40px;
+    .Left_bar {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: column;
+    gap: 20px;
+       
+        .Title_box {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+            .Title {
+                h1 {
+                    font-weight: 600;
+                    font-size: 28px;
+                    letter-spacing: 2%;
+                    color: #3C4242;
+                }
+                position: relative;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 6px;
+                    height: 28px;
+                    border-radius: 10px;
+                    background: #8A33FD;
+                    top:50%;
+                    transform: translateY(-50%);
+                    left:-10px;
+                }
+            }
+        }
+        .Description {
+            width: 100%;
+            p {
+                width: 100%;
+                font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 2%;
+    color: #807D7E;
+            }
+        }
+        .Pages {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+ul {
+    list-style: none;
+    width: 100%;
+display: flex;
+align-items: start;
+justify-content: center;
+flex-direction: column;
+gap: 20px;
+&>li {
+
+
+a {
+text-decoration: none;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+gap: 10px;
+text-decoration: none;
+color: #807D7E;
+font-size: 18px;
+padding: 10px 40px ;
+border-left: 2px solid 
+transparent;
+white-space: nowrap;
+transition: .4s;
+&:active {
+    background-color: 
+    #F6F6F6;
+    border-left: 2px solid 
+    #3C4242; 
+}
+@media (hover:hover) {
+&:hover {
+    background-color: 
+    #F6F6F6;
+    border-left: 2px solid 
+    #3C4242; 
+}
+}
+}
+}
+.Active {
+    transition: .4s;
+    background-color: 
+    #F6F6F6;
+    border-left: 2px solid 
+    #3C4242;
+    
+}
+}
+
+
+ 
+        }
+    }
+    .Main_container {
+        width: 100%;
+    }
+    .Confirm_box {
+position: fixed;
+top: 50%;
+left: 50%;
+background-color: red;
+
+    }
+    .Hidden {
+        opacity: 0;
+    }
+    .Visible {
+        opacity: 1;
+    }
+}

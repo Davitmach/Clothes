@@ -80,12 +80,21 @@ border-left: 2px solid
 transparent;
 white-space: nowrap;
 transition: .4s;
+&:active {
+    background-color: 
+    #F6F6F6;
+    border-left: 2px solid 
+    #3C4242; 
+}
+@media (hover:hover) {
 &:hover {
     background-color: 
     #F6F6F6;
     border-left: 2px solid 
     #3C4242; 
 }
+}
+
 }
 }
 .Active {
@@ -165,10 +174,13 @@ opacity: 0;
         color: white;
         transition: .4s;
         transform: scale(1.1);
-     
-        &:hover {
+        &:active {
             transform: scale(2);
         }
+     @media (hover:hover) {
+        &:hover {
+            transform: scale(2);
+        }}
         
     }
 }

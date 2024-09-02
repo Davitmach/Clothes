@@ -47,12 +47,14 @@ function FullAddress(state = {full:false},action) {
           return state;
   }
 }
+
   export const reducer = combineReducers({
 menu:OpenMenuRed,
 userHidEl:UserFuncHidElRed,
 regged:LoggedRed,
 userInfoSubmit: SubmitUserInfo,
-fullAddress:FullAddress
+fullAddress:FullAddress,
+
 
 
   })

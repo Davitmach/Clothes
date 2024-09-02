@@ -1,0 +1,80 @@
+.Not_found_page {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 200px 30px;
+    gap: 30px;
+    .Img_box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      .Img {
+        border-bottom-left-radius: 120px ;
+        overflow: hidden;
+      }
+        img {
+            object-fit: cover;
+            width: 181px;
+            height: 257px;
+        }
+    }
+    .Error_404 {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+       h1 {
+        font-weight: 700;
+        font-size: 198px;
+        color: #2A2F2F;
+        @media (min-width:320px) and (max-width:440px) {
+            font-size: 150px;
+        }
+       }
+   
+       &>h1:nth-child(2) {
+        color: 
+        white;
+       }
+       &>h1:last-child {
+        transform: rotate(28deg);
+       }
+    }
+    .Description_box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        h1  {
+            font-weight: 700;
+            text-align: center;
+            font-size: 34px;
+        }
+        p {
+            color: 
+            #807D7E;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 2%;
+            max-width: 414px;
+            text-align: center;
+        }
+    }
+    .Go_home  {
+        a {
+            background-color: 
+            #8A33FD;
+            padding: 12px 48px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            text-decoration: none;
+        }
+    }
+}

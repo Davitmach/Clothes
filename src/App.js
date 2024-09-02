@@ -19,9 +19,12 @@ import SignOut from "./pages/user/userPage/signOut/signOut";
 import WishList from "./pages/user/userPage/wishList/wishList";
 import Cart from "./pages/user/userPage/cart/cart";
 import SetMyInfo from "./pages/user/userPage/setMyInfo/setMyInfo";
-import { useEffect } from "react";
-
-
+import Admin from "./admin/admin";
+import Users from "./admin/users/users";
+import AdminLogin from "./admin/login/login";
+import Page from "./admin/page/page";
+import AddAdmin from "./admin/AddAdmin/AddAdmin";
+import Log from "./admin/log/log";
 function App() {
 
   return (
@@ -50,7 +53,13 @@ function App() {
           <Route path="checkMail" element={<CheckMail/>}/>
           <Route path="resetVerif" element={<ResetVerif/>}/>
           <Route path="createPass" element={<CreatePass/>}/>
-      
+      <Route path="admin" element={<Admin/>}>
+<Route path="Users" element={<Users/>}/>
+<Route path="login" element={<AdminLogin/>}/>
+<Route path="page" element={<Page/>}/>
+<Route path="admins" element={<AddAdmin/>}/>
+<Route path="log" element={<Log/>}/>
+      </Route>
           <Route path="*" element={<NoPage/>}/>
 
 
