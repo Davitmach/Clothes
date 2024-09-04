@@ -50,7 +50,7 @@ function LeftBar(props) {
         <Log active={active}/>
       </>
     );
-  } else if ((props.role = "Mid.Helper")) {
+  } else if (props.role == "Mid.Helper") {
     return (
       <>
         <Page active={active} />
@@ -59,7 +59,7 @@ function LeftBar(props) {
         <Log active={active}/>
       </>
     );
-  } else if (props.role == "Jr.helper") {
+  } else if (props.role == "Jr.Helper") {
     return (
       <>
         <Page  active={active}/>
@@ -116,7 +116,7 @@ function Log(props) {
     <li>
       <Link to={"log"} className={props.active == 'log' ? 'Active' : ''}>
         <FontAwesomeIcon icon={faListUl} />
-        Page
+        Log
       </Link>
     </li>
   );

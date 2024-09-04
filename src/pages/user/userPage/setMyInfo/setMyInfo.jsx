@@ -77,7 +77,7 @@ function SetMyInfo() {
         }
     }
     useEffect(() => {
-        console.log(data);
+   
         
    if(data?.data == 'full') {
     Store.dispatch({type:'Submited'});
@@ -118,7 +118,7 @@ Store.dispatch({type:'Full'})
         }
     }, [data])
     useEffect(() => {
-        console.log(EditAddressData);
+    
         
         if (EditAddressData?.data == 'update') {
             localStorage.removeItem(`${UserId}wait`);

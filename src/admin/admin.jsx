@@ -13,7 +13,7 @@ const Name = localStorage.getItem('AdminName');
 
 useEffect(()=> {
 
-if(AdminLog) {
+if(AdminLog == "true") {
     Navigate('/admin/page',{replace:true})
 }
 else {

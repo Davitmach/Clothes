@@ -29,7 +29,7 @@ const Navigate = useNavigate();
         })
     }
     useEffect(()=> {
-console.log(data);
+
 
     },[data])
     const HandleShow = () => {

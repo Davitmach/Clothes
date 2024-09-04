@@ -45,7 +45,7 @@ else if(Location.pathname == '/checkMail') {
 else if(Location.pathname == '/admin') {
     document.title = 'Dashboard'
 }
-else if(Location.pathname == '/admin/Users' ||Location.pathname == '/admin/page' ||Location.pathname == '/admin/product' ||Location.pathname == '/admin/admin'  ) {
+else if( Location.pathname == '/admin/login' ||Location.pathname == '/admin/admins' ||Location.pathname == '/admin/log' || Location.pathname == '/admin/Users' ||Location.pathname == '/admin/page' ||Location.pathname == '/admin/product' ||Location.pathname == '/admin/admin'  ) {
     document.title = 'Dashboard'
 }
         else {

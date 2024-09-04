@@ -9,6 +9,9 @@
     #F6F6F6;
     border-radius: 12px;
     padding: 13px;
+    @media (min-width:320px) and (max-width:702px) {
+        width: 100%;
+    }
     label {
         color: #807D7E;
         font-size: 18px;

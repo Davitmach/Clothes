@@ -6,7 +6,7 @@ function Page() {
     const Role = localStorage.getItem('AdminRole');
     const Logout = ()=> {
 localStorage.setItem('AdminLog',false)
-window.location.reload()
+// window.location.reload() 
 Navigate('/admin/login',{replace:true})
     }
 return(

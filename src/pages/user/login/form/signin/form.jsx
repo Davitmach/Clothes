@@ -19,7 +19,9 @@ function Signin() {
     }
     const { mutate, isSuccess, error, data } = SetData(Login, 'Login');
     useEffect(() => {
-        console.log(data?.data);
+console.log(data);
+
+    
         if (typeof data?.data === 'string' && data.data.includes("banned")) {
           alert(data.data);
         }
@@ -27,7 +29,8 @@ function Signin() {
       
     useEffect(() => {
             if (data &&data?.data?.status  === 'true') {
-           console.log(data?.data?.name);
+           
+          
            
 Store.dispatch({
     type:'Logged'
@@ -41,7 +44,15 @@ if(data?.data?.submit == 'true') {
            localStorage.setItem(`${id}address`,data?.data?.address);
            localStorage.setItem(`${id}name`,data?.data?.name);
            localStorage.setItem(`${id}addressId`,data?.data?.addressId)
-           }}
+           }
+
+           else if(data?.data?.submit == 'false'){
+            localStorage.removeItem(`${id}submitInfo`);
+            localStorage.removeItem(`${id}address`);
+            localStorage.removeItem(`${id}name`);
+            localStorage.removeItem(`${id}addressId`)
+           }
+        }
       
     }, [isSuccess])
 const ErrorInput=()=> {

@@ -5,13 +5,21 @@
     align-items: start;
     padding: 30px 30px;
     gap: 40px;
+    @media (min-width:320px) and (max-width:900px) {
+        gap: 20px;
+       flex-direction: column;
+    }
+
     .Left_bar {
         display: flex;
         align-items: start;
         justify-content: center;
         flex-direction: column;
     gap: 20px;
-       
+    @media (min-width:320px) and (max-width:826px) {
+       width: 100%;
+       align-items: center;
+    }
         .Title_box {
             display: flex;
             align-items: start;
@@ -23,6 +31,7 @@
                     font-size: 28px;
                     letter-spacing: 2%;
                     color: #3C4242;
+                  
                 }
                 position: relative;
                 &::before {
@@ -62,6 +71,10 @@ align-items: start;
 justify-content: center;
 flex-direction: column;
 gap: 20px;
+@media (min-width:320px) and (max-width:826px) {
+    width: 100%;
+    align-items: center;
+ }
 &>li {
 
 

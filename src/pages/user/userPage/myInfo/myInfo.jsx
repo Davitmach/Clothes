@@ -22,7 +22,7 @@ function MyInfo() {
         threshold: 0.6,
       });
       useEffect(()=> {
-console.log(inView);
+
 
       },[inView])
     const { register, handleSubmit, getValues, formState: { errors } } = useForm()
@@ -125,10 +125,7 @@ console.log(inView);
 
 
     const { data: AddressData, error: AddressError, isSuccess: AddressSuccess } = GetData(() => FetchGetAddress(UserId), 'getUserAddress')
-    useEffect(() => {
-        console.log(data);
 
-    }, [data])
 
 var Delay = 0;
     const groupAddresses = (addresses, itemsPerGroup) => {
@@ -199,8 +196,7 @@ var Delay = 0;
 
 
     useEffect(() => {
-        console.log(SetDefData);
-
+     
         if (SetDefData?.data) {
             localStorage.setItem(`${UserId}name`, SetDefData?.data?.name);
             localStorage.setItem(`${UserId}addressId`, SetDefData?.data?.id);
