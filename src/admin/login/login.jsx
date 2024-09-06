@@ -35,7 +35,7 @@ if(data?.data?.status == 'true') {
 
 
     },[data])
-return(<div className="Login_container">
+return(<div className="Adm_login_container">
     <div className="Title_box"><h1>Login</h1></div>
     <div className="Login_box">
         <form action="" onSubmit={handleSubmit(HandleSubmit)}>

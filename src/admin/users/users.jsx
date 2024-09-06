@@ -48,7 +48,7 @@ function Users() {
     data: funcData,
     isSuccess: funcSuccess,
     error: DelError,
-  } = SetData(FuncUser, "FuncUser");
+  } = SetDataWithQueryClient(FuncUser, "FuncUser","checkBan");
   const {
     mutate: AdmLogMutate,
     data: AdmLogData,

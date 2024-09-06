@@ -3,6 +3,7 @@ import "./leftBar.scss";
 import { Link, useLocation } from "react-router-dom";
 import {
   faBarcode,
+  faHome,
   faHouseUser,
   faListUl,
   faUser,
@@ -29,6 +30,9 @@ function LeftBar(props) {
             case '/admin/log': 
             setActive("log");
             break
+            case '/admin/home':
+              setActive('home')
+              break
     }
   }, [Location.pathname]);
   if (props.role == "owner") {
@@ -39,6 +43,7 @@ function LeftBar(props) {
         <AddAdmin active={active} />
         <Product  active={active}/>
         <Log active={active}/>
+        <Home active={active}/>
       </>
     );
   } else if (props.role == "Sr.Helper") {
@@ -48,6 +53,7 @@ function LeftBar(props) {
         <Users  active={active}/>
         <Product active={active} />
         <Log active={active}/>
+        <Home active={active}/>
       </>
     );
   } else if (props.role == "Mid.Helper") {
@@ -117,6 +123,16 @@ function Log(props) {
       <Link to={"log"} className={props.active == 'log' ? 'Active' : ''}>
         <FontAwesomeIcon icon={faListUl} />
         Log
+      </Link>
+    </li>
+  );
+}
+function Home(props) {
+  return (
+    <li>
+      <Link to={"home"} className={props.active == 'home' ? 'Active' : ''}>
+        <FontAwesomeIcon icon={faHome} />
+        Home
       </Link>
     </li>
   );

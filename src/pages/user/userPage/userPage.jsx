@@ -10,7 +10,14 @@ import {faUser,faHeart} from '@fortawesome/free-regular-svg-icons'
 function UserPage() {
     const UserId = localStorage.getItem('id');
     const Navigate = useNavigate();
-const Location = useLocation();
+    const [ban, setBan] = useState(Store.getState().checkBan.ban);
+    useEffect(() => {
+        const handleStateChange = () => {
+          setBan(Store.getState().checkBan.ban);
+        };
+        Store.subscribe(handleStateChange);
+    
+      }, []);
 
 const [FullAddress, setFull] = useState(Store.getState().fullAddress.full);
     useEffect(() => {
@@ -20,7 +27,17 @@ const [FullAddress, setFull] = useState(Store.getState().fullAddress.full);
         Store.subscribe(handleStateChange);
     
       }, []);
+useEffect(()=> {
+if(ban == true) {
+  console.log(1);
+  
+Navigate('/',{replace:true})
+window.location.reload()
 
+}
+
+
+},[ban])
 
 
     const [submit, setSubmit] = useState(Store.getState().userInfoSubmit.submited);

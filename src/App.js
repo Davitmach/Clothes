@@ -25,13 +25,17 @@ import AdminLogin from "./admin/login/login";
 import Page from "./admin/page/page";
 import AddAdmin from "./admin/AddAdmin/AddAdmin";
 import Log from "./admin/log/log";
+import Home from "./admin/home/home";
+import useCheckBan from "./hook/checkBan/checkBan";
 function App() {
-
+useCheckBan()
   return (
     <>
+  
     <BrowserRouter basename="/">
-
+    
       <Routes>
+     
         <Route path="/" element={<Layout />}>
           <Route index path="/"  element={<Shop />} />
           <Route path="men" element={<Men/>}/>
@@ -59,6 +63,7 @@ function App() {
 <Route path="page" element={<Page/>}/>
 <Route path="admins" element={<AddAdmin/>}/>
 <Route path="log" element={<Log/>}/>
+<Route path="home" element={<Home/>}/>
       </Route>
           <Route path="*" element={<NoPage/>}/>
 

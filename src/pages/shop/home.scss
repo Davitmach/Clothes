@@ -1,0 +1,9 @@
+.Main_box {
+    padding: 0 100px;
+    @media (min-width:320px) and (max-width:941px) {
+        padding: 0 30px;
+    }
+    @media (min-width:320px) and (max-width:673px) {
+        padding: 0 10px;
+    }
+}

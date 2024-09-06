@@ -1,13 +1,17 @@
+import './home.scss'
+
+import Slider from "./slider/slider"
 
 
  function Shop() {
 
   
     return(
-        <div>Shop
+      <>
+       <Slider/>
+       <div className='Main_box'>
 
-
-        </div>
-    )
+       </div>
+       </>)
 }
 export default Shop

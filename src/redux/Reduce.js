@@ -48,12 +48,23 @@ function FullAddress(state = {full:false},action) {
   }
 }
 
+function CheckBan(state = {ban:false},action) {
+  switch(action.type) {
+    case 'ban':
+      return {...state,ban:true};
+      case 'unban':
+        return {...state,ban:false};
+        default:
+          return state;
+  }
+}
   export const reducer = combineReducers({
 menu:OpenMenuRed,
 userHidEl:UserFuncHidElRed,
 regged:LoggedRed,
 userInfoSubmit: SubmitUserInfo,
 fullAddress:FullAddress,
+checkBan:CheckBan
 
 
 

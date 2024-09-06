@@ -15,7 +15,7 @@ function Footer() {
       }, []);
 
     return (
-        <footer style={hide ? {display:'none'}:{display:'block'}}>
+        <footer style={hide ? {display:'none'}:{display:'grid'}}>
             <Menu />
             <Social />
             <Text />
