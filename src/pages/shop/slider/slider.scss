@@ -67,6 +67,10 @@
        font-size: 30px;
        letter-spacing: 0;
                           }
+                          @media (min-width:320px) and (max-width:375px) {
+                       width: auto;
+                                               }
+
     }
     .Description p {
       color: white;

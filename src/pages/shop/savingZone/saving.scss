@@ -1,0 +1,787 @@
+
+.Saving_zone {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 100px;
+  gap: 30px;
+  overflow: hidden;
+  @media (min-width: 320px) and (max-width: 978px) {
+    padding: 100px 50px;
+  }
+  @media (min-width: 320px) and (max-width: 774px) {
+    padding: 100px 30px;
+  }
+  @media (min-width: 320px) and (max-width: 570px) {
+    padding: 100px 10px;
+  }
+  @media (min-width: 320px) and (max-width: 906px) {
+    gap: 10px;
+  }
+  & > .Title_box {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+    .Title {
+      display: flex;
+      justify-content: flex-start;
+    }
+    h1 {
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 2%;
+      color: #3c4242;
+      margin-left: 50px;
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 28px;
+        border-radius: 10px;
+        background: #8a33fd;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -20px;
+      }
+    }
+  }
+  .Row1 {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 30px;
+    @media (min-width: 320px) and (max-width: 906px) {
+      gap: 10px;
+    }
+    @media (min-width: 320px) and (max-width: 848px) {
+      flex-direction: column;
+    }
+
+    & > div {
+      // width: 400px;
+      flex: 1 1;
+      aspect-ratio: 1/1;
+      border-radius: 12px;
+      padding: 20px;
+
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @media (min-width: 320px) and (max-width: 1464px) {
+        width: 35%;
+      }
+      @media (min-width: 320px) and (max-width: 700px) {
+        width: calc(100% - 100px);
+      }
+      @media (min-width: 320px) and (max-width: 848px) {
+        width: 100%;
+      }
+    }
+    & > div:first-child {
+      background: url(../../../../public/home/saving/img1.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: start;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5%;
+      @media (min-width: 320px) and (max-width: 848px) {
+        gap: 30px;
+      }
+      .Title_box h1 {
+        width: 115px;
+        font-size: 30px;
+        font-weight: 600;
+        color: white;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 25px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 45px;
+        }
+        @media (min-width: 320px) and (max-width: 478px) {
+          font-size: 30px;
+        }
+      }
+      .Description_box span {
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 15px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 25px;
+        }
+        @media (min-width: 320px) and (max-width: 478px) {
+          font-size: 16px;
+        }
+      }
+      .Akcia_box h1 {
+        font-size: 18px;
+        font-weight: 700;
+        color: white;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 13px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 25px;
+        }
+        @media (min-width: 320px) and (max-width: 478px) {
+          font-size: 16px;
+        }
+      }
+      .Arrow_down_box {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 10%;
+        color: white;
+        font-size: 25px;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 20px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 35px;
+        }
+        @media (min-width: 320px) and (max-width: 478px) {
+          font-size: 26px;
+        }
+      }
+      .Shop_btn_box a {
+        width: 111px;
+        text-decoration: none;
+        height: 34px;
+        padding: 16px 8px;
+        border-radius: 4px;
+        border: 1px solid white;
+        background: transparent;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        color: white;
+        transition: 0.4s;
+
+        @media (min-width: 320px) and (max-width: 1196px) {
+          width: 100px;
+          height: 30px;
+          font-size: 12px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          width: 168px;
+          height: 40px;
+          border-width: 2px;
+          font-size: 15px;
+        }
+        @media (min-width: 320px) and (max-width: 478px) {
+          width: 100px;
+          height: 30px;
+          font-size: 12px;
+          font-weight: 700;
+          border-width: 1px;
+        }
+        &:hover {
+          background-color: white;
+          color: #3c4242;
+        }
+      }
+    }
+    & > div:nth-child(2) {
+      background: url(../../../../public/home/saving/img2.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5%;
+      @media (min-width: 320px) and (max-width: 1196px) {
+        gap: 3%;
+      }
+      @media (min-width: 320px) and (max-width: 848px) {
+        gap: 30px;
+      }
+      @media (min-width: 320px) and (max-width: 397px) {
+       gap: 4%;
+                     }
+      .Status_box span {
+        width: 104px;
+        height: 34px;
+        display: block;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        background: #3c4242;
+        padding: 16px 8px;
+        border-radius: 4px;
+        @media (min-width: 320px) and (max-width: 848px) {
+          padding: 0 20px;
+        }
+        @media (min-width: 320px) and (max-width: 1196px) {
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 20px;
+          width: auto;
+          height: 40px;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+          font-size: 14px;
+        }
+      }
+      .Title_box h1 {
+        width: 115px;
+        font-size: 30px;
+        font-weight: 600;
+        color: white;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 20px;
+          text-align: right;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 45px;
+          width: auto;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+          font-size: 25px;
+        }
+      }
+      .Desription_box span {
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 14px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 35px;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+          font-size: 16px;
+        }
+      }
+      .Akcia_box h1 {
+        font-size: 18px;
+        font-weight: 700;
+        color: white;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 15px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 35px;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+          font-size: 17px;
+        }
+      }
+      .Arrow_down_box {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10%;
+        color: white;
+        font-size: 25px;
+
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 20px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 35px;
+          padding-right: 10%;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+          font-size: 25px;
+          padding-right: 14%;
+        }
+      }
+      .Shop_btn_box a {
+        width: 111px;
+        text-decoration: none;
+        height: 34px;
+        padding: 16px 8px;
+        border-radius: 4px;
+        border: 1px solid white;
+        background: transparent;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        color: white;
+        transition: 0.4s;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          width: 100px;
+          height: 30px;
+          font-size: 13px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          width: 168px;
+          height: 40px;
+          border-width: 2px;
+          font-size: 15px;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+          width: 100px;
+          height: 30px;
+          font-size: 13px;
+          font-weight: 700;
+          border-width: 1px;
+        }
+        &:hover {
+          background-color: white;
+          color: #3c4242;
+        }
+      }
+    }
+    & > div:last-child {
+      background: url(../../../../public/home/saving/img3.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5%;
+      .Title_box h1 {
+        width: 115px;
+        font-size: 30px;
+        font-weight: 600;
+        color: #3c4242;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 20px;
+          text-align: right;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 45px;
+          width: auto;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+            font-size: 25px;
+                         }
+      }
+      .Description_box span {
+        color: #3c4242;
+        font-size: 16px;
+        font-weight: 600;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 15px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 25px;
+          width: auto;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+            font-size: 17px;
+                         }
+      }
+      .Akcia_box h1 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #3c4242;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 15px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 25px;
+          width: auto;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+            font-size: 17px;
+                         }
+      }
+      .Arrow_down_box {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10%;
+        color: #3c4242;
+        font-size: 25px;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 20px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 40px;
+          width: auto;
+          padding-right: 10%;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+            font-size: 25px;
+            padding-right: 14%;
+                         }
+      }
+      .Shop_btn_box a {
+        width: 111px;
+        text-decoration: none;
+        height: 34px;
+        padding: 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #3c4242;
+        background: transparent;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        color: #3c4242;
+        transition: 0.4s;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          width: 100px;
+          height: 30px;
+          font-size: 13px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          width: 168px;
+          height: 40px;
+          border-width: 2px;
+          font-size: 15px;
+        }
+        @media (min-width: 320px) and (max-width: 479px) {
+            width: 100px;
+            height: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            border-width: 1px;
+                         }
+        &:hover {
+          background-color: #3c4242;
+          color: wheat;
+        }
+      }
+    }
+  }
+  .Row2 {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    @media (min-width: 320px) and (max-width: 400px) {
+      flex-direction: column;
+    }
+    @media (min-width: 320px) and (max-width: 906px) {
+      gap: 10px;
+    }
+    @media (min-width: 320px) and (max-width: 704px) {
+     flex-direction: column;
+      }
+    & > div {
+      flex: 1 1;
+      overflow: hidden;
+      aspect-ratio: 1/0.5;
+      border-radius: 12px;
+    
+      @media (min-width: 320px) and (max-width: 934px) {
+        aspect-ratio: 1/1;
+      }
+      @media (min-width: 320px) and (max-width: 704px) {
+        width: 100%;
+         }
+    }
+    & > div:first-child {
+      background: url(../../../../public/home/saving/img4.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5%;
+      padding: 20px 100px;
+      @media (min-width: 320px) and (max-width: 848px) {
+        gap: 10px;
+        padding: 20px 50px;
+      }
+
+
+      .Title_box h1 {
+        width: 115px;
+        font-size: 30px;
+        font-weight: 600;
+        color: #3C4242;
+        text-align: right;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 25px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 25px;
+        }
+        @media (min-width: 320px) and (max-width: 704px) {
+          font-size: 45px;
+             }
+
+             @media (min-width: 320px) and (max-width: 478px) {
+                font-size: 20px;
+             }
+      }
+      .Description_box span {
+        color: #3C4242;
+        font-size: 16px;
+        font-weight: 600;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 15px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 18px;
+        }
+        @media (min-width: 320px) and (max-width: 704px) {
+            font-size: 25px;
+               }
+               @media (min-width: 320px) and (max-width: 478px) {
+                font-size: 16px;
+             }
+      }
+      .Akcia_box h1 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #3C4242;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 13px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 20px;
+        }
+        @media (min-width: 320px) and (max-width: 704px) {
+            font-size: 30px;
+               }
+               @media (min-width: 320px) and (max-width: 478px) {
+                font-size: 18px;
+             }
+      }
+      .Arrow_down_box {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 6%;
+        color: #3C4242;
+        font-size: 25px;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 20px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 30px;
+        }
+        @media (min-width: 320px) and (max-width: 478px) {
+          font-size: 26px;
+        }
+        @media (min-width: 320px) and (max-width: 1202px) {
+            padding-right: 16%;
+          }
+      }
+      .Shop_btn_box a {
+        width: 111px;
+        text-decoration: none;
+        height: 34px;
+        padding: 16px 8px;
+        border-radius: 4px;
+        border: 2px solid #3C4242   ;
+        background: transparent;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        color: #3C4242;
+        transition: 0.4s;
+
+        @media (min-width: 320px) and (max-width: 1196px) {
+          width: 100px;
+          height: 30px;
+          font-size: 12px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          width: 138px;
+          height: 40px;
+          border-width: 2px;
+          font-size: 14px;
+        }
+    
+        @media (min-width: 320px) and (max-width: 704px) {
+            font-size: 20px;
+            width: 180px;
+            padding: 20px 0;
+               }
+               @media (min-width: 320px) and (max-width: 478px) {
+                padding: 0;
+                width: 100px;
+                height: 30px;
+                font-size: 12px;
+                font-weight: 700;
+                border-width: 1px;
+              }
+        &:hover {
+          background-color: #3C4242;
+          color: white;
+        }
+      }
+    }
+    & > div:last-child {
+      background: url(../../../../public/home/saving/img5.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding-right: 100px;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5%;
+      padding: 20px 100px;
+      @media (min-width: 320px) and (max-width: 848px) {
+        gap: 10px;
+        padding: 20px 50px;
+        
+      }
+      .Title_box h1 {
+        width: 115px;
+        font-size: 30px;
+        font-weight: 600;
+        color: #3C4242;
+        text-align: right;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 25px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 25px;
+        }
+        @media (min-width: 320px) and (max-width: 704px) {
+         font-size: 45px;
+         width: auto;
+               }
+               @media (min-width: 320px) and (max-width: 478px) {
+            font-size: 20px;
+              }
+      }
+      .Description_box span {
+        color: #3C4242;
+        font-size: 16px;
+        font-weight: 600;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 15px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 20px;
+        }
+        @media (min-width: 320px) and (max-width: 704px) {
+       font-size: 30px;
+                  }
+                  @media (min-width: 320px) and (max-width: 478px) {
+              font-size: 16px;
+                  }
+      }
+      .Akcia_box h1 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #3C4242;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 13px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 20px;
+        }
+        @media (min-width: 320px) and (max-width: 478px) {
+          font-size: 16px;
+        }
+        @media (min-width: 320px) and (max-width: 478px) {
+         font-size: 18px;
+          }
+      }
+      .Arrow_down_box {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 6%;
+        color: #3C4242;
+        font-size: 25px;
+        @media (min-width: 320px) and (max-width: 1196px) {
+          font-size: 20px;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          font-size: 30px;
+        }
+        @media (min-width: 320px) and (max-width: 478px) {
+          font-size: 26px;
+        }
+        @media (min-width: 320px) and (max-width: 1202px) {
+            padding-right: 16%;
+          }
+      }
+      .Shop_btn_box a {
+        width: 111px;
+        text-decoration: none;
+        height: 34px;
+        padding: 16px 8px;
+        border-radius: 4px;
+        border: 2px solid #3C4242   ;
+        background: transparent;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        color: #3C4242;
+        transition: 0.4s;
+
+        @media (min-width: 320px) and (max-width: 1196px) {
+          width: 100px;
+          height: 30px;
+          font-size: 12px;
+          font-weight: 700;
+        }
+        @media (min-width: 320px) and (max-width: 848px) {
+          width: 138px;
+          height: 40px;
+          border-width: 2px;
+          font-size: 13px;
+        }
+    
+        @media (min-width: 320px) and (max-width: 704px) {
+            font-size: 20px;
+            width: 180px;
+            padding: 20px 0;
+               }
+               @media (min-width: 320px) and (max-width: 478px) {
+                padding: 0;
+                width: 100px;
+                height: 30px;
+                font-size: 12px;
+                font-weight: 700;
+                border-width: 1px;
+              }
+        &:hover {
+          background-color: #3C4242;
+          color: white;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,582 @@
+.Add_product_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  .Add_form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    form {
+      width: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      @media (min-width:320px) and (max-width:654px) {
+        width: 100%;
+      }
+      h1 {
+        font-weight: 600;
+        font-size: 28px;
+        letter-spacing: 2%;
+        color: #3c4242;
+      }
+      input {
+        font-size: 17px;
+        font-weight: 600;
+      }
+      & > input {
+        width: 100%;
+        height: 54px;
+        border-radius: 8px;
+        background-color: #f6f6f6;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 17px 22px;
+        outline: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: 0.4s;
+        font-size: 17px;
+        font-weight: 600;
+        &::placeholder {
+          font-size: 17px;
+          font-weight: 600;
+        }
+        &:focus {
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+      }
+      & > button {
+        padding: 12px 40px;
+        border-radius: 8px;
+        height: 48px;
+        outline: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.4s;
+        border: 1px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+        background-color: #8a33fd;
+        &:hover {
+          border-color: #8a33fd;
+          background: transparent;
+          color: #8a33fd;
+        }
+      }
+      .Size_box {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        .Add_size {
+          width: 100%;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          @media (min-width:320px) and (max-width:654px) {
+            gap: 10px;
+          }
+          & > .Add_size {
+            flex: 1 1;
+            input {
+              width: 100%;
+            }
+          }
+          & > .Add_btn {
+            button {
+              padding: 12px 40px;
+              border-radius: 8px;
+              height: 48px;
+              outline: none;
+              border: none;
+              color: white;
+              font-size: 20px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: 0.4s;
+              border: 1px solid transparent;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              line-height: 0;
+              background-color: #8a33fd;
+              transition: 0.4s;
+              @media (min-width:320px) and (max-width:654px) {
+                padding: 12px 15px;
+                font-size: 15px;
+              }
+              &:hover {
+                background: transparent;
+                border-color: #8a33fd;
+                color: #8a33fd;
+              }
+            }
+          }
+          & > .Size {
+            flex: 2 2;
+            input {
+              width: 100%;
+              height: 54px;
+              border-radius: 8px;
+              background-color: #f6f6f6;
+              border: 1px solid rgba(0, 0, 0, 0.1);
+              padding: 17px 22px;
+              outline: none;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              transition: 0.4s;
+              &::placeholder {
+                font-size: 17px;
+                font-weight: 600;
+              }
+              &:focus {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+              }
+            }
+          }
+        }
+        .Sizes {
+          width: 100%;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          gap: 20px;
+          .Added_size_box {
+            width: 90px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 6px;
+            border-radius: 12px;
+            background-color: #f6f6f6;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            .Size {
+              width: 40px;
+              height: 40px;
+              background-color: #813b3b62;
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-weight: 600;
+              text-align: center;
+              font-size: 19px;
+            }
+            .Delete {
+              color: rgba(0, 0, 0, 0.3);
+              cursor: pointer;
+              transition: 0.4s;
+              &:hover {
+                color: rgba(0, 0, 0, 1.1);
+              }
+            }
+          }
+        }
+      }
+      .Color_box {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        .Add_color {
+          width: 100%;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          @media (min-width:320px) and (max-width:654px) {
+           gap: 10px;
+          }
+          & > .Add_color {
+            flex: 1 1;
+            input {
+              width: 100%;
+            }
+          }
+          & > .Add_btn {
+            button {
+              padding: 12px 40px;
+              border-radius: 8px;
+              height: 48px;
+              outline: none;
+              border: none;
+              color: white;
+              font-size: 20px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: 0.4s;
+              border: 1px solid transparent;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              line-height: 0;
+              background-color: #8a33fd;
+              transition: 0.4s;
+              @media (min-width:320px) and (max-width:654px) {
+                padding: 12px 15px;
+                font-size: 15px;
+              }
+              &:hover {
+                background: transparent;
+                border-color: #8a33fd;
+                color: #8a33fd;
+              }
+            }
+          }
+          & > .Color {
+            flex: 2 2;
+            input {
+              width: 100%;
+              height: 54px;
+              border-radius: 8px;
+              background-color: #f6f6f6;
+              border: 1px solid rgba(0, 0, 0, 0.1);
+              padding: 17px 22px;
+              outline: none;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              transition: 0.4s;
+              &::placeholder {
+                font-size: 17px;
+                font-weight: 600;
+              }
+              &:focus {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+              }
+            }
+          }
+        }
+        .Colors {
+          width: 100%;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          gap: 20px;
+          .Added_color_box {
+            width: 90px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 6px;
+            border-radius: 12px;
+            background-color: #f6f6f6;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            .Color {
+              width: 40px;
+              height: 40px;
+
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .Delete {
+              color: rgba(0, 0, 0, 0.3);
+              cursor: pointer;
+              transition: 0.4s;
+              &:hover {
+                color: rgba(0, 0, 0, 1.1);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .Products {
+    width: 100%;
+    height: auto;
+
+
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 400px);
+      gap: 20px; 
+    
+      @media (min-width:320px) and (max-width:457px) {
+        grid-template-columns:100%;
+ 
+      }
+    
+
+    & > .Product_box {
+      width: 100%;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+      background-color: #f6f6f6;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 12px;
+      gap: 20px;
+      overflow-y: scroll;
+  &::-webkit-scrollbar{
+
+  width: 5px;
+  }
+
+      .Img_box {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 12px;
+        position: relative;
+        &:hover  .Edit_box {
+            visibility: visible;
+          }
+        .Edit_box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 12px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.3);
+       svg {
+        border-radius: 50%;
+        background-color: #3c4242;
+        padding: 10px;
+        border: 1px solid transparent;
+     
+    
+       }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 12px;
+         
+        }
+      }
+      .Info_box {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+
+        .Name {
+          h1 {
+            font-weight: 600;
+            font-size: 28px;
+            letter-spacing: 2%;
+            color: #3c4242;
+          }
+        }
+        .Price {
+          span {
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: 2%;
+            color: #3c4242;
+          }
+        }
+        .Gender {
+          h2 {
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: 2%;
+            color: #3c4242;
+          }
+        }
+        .Shipping {
+          font-weight: 600;
+          font-size: 28px;
+          letter-spacing: 2%;
+          color: #3c4242;
+        }
+        .Type {
+          h2 {
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: 2%;
+            color: #3c4242;
+          }
+        }
+        .Color_box {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          gap: 20px;
+          .Title_box {
+            font-weight: 600;
+            font-size: 28px;
+            letter-spacing: 2%;
+            color: #3c4242;
+          }
+          .Info {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            .Product_color {
+              width: 90px;
+              height: 45px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: 5px 6px;
+              border-radius: 12px;
+              background-color: #f6f6f6;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+              .Remove_box {
+                cursor: pointer;
+                color: rgba(0, 0, 0, 0.3);
+                transition: 0.4s;
+                &:hover {
+                  color: rgba(0, 0, 0, 1);
+                }
+              }
+            }
+          }
+        }
+        .Size_box {
+          width: 100%;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          gap: 20px;
+          .Title_box {
+            font-weight: 600;
+            font-size: 28px;
+            letter-spacing: 2%;
+            color: #3c4242;
+          }
+          .Info {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            .Product_size_box {
+              width: 90px;
+              height: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 20px;
+              border-radius: 12px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+              .Size {
+                width: 40px;
+                height: 40px;
+                background-color: rgba(129, 59, 59, 0.3843137255);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: 600;
+                text-align: center;
+                font-size: 19px;
+              }
+              .Remove_box {
+                cursor: pointer;
+                color: rgba(0, 0, 0, 0.3);
+                transition: .4s;
+                &:hover {
+                    color: rgba(0, 0, 0, 1);
+                }
+              }
+            }
+          }
+        }
+      }
+      .Func_box {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        .Delete {
+          border: 1px solid transparent;
+          background-color: #ff534d;
+          color: white;
+          border-radius: 12px;
+          padding: 10px 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          font-size: 14px;
+          font-weight: 600;
+          transition: 0.4s;
+          cursor: pointer;
+          &:hover {
+            color: #ff534d;
+            border-color: #ff534d;
+            background: transparent;
+          }
+        }
+        .Edit {
+          border: 1px solid transparent;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 12px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.4s;
+    cursor: pointer;
+    &:hover {
+      color: #4caf50;
+      border-color: #4caf50;
+      background: transparent;
+    }
+        }
+      }
+    }
+  }
+}

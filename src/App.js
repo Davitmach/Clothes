@@ -27,6 +27,7 @@ import AddAdmin from "./admin/AddAdmin/AddAdmin";
 import Log from "./admin/log/log";
 import Home from "./admin/home/home";
 import useCheckBan from "./hook/checkBan/checkBan";
+import Product from "./admin/product/product";
 function App() {
 useCheckBan()
   return (
@@ -64,6 +65,7 @@ useCheckBan()
 <Route path="admins" element={<AddAdmin/>}/>
 <Route path="log" element={<Log/>}/>
 <Route path="home" element={<Home/>}/>
+<Route path="product" element={<Product/>}/>
       </Route>
           <Route path="*" element={<NoPage/>}/>
 

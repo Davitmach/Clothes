@@ -1,17 +1,14 @@
-import './home.scss'
+import Arrival from "./arrival/arrival";
+import Saving from "./savingZone/saving";
+import Slider from "./slider/slider";
 
-import Slider from "./slider/slider"
-
-
- function Shop() {
-
-  
-    return(
-      <>
-       <Slider/>
-       <div className='Main_box'>
-
-       </div>
-       </>)
+function Shop() {
+  return (
+    <>
+      <Slider />
+      <Arrival />
+      <Saving/>
+    </>
+  );
 }
-export default Shop
+export default Shop;
