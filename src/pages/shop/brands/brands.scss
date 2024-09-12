@@ -1,0 +1,91 @@
+.Brands_box {
+    width: 100%;
+    height: auto;
+    padding: 100px;
+    @media (min-width:320px) and (max-width:1284px) {
+        padding: 100px 50px;
+    }
+    @media (min-width:320px) and (max-width:1140px) {
+        padding: 100px 30px;
+    }
+    @media (min-width:320px) and (max-width:453px) {
+     padding: 100px 20px;
+    }
+   .Brand {
+    width: 100%;
+    height: auto;
+    background-color: #3C4242;
+border-radius: 12px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+padding: 43px 0;
+gap: 50px;
+
+.Title_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    .Title h1 {
+        color: white;
+        font-size: 50px;
+        font-weight: 800;
+        text-align: center;
+        @media (min-width:320px) and (max-width:523px) {
+            font-size: 40px;
+        }
+    }
+    .Description span {
+        display: flex;
+        gap: 5px;
+        color: white;
+        font-size: 22px;
+        font-weight: 700;
+    }
+}
+.Brands {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    @media (min-width:320px) and (max-width:661px) {
+        padding: 0 10px;
+    }
+    @media (min-width:320px) and (max-width:459px) {
+        gap: 15px;
+    }
+    &>div {
+        background-color: white;
+        border-radius: 12px;
+        width: 177px;
+        height: 85px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @media (min-width:320px) and (max-width:428px) {
+            width: 157px;
+            height: 55px;
+        }
+        img {
+            width: 149px;
+            height: 53px;
+            // object-fit: cover;
+            @media (min-width:320px) and (max-width:428px) {
+                width: 99px;
+                height: 42px;
+            }
+        }
+    }
+}
+   }
+
+}

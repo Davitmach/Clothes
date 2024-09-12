@@ -17,9 +17,8 @@ function Arrival() {
     };
 
     const { data, isSuccess, error } = GetData(GetArrival, 'getProduct');
-
     useEffect(() => {
-        if (data) {
+        if (data && refBox.current) {
             setTurnWidth(refBox.current.offsetWidth);
         }
     }, [data]);
@@ -27,7 +26,7 @@ function Arrival() {
     useEffect(() => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
-            if (data) {
+            if (data && refBox.current) {
                 setTurnWidth(refBox.current.offsetWidth);
             }
         };

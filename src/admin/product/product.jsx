@@ -21,11 +21,11 @@ function Product() {
   const [Colors, setColors] = useState([]);
   const [Sizes, setSizes] = useState([]);
   const [editId, setEditId] = useState(null);
-  const [editChange,setEdit] = useState(false);
-  const [edit,setEditData]= useState(null)
+  const [editChange, setEdit] = useState(false);
+  const [edit, setEditData] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
-const [selectedFileId, setSelectedFileId] = useState(null);
+  const [selectedFileId, setSelectedFileId] = useState(null);
   // server part
   const AddProduct = async (info) => {
     return await axios.post("http://clothes/admin/addProduct.php", info, {
@@ -67,7 +67,16 @@ const [selectedFileId, setSelectedFileId] = useState(null);
     "AddProduct",
     "getProduct"
   );
+  useEffect(()=> {
+console.log(data);
+
+
+  },[data])
   const handle = async (data) => {
+    window.scrollTo({
+      top: document.body.scrollHeight - 200,
+      behavior: "smooth",
+    });
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("gender", data.gender);
@@ -79,19 +88,20 @@ const [selectedFileId, setSelectedFileId] = useState(null);
     formData.append("color", JSON.stringify(Colors));
 
     try {
-      mutate(formData);
+      await mutate(formData);
     } catch (error) {
       console.error("Error uploading data:", error);
     }
   };
-  const handleEdit = (data)=> {
-    ProductFunc(data.payload,data.id,data)
-    setEditId(null)
-    setEditData(null)
+  const handleEdit = (data) => {
+    console.log(edit.id);
     
-  
-       
-  }
+    ProductFunc(data.payload, edit.id, data);
+    setEditId(null);
+    setEditData(null);
+
+    formRef.current.reset();
+  };
   const { mutate: editMutate, data: editData } = SetDataWithQueryClient(
     EditProduct,
     "EditProduct",
@@ -153,11 +163,11 @@ const [selectedFileId, setSelectedFileId] = useState(null);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const id = e.target.dataset.id;
-  
+
     if (file) {
       setSelectedFile(file);
       setSelectedFileId(id);
-  
+
       const formData = new FormData();
       formData.append("img", file);
       formData.append("payload", "EditImg");
@@ -166,55 +176,68 @@ const [selectedFileId, setSelectedFileId] = useState(null);
     }
   };
 
-  const ProductFunc = (status, id,payload) => {
-
+  const ProductFunc = (status, id, payload) => {
     funcMutate({
       status: status,
-      id:id,
-      payload:payload
+      id: id,
+      payload: payload,
     });
   };
-const ChangeProduct = ()=> {
-  console.log(1);
-  
-}
+  const ChangeProduct = () => {
+    console.log(1);
+  };
   return (
     <div className="Add_product_container">
       <div className="Add_form">
-        <form ref={formRef} action="" onChange={()=> {
-          if(editId !== null) {
-setEdit(true)
+        <form
+          ref={formRef}
+          action=""
+          onChange={() => {
+            if (editId !== null) {
+              setEdit(true);
+            }
+          }}
+          onSubmit={
+            editId == null ? handleSubmit(handle) : handleSubmit(handleEdit)
           }
-        }} onSubmit={editId ==null ?handleSubmit(handle) : handleSubmit(handleEdit)}>
-          {edit !== null ? (<><input {...register('id')} value={edit.id} type="hidden" /><input type="hidden" {...register('payload')} value={'edit'}/></>):''}
+        >
+          {edit !== null ? (
+            <>
+              <input {...register("id")} value={edit.id} type="hidden" />
+              <input type="hidden" {...register("payload")} value={"edit"} />
+            </>
+          ) : (
+            ""
+          )}
           <div className="Title_box">
-            <h1>{editId !==null ? 'Edit' : 'Add'} Product</h1>
+            <h1>{editId !== null ? "Edit" : "Add"} Product</h1>
           </div>
           <input
             {...register("name")}
             placeholder="Name"
             required
             type="text"
-            defaultValue={editId !==null ? edit.name : ''}
+            defaultValue={editId !== null ? edit.name : ""}
           />
           <input
             {...register("gender")}
             placeholder="Gender: male/female"
             required
-            pattern="male|female" 
+            pattern="male|female"
             type="text"
-            defaultValue={editId !==null ? edit.gender : ''}
-            
-            
+            defaultValue={editId !== null ? edit.gender : ""}
           />
           <input
             {...register("type")}
             placeholder="Type"
             required
             type="text"
-            defaultValue={editId !==null ? edit.type : ''}
+            defaultValue={editId !== null ? edit.type : ""}
           />
-          <div className="Size_box" style={editId !=null ? {display:'none'} : {display:'flex'}}>
+          <div
+            className="Size_box"
+            style={editId != null ? { display: "none" } : { display: "flex" }}
+          >
             <div className="Add_size">
               <div className="Size">
                 <input placeholder="Size" ref={ref2} type="text" />
@@ -226,7 +249,7 @@ setEdit(true)
               </div>
             </div>
             <div className="Sizes">
-              { Sizes.map((e) => (
+              {Sizes.map((e) => (
                 <div className="Added_size_box">
                   <div className="Size">{e}</div>
                   <div className="Delete" onClick={() => removeSize(e)}>
@@ -236,7 +259,10 @@ setEdit(true)
               ))}
             </div>
           </div>
-          <div className="Color_box" style={editId !=null ? {display:'none'} : {display:'flex'}}>
+          <div
+            className="Color_box"
+            style={editId != null ? { display: "none" } : { display: "flex" }}
+          >
             <div className="Add_color">
               <div className="Color">
                 <input placeholder="Color" ref={ref} type="text" />
@@ -271,25 +297,34 @@ setEdit(true)
             placeholder="Price"
             required
             type="text"
-            defaultValue={editId !==null ? edit.price/10 : ''}
+            defaultValue={editId !== null ? edit.price / 10 : ""}
           />
-          {editId !=null ?'' :<input {...register("img")}   accept="image/*" required type="file" />}
+          {editId != null ? (
+            ""
+          ) : (
+            <input {...register("img")} accept="image/*" required type="file" />
+          )}
           <input
             {...register("shipping")}
             placeholder="Shipping: true(Paid)/false(Free)"
             required
             type="text"
-            pattern="false|true" 
-            defaultValue={editId !==null ? edit.shipping : ''}
+            pattern="false|true"
+            defaultValue={editId !== null ? edit.shipping : ""}
           />
-          <button onClick={()=> {
-            if(editChange == false) {
-              setEditId(null)
-              setEdit(false)
-              setEditData(null)
-              
-            }
-          }}> {editId !== null ? editChange ? 'Edit': 'Cancel' :'Add'}</button>
+          <button
+            onClick={() => {
+              if (editChange == false) {
+                setEditId(null);
+                setEdit(false);
+                setEditData(null);
+      
+              }
+            }}
+          >
+            {" "}
+            {editId !== null ? (editChange ? "Edit" : "Cancel") : "Add"}
+          </button>
         </form>
       </div>
       <div className="Products">
@@ -298,25 +333,30 @@ setEdit(true)
             <div className="Img_box">
               <img src={el.img} alt="" />
               <div className="Edit_box">
-                <FontAwesomeIcon onClick={() => editPhoto(el.id)} icon={faPlus} />
+                <FontAwesomeIcon
+                  onClick={() => editPhoto(el.id)}
+                  icon={faPlus}
+                />
                 <input
-  onChange={handleImageChange}
-  data-id={el.id}
-  style={{ visibility: "hidden", position: "absolute" }}
-  ref={editImgRef}
-  type="file"
-  accept="image/*"
-/>
+                  onChange={handleImageChange}
+                  data-id={el.id}
+                  style={{ visibility: "hidden", position: "absolute" }}
+                  ref={editImgRef}
+                  type="file"
+                  accept="image/*"
+                />
               </div>
             </div>
             <div className="Info_box">
               <div className="Name">
-              <h1>{el.name}</h1>
+                <h1>{el.name}</h1>
               </div>
               <div className="Price">
                 <span>{el.price / 10}$</span>
               </div>
-              <div className="Gender"><h2>Gender: {el.gender}</h2></div>
+              <div className="Gender">
+                <h2>Gender: {el.gender}</h2>
+              </div>
               <div className="Shipping">
                 Shipping: {el.shipping == false ? "Paid" : "Free"}
               </div>
@@ -339,7 +379,7 @@ setEdit(true)
                       ></div>
                       <div className="Remove_box">
                         <FontAwesomeIcon
-                          onClick={() => ProductFunc("delColor", el.id,e)}
+                          onClick={() => ProductFunc("delColor", el.id, e)}
                           icon={faXmark}
                         />
                       </div>
@@ -355,7 +395,7 @@ setEdit(true)
                       <div className="Size">{e}</div>
                       <div className="Remove_box">
                         <FontAwesomeIcon
-                          onClick={() => ProductFunc("delSize", el.id,e)}
+                          onClick={() => ProductFunc("delSize", el.id, e)}
                           icon={faXmark}
                         />
                       </div>
@@ -365,17 +405,31 @@ setEdit(true)
               </div>
             </div>
             <div className="Func_box">
-              <div><button  className="Delete" onClick={()=> ProductFunc('delete',el.id)}><FontAwesomeIcon  icon={faTrash}/>Delete</button></div>
-              <div><button className="Edit" onClick={()=> {
-                window.scrollTo({top:0,behavior:'smooth'})
-                setEditData(el)
-               
-               
-    setEdit(false)
-               
-                setEditId(el.id)}}><FontAwesomeIcon icon={faPenToSquare}/>Edit</button></div>
+              <div>
+                <button
+                  className="Delete"
+                  onClick={() => ProductFunc("delete", el.id)}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                  Delete
+                </button>
+              </div>
+              <div>
+                <button
+                  className="Edit"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    setEditData(el);
 
-             
+                    setEdit(false);
+
+                    setEditId(el.id);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                  Edit
+                </button>
+              </div>
             </div>
           </div>
         ))}
