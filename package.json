@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^13.5.0",
     "animejs": "^3.2.2",
     "axios": "^1.7.2",
+    "color-namer": "^1.4.0",
     "crypto-js": "^4.2.0",
     "fs": "^0.0.1-security",
     "nodemailer": "^6.9.14",

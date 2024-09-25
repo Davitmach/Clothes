@@ -1,0 +1,362 @@
+.Left_container {
+  width: 300px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-left: 1px solid #bebcbd;
+  border-right: 1px solid #bebcbd;
+  border-bottom: 1px solid #bebcbd;
+  @media (min-width:320px) and (max-width:1008px) {
+    width: 250px;
+   }
+   @media (min-width:320px) and (max-width:764px) {
+   width: 100%;
+     }
+  .Title_box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #bebcbd;
+    padding: 20px 30px;
+    h1 {
+      color: #807d7e;
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .Icon {
+      color: #807d7e;
+    }
+  }
+  .Types_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px 30px;
+    gap: 18px;
+    .Type {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      cursor: pointer;
+      &:hover h3 {
+        color: #353434;
+      }
+      &:hover svg {
+        color: #353434;
+      }
+      h3 {
+        color: #8a8989;
+        font-size: 16px;
+        font-weight: 600;
+        transition: 0.4s;
+      }
+      svg {
+        color: #8a8989;
+        transition: 0.4s;
+      }
+   
+    }
+    .Active {
+      svg {
+        color: #353434;
+      }
+      h3 {
+        color: #353434;
+      }
+    }
+  }
+  .Price_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    @media (min-width: 320px) and (max-width: 838px) {
+      width: 100%;
+    }
+
+    .Price_cont {
+      width: calc(100% - 80px);
+    }
+    .Disable {
+      height: 0;
+      transition: 0.4s;
+      overflow: hidden;
+    }
+    .Active {
+      height: 131px;
+      transition: 0.4s;
+      overflow: hidden;
+    }
+    #Filter_box {
+      position: relative;
+      width: 100%;
+      height: 66px;
+    }
+    .Price {
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      & > div {
+        flex: 1 1;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid #bebcbd;
+        span {
+          color: #3c4242;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+    }
+    .Slider_track {
+      width: 100%;
+      height: 3px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      border-radius: 3px;
+      background-color: #807d7e;
+      z-index: 1; /* Ensure track is behind the range and inputs */
+    }
+
+    .Slider_range {
+      position: absolute;
+      height: 3px;
+      background-color: #8a33fd; /* Change to your desired color */
+      border-radius: 3px;
+      z-index: 2; /* Ensure range is above the track */
+      top: calc(50% - 2px);
+    }
+    .Title_box {
+      border-top: 1px solid #bebcbd;
+      h1 {
+        color: #807d7e;
+        font-size: 22px;
+        font-weight: 600;
+      }
+      button {
+        background: none;
+        border: none;
+        color: #807d7e;
+        font-size: 17px;
+        cursor: pointer;
+        svg {
+          transition: 0.4s;
+        }
+      }
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 100%;
+      outline: none;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      background-color: transparent;
+      pointer-events: none; /* Allows clicking on the range inputs */
+      z-index: 3; /* Ensure inputs are above the track and range */
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      height: 5px;
+    }
+
+    input[type="range"]::-moz-range-track {
+      -moz-appearance: none;
+      height: 5px;
+    }
+
+    input[type="range"]::-ms-track {
+      appearance: none;
+      height: 5px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+      background-color: #8a33fd;
+      cursor: pointer;
+      margin-top: -5px;
+      border-radius: 50%;
+      pointer-events: auto; /* Allows clicking on the thumb */
+      z-index: 4; /* Ensure thumbs are above everything */
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      --webkit-appearance: none;
+      height: 13px;
+      width: 13px;
+      background-color: #8a33fd;
+      cursor: pointer;
+      border-radius: 50%;
+      pointer-events: auto; /* Allows clicking on the thumb */
+      z-index: 4; /* Ensure thumbs are above everything */
+    }
+
+    input[type="range"]::-ms-thumb {
+      appearance: none;
+      height: 13px;
+      width: 13px;
+      background-color: #8a33fd;
+      cursor: pointer;
+      border-radius: 50%;
+      pointer-events: auto; /* Allows clicking on the thumb */
+      z-index: 4; /* Ensure thumbs are above everything */
+    }
+  }
+  .Color_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .Title_box {
+      button {
+        background: none;
+        border: none;
+        color: #807d7e;
+        font-size: 17px;
+        cursor: pointer;
+        svg {
+          transition: 0.4s;
+        }
+      }
+    }
+
+    .Colors_box {
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 40px 30px;
+      & > div div:first-child {
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+      }
+      & > div div:last-child {
+   color: #8A8989;
+   font-size: 14px;
+   font-weight: 600;
+   cursor: pointer;
+   text-align: center;
+      }
+    }
+    .Active {
+      height: 370px;
+      transition: height 0.4s;
+      overflow: hidden;
+    }
+    .Disable {
+      overflow: hidden;
+      transition: 0.4s;
+      height: 0;
+      padding: 0 38px;
+    }
+    .Disable_box {
+        opacity: 0;
+       
+      
+    }
+    .Active_box {
+opacity: 1;
+transition: .4s;
+transition-delay: .4s;
+    }
+    .Active_color {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 5.2) !important;
+      transition: .4s;
+    }
+  }
+  .Size_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .Title_box {
+width: 100%;
+button {
+    background: none;
+    border: none;
+    color: #807d7e;
+    font-size: 17px;
+    cursor: pointer;
+    svg {
+      transition: 0.4s;
+    }
+  }
+    }
+    .Sizes_box {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 40px 36px;
+   
+        &>div {
+            border-radius: 8px;
+            border: 1px solid #BEBCBD;
+            width: 61px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3C4242;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+       
+        }
+        .Active {
+         background: #3C4242;
+         color: white;
+        }
+     
+    }
+    .Active {
+        height: auto;
+        transition: .4s;
+    }
+    .Disable {
+        height: 0;
+        overflow: hidden;
+        transition: .4s;
+        padding: 0 36px;
+    }
+    
+  }
+  
+}

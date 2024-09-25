@@ -48,6 +48,9 @@ else if(Location.pathname == '/admin') {
 else if(  Location.pathname == '/admin/home' ||Location.pathname == '/admin/login' ||Location.pathname == '/admin/admins' ||Location.pathname == '/admin/log' || Location.pathname == '/admin/Users' ||Location.pathname == '/admin/page' ||Location.pathname == '/admin/product' ||Location.pathname == '/admin/admin'  ) {
     document.title = 'Dashboard'
 }
+else if(Location.pathname.includes('productPage')) {
+    document.title = 'Product'
+}
         else {
             document.title = 'Not Found';
         }

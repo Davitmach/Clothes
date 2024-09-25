@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route,useRoutes, useLocation} from "react-router-dom";
+import {Navigate, BrowserRouter, Routes, Route,useRoutes, useLocation} from "react-router-dom";
 import Layout from "./layout/layout";
 import NoPage from "./pages/noPage/noPage";
 import Shop from "./pages/shop/home";
@@ -27,6 +27,10 @@ import AddAdmin from "./admin/AddAdmin/AddAdmin";
 import Log from "./admin/log/log";
 import useCheckBan from "./hook/checkBan/checkBan";
 import Product from "./admin/product/product";
+import ProductPage from "./pages/productPage/productPage";
+import Description from "./pages/productPage/description/description";
+import Comments from "./pages/productPage/comments/comment";
+import Questions from "./pages/productPage/questions/questions";
 function App() {
 useCheckBan()
   return (
@@ -39,13 +43,25 @@ useCheckBan()
         <Route path="/" element={<Layout />}>
           <Route index path="/"  element={<Shop />} />
           <Route path="men" element={<Men/>}/>
+         
+          <Route path="/productPage/:id"  element={<ProductPage/>}>
+          <Route
+    index
+    element={<Navigate to="description" replace />}
+  />
+  <Route path="description" element={<Description />} />
+  <Route path="comments" element={<Comments/>}/>
+<Route path="questions" element={<Questions/>}/>
+          </Route>
           <Route path="women" element={<Women/>}/>
+          
           <Route path="combos" element={<Combos/>}/>
           <Route path="joggers" element={<Joggers/>}/>
           <Route path="login" element={<Login/>}/>
           <Route path="signup" element={<Signup/>}/>
+
           <Route path="user" element={<UserPage/>}>
-          
+      
           <Route path="myInfo" element={<MyInfo/>}/>
           <Route path="signOut" element={<SignOut/>}/>
           <Route path="wishlist" element={<WishList/>}/>

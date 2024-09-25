@@ -1,0 +1,189 @@
+.Men_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 100px;
+  @media (min-width:320px) and (max-width:1348px) {
+   padding: 0 50px;
+  }
+    @media (min-width:320px) and (max-width:484px) {
+        padding: 0 20px;
+            }
+  .Product_container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 50px;
+    @media (min-width:320px) and (max-width:764px) {
+        justify-content: center;
+        flex-direction: column;
+       }
+    .Man_products {
+      flex: 1 1;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 50px 0;
+      gap: 50px;
+      @media (min-width:320px) and (max-width:1098px) {
+        gap: 30px;
+       }
+      .Title_box {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .Name_box h1 {
+          color: #3f4646;
+          font-size: 22px;
+          font-weight: 600;
+          @media (min-width:320px) and (max-width:891px) {
+            font-size: 18px;
+           }
+           @media (min-width:320px) and (max-width:430px) {
+            font-size: 15px;
+                }
+        }
+        .Type_btn {
+          display: flex;
+          gap: 25px;
+          button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: 600;
+            color: #3f4646;
+            @media (min-width:320px) and (max-width:891px) {
+                font-size: 18px;
+               }
+               @media (min-width:320px) and (max-width:430px) {
+                font-size: 15px;
+                    }
+          }
+          .Active {
+            color: #8a33fd;
+          }
+        }
+      }
+      .Products {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 24px;
+        row-gap: 50px;
+        @media (min-width:320px) and (max-width:764px) {
+           gap: 15px;
+             }
+             @media (min-width:320px) and (max-width:413px) {
+               row-gap: 70px;
+                    }
+        & > div {
+          width: 282px;
+          height: auto;
+          display: grid;
+          cursor: pointer;
+          gap: 20px;
+          @media (min-width:320px) and (max-width:1444px) {
+            width: 250px;
+          }
+          @media (min-width:320px) and (max-width:1348px) {
+            width: 200px;
+          }
+          @media (min-width:320px) and (max-width:1098px) {
+            width: 170px;
+           }
+           @media (min-width:320px) and (max-width:764px) {
+            width: 180px;
+             }
+             @media (min-width:320px) and (max-width:413px) {
+                width: 100%;
+                    }
+       
+          .Img_box {
+            width: 100%;
+            aspect-ratio: 1/1.3;
+            position: relative;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+            .Like_box {
+              position: absolute;
+              top: 26px;
+              right: 20px;
+              background-color: white;
+              border-radius: 50%;
+              width: 32px;
+              height: 32px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              transition: 0.4s;
+              color: #3c4242;
+              border: 1px solid transparent;
+              @media (min-width:320px) and (max-width:1098px) {
+                top: 10px;
+                right: 10px;
+               }
+              &:hover {
+                background-color: #3f4646;
+                color: white;
+                border-color: white;
+              }
+            }
+          }
+          .Info_box {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            a {
+              width: 100%;
+              height: auto;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              text-decoration: none;
+              color: #3c4242;
+              font-size: 16px;
+              font-weight: 600;
+            }
+            h1 {
+              color: #3c4242;
+              font-size: 16px;
+              font-weight: 600;
+            }
+            span {
+              background-color: #f6f6f6;
+              border-radius: 8px;
+              width: 82px;
+              height: 36px;
+              display: block;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: #3c4242;
+              font-weight: 700;
+              font-size: 14px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
