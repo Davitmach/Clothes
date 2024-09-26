@@ -1,0 +1,31 @@
+.Description_cont {
+    width: 610px;
+    height: auto;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    @media (min-width:320px) and (max-width:672px) {
+     width: 100%;
+    }
+    .Paragraph {
+        width: 100%;
+        p {
+            color: #807D7E;
+            font-size: 16px;
+            font-weight: 400;
+        }
+    }
+#svg_box {
+  
+  @media (min-width:320px) and (max-width:672px) {
+    width: 500px;
+  }
+  @media (min-width:320px) and (max-width:548px) {
+    width: 450px;
+  }
+  @media (min-width:320px) and (max-width:498px) {
+    display: none;  }
+}
+}

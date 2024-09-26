@@ -1,3 +1,6 @@
+// * {
+//   border: 1px solid red;
+// }
 .Product_page {
   width: 100%;
   height: auto;
@@ -14,6 +17,17 @@
     justify-content: space-between;
     overflow: hidden;
     gap: 74px;
+    @media (min-width: 320px) and (max-width: 1485px) {
+      gap: 0px;
+    }
+    @media (min-width: 320px) and (max-width: 1485px) {
+      height: 481px;
+    }
+    @media (min-width: 320px) and (max-width: 949px) {
+      flex-direction: column;
+      height: auto;
+      gap: 40px;
+    }
     & > div {
       flex: 1 1;
     }
@@ -25,6 +39,26 @@
       background-color: #f6f6f6;
       padding: 0 0 0 100px;
       gap: 36px;
+      @media (min-width: 320px) and (max-width: 1485px) {
+        padding: 0 0 0 50px;
+      }
+      @media (min-width: 320px) and (max-width: 949px) {
+        width: 100%;
+        justify-content: space-around;
+        height: 500px;
+        overflow: hidden;
+      }
+      @media (min-width: 320px) and (max-width: 581px) {
+        gap: 0px;
+        padding: 20px 0;
+      }
+      @media (min-width: 320px) and (max-width: 577px) {
+        height: 300px;
+        overflow: hidden;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 20px 30px;
+      }
       .Img_slider {
         display: flex;
 
@@ -94,6 +128,15 @@
         img {
           height: 830px;
           object-fit: cover;
+          @media (min-width: 320px) and (max-width: 1485px) {
+            height: 501px;
+          }
+          @media (min-width: 320px) and (max-width: 577px) {
+            height: 400px;
+          }
+          @media (min-width: 320px) and (max-width: 413px) {
+            height: 300px;
+          }
         }
       }
     }
@@ -104,47 +147,59 @@
       justify-content: center;
       flex-direction: column;
       gap: 35px;
+      @media (min-width: 320px) and (max-width: 1485px) {
+        padding: 0 50px 0 80px;
+        gap: 25px;
+      }
+      @media (min-width: 320px) and (max-width: 1019px) {
+        padding: 0 20px;
+        gap: 20px;
+      }
+      @media (min-width: 320px) and (max-width: 949px) {
+        width: 100%;
+        padding: 30px 20px;
+      }
       .Name_box {
         width: 100%;
         h1 {
-            color: #3C4242;
-            font-size: 34px;
-            font-weight: 600;
+          color: #3c4242;
+          font-size: 34px;
+          font-weight: 600;
         }
       }
-      .Rating_box  {
+      .Rating_box {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: flex-start;
         gap: 25px;
         .Stars_box {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 15px;
+          .Stars {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            .Stars {
-                display: flex;
-                gap: 10px;
+            gap: 10px;
+          }
+          .Rating {
+            span {
+              color: #807d7e;
+              font-size: 18px;
+              font-weight: 500;
             }
-            .Rating {
-                span {
-                    color: #807D7E;
-                    font-size: 18px;
-                    font-weight: 500;
-                }
-            }
+          }
         }
         .Comments_box {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            color: #807D7E;
-            font-size: 18px;
-            font-weight: 500;
-            display: flex;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 15px;
+          color: #807d7e;
+          font-size: 18px;
+          font-weight: 500;
+          display: flex;
         }
       }
       .Color_box,
@@ -174,7 +229,6 @@
             cursor: pointer;
             div {
               border-radius: 50%;
-
             }
           }
         }
@@ -192,20 +246,20 @@
             justify-content: center;
             font-size: 14px;
             font-weight: 500;
-            color: #3C4242;
-            border: 1.5px solid #BEBCBD;
+            color: #3c4242;
+            border: 1.5px solid #bebcbd;
             cursor: pointer;
-            transition: .4s;
+            transition: 0.4s;
             &:hover {
-                color: white;
-                background-color: #3C4242;
-                border-color:#3C4242 ;
+              color: white;
+              background-color: #3c4242;
+              border-color: #3c4242;
             }
           }
           .Active {
             color: white;
-            background-color: #3C4242;
-            border-color:#3C4242 ;
+            background-color: #3c4242;
+            border-color: #3c4242;
           }
         }
       }
@@ -215,89 +269,107 @@
         justify-content: center;
         gap: 25px;
         .Cart_btn button {
-            background-color: #8A33FD;
-            border-radius: 8px;
-            width: 199pxpx;
-height: 46pxpx;
-padding: 12px 40px ;
-gap: 12px;
-border-radius: 8px;
-opacity: 0px;
-border: none;
-display: flex;
-align-items: center;
-justify-content: center;
-color: #FFFFFF;
-font-size: 18px;
-font-weight: 600;
-cursor: pointer;
-transition: .4s;
-border: 1px solid transparent;
-svg path {
-    transition: .4s;
-}
-&:hover {
-    background: transparent;
-    border-color:#8A33FD ;
-    color: #8A33FD;
-    svg > path {
-        stroke: #8A33FD;
-    }
-}
-
+          background-color: #8a33fd;
+          border-radius: 8px;
+          width: 199px;
+          height: 46px;
+          padding: 12px 40px;
+          gap: 12px;
+          border-radius: 8px;
+          opacity: 0px;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          font-size: 18px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: 0.4s;
+          border: 1px solid transparent;
+          white-space: nowrap;
+          @media (min-width: 320px) and (max-width: 412px) {
+            width: 150px;
+            padding: 0;
+          }
+          svg path {
+            transition: 0.4s;
+          }
+          &:hover {
+            background: transparent;
+            border-color: #8a33fd;
+            color: #8a33fd;
+            svg > path {
+              stroke: #8a33fd;
+            }
+          }
         }
         .Price_box {
-            color: #3C4242;
-            font-size: 18px;
-            font-weight: 700;
-            width: 138px;
-            height: 46px;
-            
-            border-radius: 8px;
-            cursor: pointer;
-            border: 1px solid #3C4242;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: .4s;
-            &:hover {
-                background-color: #3C4242;
-                color: white;
-            }
+          color: #3c4242;
+          font-size: 18px;
+          font-weight: 700;
+          width: 138px;
+          height: 46px;
+
+          border-radius: 8px;
+          cursor: pointer;
+          border: 1px solid #3c4242;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: 0.4s;
+          &:hover {
+            background-color: #3c4242;
+            color: white;
+          }
         }
       }
       hr {
         width: 100%;
+        @media (min-width: 320px) and (max-width: 1406px) {
+          display: none;
+        }
       }
       .Ship_info_box {
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content:flex-start;
+        justify-content: flex-start;
         flex-wrap: wrap;
         gap: 150px;
         row-gap: 26px;
-        &>div {
-            width: 257px;
+        @media (min-width: 320px) and (max-width: 1406px) {
+          display: none;
+        }
+        @media (min-width: 320px) and (max-width: 1485px) {
+          flex-direction: row;
+          flex-wrap: nowrap;
+          gap: 0px;
+          row-gap: 0;
+        }
+        & > div {
+          width: 257px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 15px;
+          @media (min-width: 320px) and (max-width: 1485px) {
+            width: 200px;
+          }
+          & > div:first-child {
+            border-radius: 50%;
+            background-color: #f6f6f6;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            gap: 15px;
-            &>div:first-child {
-                border-radius: 50%;
-                background-color: #F6F6F6;
-                width: 44px;
-                height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            span {
-                color: #3C4242;
-                font-size: 18px;
-                font-weight: 500;
-            }
-
+            justify-content: center;
+          }
+          span {
+            color: #3c4242;
+            font-size: 18px;
+            font-weight: 500;
+          }
         }
       }
     }
@@ -311,6 +383,12 @@ svg path {
     flex-direction: column;
     padding: 100px;
     gap: 30px;
+    @media (min-width: 320px) and (max-width: 734px) {
+      padding: 50px;
+    }
+    @media (min-width: 320px) and (max-width: 616px) {
+      padding: 30px;
+    }
     .Title_box {
       width: 100%;
       display: flex;
@@ -318,20 +396,20 @@ svg path {
       justify-content: flex-start;
       .Title {
         h1 {
-          color: #3C4242;
+          color: #3c4242;
           font-size: 28px;
           font-weight: 600;
           position: relative;
           &::before {
-content: '';
-position: absolute;
-width: 6px;
-height: 26px;
-border-radius: 10px;
-background-color: #8A33FD;
-left: -15px;
-top: 50%;
-transform: translateY(-50%);
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 26px;
+            border-radius: 10px;
+            background-color: #8a33fd;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
           }
         }
       }
@@ -344,83 +422,116 @@ transform: translateY(-50%);
       justify-content: center;
       // gap: 100px;
       flex-direction: column;
-      gap: 30px;
+      gap: 52px;
       .Menu_box {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 30px;
-position: relative;
-&>div a {
-  text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        position: relative;
+        @media (min-width: 320px) and (max-width: 586px) {
+          gap: 15px;
+        }
+        @media (min-width: 320px) and (max-width: 506px) {
+          flex-direction: column;
+          align-items: start;
+        }
+        & > div a {
+          text-decoration: none;
+        }
 
-}
-
-&>div:nth-child(2) {
- display: flex;
- align-items: center;
- justify-content: center;
- gap: 15px;
-span {
-  color: white;
-  font-size: 10px;
-  font-weight: 500;
-  background-color: #8A33FD;
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  display: block;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-}
-&>div:nth-child(3) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
- span {
-   color: white;
-   font-size: 10px;
-   font-weight: 500;
-   background-color: #3C4242;
-   width: 20px;
-   height: 20px;
-   border-radius: 4px;
-   display: block;
-   display: flex;
-   align-items: center;
-   justify-content: center;
- }
- }
-.Active {
-  color: #3C4242;
-  font-size: 18px;
-  font-weight: 500;
-  transition:color .4s;
-}
-.Disable {
-color: #807D7E;
-font-size: 18px;
-font-weight: 400;
-transition: color .4s;
-}
-.Slider {
-  position: absolute;
-  width: 43px;
-  height: 1.4px;
-  left: 0;
-  bottom: -15px;
-  background-color:black ;
-  transition: .4s ease;
-}
-
+        & > div:nth-child(2) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 15px;
+          span {
+            color: white;
+            font-size: 10px;
+            font-weight: 500;
+            background-color: #8a33fd;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @media (min-width:320px) and (max-width:506px) {
+              font-size: 15px;
+              width: 30px;
+              height: 30px;
+             }
+          }
+        }
+        & > div:nth-child(3) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 15px;
+          span {
+            color: white;
+            font-size: 10px;
+            font-weight: 500;
+            background-color: #3c4242;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @media (min-width:320px) and (max-width:506px) {
+              font-size: 15px;
+              width: 30px;
+              height: 30px;
+             }
+          }
+        }
+        .Active {
+          color: #3c4242;
+          font-size: 18px;
+          font-weight: 500;
+          transition: color 0.4s;
+          @media (min-width: 320px) and (max-width: 586px) {
+            font-size: 15px;
+          }
+          @media (min-width:320px) and (max-width:506px) {
+           font-size: 20px;
+           }
+        }
+        .Disable {
+          color: #807d7e;
+          font-size: 18px;
+          font-weight: 400;
+          transition: color 0.4s;
+          @media (min-width: 320px) and (max-width: 586px) {
+            font-size: 15px;
+          }
+          @media (min-width:320px) and (max-width:506px) {
+            font-size: 20px;
+            
+            } 
+        }
+        .Slider {
+          position: absolute;
+          width: 43px;
+          height: 1.4px;
+          left: 0;
+          bottom: -15px;
+          background-color: black;
+          transition: 0.4s ease;
+          @media (min-width:320px) and (max-width:506px) {
+           display: none;
+          }
+        }
       }
-   
-  
-   
-    }
 
+      .Outlet_box {
+        @media (min-width: 320px) and (max-width: 762px) {
+          width: 100%;
+        }
+      }
+    }
   }
 }

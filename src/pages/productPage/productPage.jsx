@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import "./productPage.scss";
 import axios from "axios";
 import GetData from "../../hook/getData/getData";
@@ -17,7 +17,7 @@ function ProductPage() {
   const { id } = useParams();
   const Location = useLocation();
 
-
+const Navigate = useNavigate();
 
 
   const sliderRef = useRef(null);
@@ -65,7 +65,7 @@ function ProductPage() {
   );
   useEffect(() => {
     if (data) {
-      console.log(data);
+      console.log(data,'esh');
      
     }
   }, [data]);
@@ -230,7 +230,11 @@ function ProductPage() {
               </div>
             </div>) : ''
 }
-            <div className="Comments_box">
+            <div className="Comments_box" onClick={()=> {
+              Navigate('comments',{replace:true})
+              document.querySelector('.Description_box').scrollIntoView({ behavior: 'smooth' });
+
+            }}>
               <svg
                 width="23"
                 height="20"
@@ -430,16 +434,16 @@ function ProductPage() {
         </Link>
       </div>
       <div>
-        <Link to="comments" state={data?.ratings} className={activeLink === 'comments' ? 'Active' : 'Disable'}>
+        <Link to="comments"  className={activeLink === 'comments' ? 'Active' : 'Disable'}>
           User comments
         </Link>
-      <span> {data?.ratings.length}</span> 
+      <span> {data?.ratings?.length ? data?.ratings?.length : 0}</span> 
       </div>
       <div>
         <Link to="questions" className={activeLink === 'questions' ? 'Active' : 'Disable'}>
           Question & Answer
         </Link>
-        <span>{data?.questions.length}</span>
+        <span>{data?.questions?.length ?data?.questions?.length : 0 }</span>
       </div>
 
       <div className="Slider" ref={sliderRef}></div>
