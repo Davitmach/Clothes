@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./comments.scss";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faPaperPlane, faPlane, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { SetDataWithQueryClient } from "../../../hook/setData/setData";
@@ -88,7 +88,7 @@ console.log(commData);
   }
   return (
     <div className="Comment_box">
-      <div className="Comments">
+      <div className="Comments" style={commData?.length < 4 ? {height:'auto'} : {height:'350px'}}>
         {commData?.map((e) => {
           var Time = e?.time?.split(".")[0];
           return (
@@ -119,7 +119,7 @@ console.log(commData);
           <input placeholder="Enter a comment" type="text" ref={inputRef} />
           <FontAwesomeIcon
             onClick={() => handleAddMessage()}
-            icon={faMagnifyingGlass}
+            icon={faPaperPlane}
           />
         </div>
         <div className="Stars_box" ref={StarsRef}>

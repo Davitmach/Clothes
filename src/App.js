@@ -1,5 +1,11 @@
-
-import {Navigate, BrowserRouter, Routes, Route,useRoutes, useLocation} from "react-router-dom";
+import {
+  Navigate,
+  BrowserRouter,
+  Routes,
+  Route,
+  useRoutes,
+  useLocation,
+} from "react-router-dom";
 import Layout from "./layout/layout";
 import NoPage from "./pages/noPage/noPage";
 import Shop from "./pages/shop/home";
@@ -31,62 +37,57 @@ import ProductPage from "./pages/productPage/productPage";
 import Description from "./pages/productPage/description/description";
 import Comments from "./pages/productPage/comments/comment";
 import Questions from "./pages/productPage/questions/questions";
+import { useEffect } from "react";
 function App() {
-useCheckBan()
+  
+  useCheckBan();
+
+
   return (
     <>
-  
-    <BrowserRouter basename="/">
-    
-      <Routes>
-     
-        <Route path="/" element={<Layout />}>
-          <Route index path="/"  element={<Shop />} />
-          <Route path="men" element={<Men/>}/>
-         
-          <Route path="/productPage/:id"  element={<ProductPage/>}>
-          <Route
-    index
-    element={<Navigate to="description" replace />}
-  />
-  <Route path="description" element={<Description />} />
-  <Route path="comments" element={<Comments/>}/>
-<Route path="questions" element={<Questions/>}/>
-          </Route>
-          <Route path="women" element={<Women/>}/>
-          
-          <Route path="combos" element={<Combos/>}/>
-          <Route path="joggers" element={<Joggers/>}/>
-          <Route path="login" element={<Login/>}/>
-          <Route path="signup" element={<Signup/>}/>
+      <BrowserRouter basename="/">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index path="/" element={<Shop />} />
+            <Route path="men" element={<Men />} />
 
-          <Route path="user" element={<UserPage/>}>
+            <Route path="/productPage/:id" element={<ProductPage />}>
+              <Route index element={<Navigate to="description" replace />} />
+              <Route path="description" element={<Description />} />
+              <Route path="comments" element={<Comments />} />
+              <Route path="questions" element={<Questions />} />
+            </Route>
+            <Route path="women" element={<Women />} />
+
+            <Route path="combos" element={<Combos />} />
+            <Route path="joggers" element={<Joggers />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+
+            <Route path="user" element={<UserPage />}>
+              <Route path="myInfo" element={<MyInfo />} />
+              <Route path="signOut" element={<SignOut />} />
+              <Route path="wishlist" element={<WishList />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="setMyInfo" element={<SetMyInfo />} />
+            </Route>
+            <Route path="resetPass" element={<ResetPass />} />
+            <Route path="checkMail" element={<CheckMail />} />
+            <Route path="resetVerif" element={<ResetVerif />} />
+            <Route path="createPass" element={<CreatePass />} />
+            <Route path="admin" element={<Admin />}>
+              <Route path="Users" element={<Users />} />
+              <Route path="login" element={<AdminLogin />} />
+              <Route path="page" element={<Page />} />
+              <Route path="admins" element={<AddAdmin />} />
+              <Route path="log" element={<Log />} />
+              <Route path="product" element={<Product />} />
+            </Route>
+            <Route path="*" element={<NoPage />} />
+          </Route>
+        </Routes>
       
-          <Route path="myInfo" element={<MyInfo/>}/>
-          <Route path="signOut" element={<SignOut/>}/>
-          <Route path="wishlist" element={<WishList/>}/>
-          <Route path="cart" element={<Cart/>}/>
-          <Route path="setMyInfo" element={<SetMyInfo/>}/>
-          
-          </Route>
-          <Route path="resetPass" element={<ResetPass/>}/>
-          <Route path="checkMail" element={<CheckMail/>}/>
-          <Route path="resetVerif" element={<ResetVerif/>}/>
-          <Route path="createPass" element={<CreatePass/>}/>
-      <Route path="admin" element={<Admin/>}>
-<Route path="Users" element={<Users/>}/>
-<Route path="login" element={<AdminLogin/>}/>
-<Route path="page" element={<Page/>}/>
-<Route path="admins" element={<AddAdmin/>}/>
-<Route path="log" element={<Log/>}/>
-<Route path="product" element={<Product/>}/>
-      </Route>
-          <Route path="*" element={<NoPage/>}/>
-
-
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </>
   );
 }

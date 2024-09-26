@@ -101,14 +101,20 @@ function Questions() {
 
   return (
     <div className="Questions_box">
-      <div className="Questions">
+      <div className="Questions" style={questData?.length < 4 ? {height:'auto'} : {height:'350px'}}>
         {questData?.map((e) => (
           <div className="Question" key={e.id}>
-           
+           {e.answer ? (<div className="All">
+            <div className="Name">
             <div className="Name_box">{e.userName}</div>
+            <div className="Question_box">{e.question}</div>
+           </div>
+           <div className="Answer">{e.answer}</div>
+           </div>) : ( <div className="Name_box">{e.userName}</div>)}
+           
           
             <div className="Main_box">
-              <div ><span>{e.question}</span></div>
+              <div ><span>{e.answer ? ('Reply By ' +  e.answerUserName) : (e.question)}</span></div>
               <div className="Time">{e.time.split(".")[0]}</div>
             </div>
             {Id === e.userId ? (
@@ -122,7 +128,20 @@ function Questions() {
               ""
             )}
             {Id !== e.userId ? (
-              <div className="Reply_box" onClick={() => HandleAnswer(e)}>
+              <div className="Reply_box" onClick={() => {
+                const inputBox = document.querySelector('.Input_box');
+
+// Получаем позицию элемента относительно видимой области
+const rect = inputBox.getBoundingClientRect();
+
+// Прокручиваем страницу, учитывая 50 пикселей
+window.scrollTo({
+    top: rect.top + window.scrollY - 50, // Вычитаем 50 пикселей
+    behavior: 'smooth'
+});
+                HandleAnswer(e)}
+              
+              }>
                 <FontAwesomeIcon icon={faReply} />
               </div>
             ) : (
