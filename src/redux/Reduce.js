@@ -58,13 +58,15 @@ function CheckBan(state = {ban:false},action) {
           return state;
   }
 }
+
   export const reducer = combineReducers({
 menu:OpenMenuRed,
 userHidEl:UserFuncHidElRed,
 regged:LoggedRed,
 userInfoSubmit: SubmitUserInfo,
 fullAddress:FullAddress,
-checkBan:CheckBan
+checkBan:CheckBan,
+
 
 
 

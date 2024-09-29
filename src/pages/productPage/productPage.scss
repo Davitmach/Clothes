@@ -534,4 +534,140 @@
       }
     }
   }
+  .Similar_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 100px;
+    @media (min-width:320px) and (max-width:1749px) {
+        padding: 100px 50px;
+    }
+    @media (min-width:320px) and (max-width:1250px) {
+        padding: 100px 30px;
+    }
+    @media (min-width:320px) and (max-width:806px) {
+        padding: 100px 20px;
+    }
+    & > .Title_box {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 40px;
+        .Title {
+          display: flex;
+          justify-content: flex-start;
+        }
+        h1 {
+          font-weight: 600;
+          font-size: 28px;
+          letter-spacing: 2%;
+          color: #3c4242;
+          margin-left: 50px;
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 28px;
+            border-radius: 10px;
+            background: #8a33fd;
+            top: 50%;
+            transform: translateY(-50%);
+            left: -20px;
+          }
+        }
+      }
+      .Similars {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 50px;
+        &>div {
+            width: 350px;
+            height: auto;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           flex-direction: column;
+           gap: 15px;
+           @media (min-width:320px) and (max-width:806px) {
+            width:100%;
+        }
+            .Img_box {
+                width: 100%;
+            aspect-ratio: 1/1;
+                border-radius: 10px;
+                overflow: hidden;
+                position: relative;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                .Like  {
+                    position: absolute;
+                    top:30px;
+                    right:40px;
+                    background-color: white;
+                    border-radius: 50%;
+                    color: #3C4242;
+                    width: 32px;
+                    aspect-ratio: 1/1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    border: 1px solid transparent;
+                    transition: .4s;
+                    &:hover {
+                        background-color: #3C4242;
+                        color: white;
+                        border-color: white;
+                    }
+                }
+            }
+            .Info_box {
+                width: 100%;
+                height: auto;
+                display: flex;
+                align-items: start;
+                justify-content: space-between;
+                cursor: pointer;
+                a {
+                  width: 100%;
+                  height: auto;
+                  display: flex;
+                  align-items: start;
+                  justify-content: space-between;
+                  text-decoration: none;
+                  color: #3C4242;
+                }
+          .Title_box h1 {
+            color: #3C4242;
+            font-size: 16px;
+            font-weight: 600;
+          }
+          .Price span {
+            background-color: #F6F6F6;
+            border-radius: 8px;
+            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 82px;
+            height: 36px;
+            color: #3C4242;
+            font-size: 14px;
+            font-weight: 700;
+          }
+            }
+        }
+      }
+}
 }

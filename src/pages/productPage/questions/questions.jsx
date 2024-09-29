@@ -57,7 +57,7 @@ function Questions() {
   };
 
   useEffect(() => {
-    console.log(setQuestionData);
+   
   }, [setQuestionData]);
 
   const DeleteQuestions = (data) => {
@@ -73,7 +73,15 @@ function Questions() {
     setAnswer(true);
     setCurrentQuestion(data);
   };
-
+  useEffect(() => {
+    const commentsElement = document.querySelector('.Questions');
+    if (commentsElement) {
+      commentsElement.scrollTo({
+        top: commentsElement.scrollHeight, // Прокручиваем до конца списка
+        behavior: 'smooth',
+      });
+    }
+  }, [questData]);
   const SubmitAnswer = () => {
     if(!Logged) {
         Navigate('/login',{replace:true})

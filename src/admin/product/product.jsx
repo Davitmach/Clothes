@@ -68,7 +68,7 @@ function Product() {
     "getProduct"
   );
   useEffect(()=> {
-console.log(data);
+
 
 
   },[data])
@@ -94,7 +94,7 @@ console.log(data);
     }
   };
   const handleEdit = (data) => {
-    console.log(edit.id);
+
     
     ProductFunc(data.payload, edit.id, data);
     setEditId(null);
@@ -113,7 +113,7 @@ console.log(data);
     "getProduct"
   );
   useEffect(() => {
-    console.log(funcData);
+
   }, [funcData]);
   // client part
   const addColor = () => {
@@ -127,7 +127,7 @@ console.log(data);
       }
     }
 
-    console.log(Colors);
+
   };
 
   const removeColor = (c) => {
@@ -147,12 +147,12 @@ console.log(data);
       }
     }
 
-    console.log(Sizes);
+  
   };
 
   const removeSize = (c) => {
     setSizes(Sizes.filter((e) => e !== c));
-    console.log(Sizes);
+
   };
 
   const editPhoto = (id) => {
@@ -184,7 +184,7 @@ console.log(data);
     });
   };
   const ChangeProduct = () => {
-    console.log(1);
+
   };
   return (
     <div className="Add_product_container">

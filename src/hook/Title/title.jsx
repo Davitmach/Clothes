@@ -51,6 +51,9 @@ else if(  Location.pathname == '/admin/home' ||Location.pathname == '/admin/logi
 else if(Location.pathname.includes('productPage')) {
     document.title = 'Product'
 }
+else if(Location.pathname == '/cart') {
+    document.title = 'Cart'
+}
         else {
             document.title = 'Not Found';
         }

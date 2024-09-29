@@ -58,7 +58,7 @@ function App() {
               <Route path="questions" element={<Questions />} />
             </Route>
             <Route path="women" element={<Women />} />
-
+            <Route path="cart" element={<Cart/>}/>
             <Route path="combos" element={<Combos />} />
             <Route path="joggers" element={<Joggers />} />
             <Route path="login" element={<Login />} />
@@ -70,6 +70,7 @@ function App() {
               <Route path="wishlist" element={<WishList />} />
               <Route path="cart" element={<Cart />} />
               <Route path="setMyInfo" element={<SetMyInfo />} />
+             
             </Route>
             <Route path="resetPass" element={<ResetPass />} />
             <Route path="checkMail" element={<CheckMail />} />

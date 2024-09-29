@@ -19,7 +19,7 @@ function Signin() {
     }
     const { mutate, isSuccess, error, data } = SetData(Login, 'Login');
     useEffect(() => {
-console.log(data);
+
 
     
         if (typeof data?.data === 'string' && data.data.includes("banned")) {
@@ -35,7 +35,7 @@ console.log(data);
 Store.dispatch({
     type:'Logged'
 })
-Navigate('/user',{replace:true})
+Navigate('/',{replace:true})
 localStorage.setItem('logged',true)
 localStorage.setItem('id',data.data.id)
 var id = localStorage.getItem('id');
@@ -44,6 +44,7 @@ if(data?.data?.submit == 'true') {
            localStorage.setItem(`${id}address`,data?.data?.address);
            localStorage.setItem(`${id}name`,data?.data?.name);
            localStorage.setItem(`${id}addressId`,data?.data?.addressId)
+   
            }
 
            else if(data?.data?.submit == 'false'){
@@ -51,6 +52,7 @@ if(data?.data?.submit == 'true') {
             localStorage.removeItem(`${id}address`);
             localStorage.removeItem(`${id}name`);
             localStorage.removeItem(`${id}addressId`)
+       
            }
         }
       

@@ -6,6 +6,10 @@ import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { useQueryClient } from "@tanstack/react-query";
+import ColorNamer from "color-namer";
+import { SetData, SetDataWithQueryClient } from "../../hook/setData/setData";
 function ProductPage() {
   const [counterSlider, setCounter] = useState(0);
   const [transform, setTransform] = useState(0);
@@ -16,7 +20,7 @@ function ProductPage() {
   const SizeRef = useRef(null);
   const { id } = useParams();
   const Location = useLocation();
-
+const Id = localStorage.getItem('id');
 const Navigate = useNavigate();
 
 
@@ -37,21 +41,15 @@ const Navigate = useNavigate();
   }, [Location]);
 
   useEffect(() => {
-
-
     const activeElement = document.querySelector(`.Product_page .Menu_box .Active`);
-    if (activeElement && sliderRef.current) {
-        
-    console.log(activeElement);
-    
-      
+    if (activeElement && sliderRef.current) {  
       sliderRef.current.style.left = `${activeElement.offsetLeft}px`;
       sliderRef.current.style.width = `${activeElement.offsetWidth /2}px`;
     }
   }, [activeLink]);
 
 
-
+  var QueryClient = useQueryClient();
 
   const GetProduct = async (id) => {
     const { data } = await axios.get(
@@ -59,16 +57,48 @@ const Navigate = useNavigate();
     );
     return data;
   };
+  
+ 
   const { data, isSuccess, error } = GetData(
     () => GetProduct(id),
-    `GetProduct`
+    `GetProduct${id}`
   );
   useEffect(() => {
     if (data) {
-      console.log(data,'esh');
+ 
      
     }
   }, [data]);
+
+
+
+  const GetSimilarProduct = async (id) => {
+    const { data } = await axios.get(
+      `http://clothes/product/similarProduct.php?id=${id}`
+    );
+    return data;
+  };
+
+  const AddCart = async (info) => {
+    return await axios.post("http://clothes/product/addCart.php", info, {
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    });
+};
+  const { data:similarData} = GetData(
+    ()=>  GetSimilarProduct(id),
+    `GetSimilarProduct`
+  );
+
+useEffect(()=> {
+
+},[similarData])
+
+
+
+
+
 
   const handleNavigation = (side) => {
     if (side == "prev") {
@@ -107,6 +137,33 @@ const Navigate = useNavigate();
   const handleSize = (e) => {
     setActiveSize(e.target.dataset.size);
   };
+
+const {data:cartData,mutate} = SetDataWithQueryClient(AddCart,'AddCart','GetCartProduct');
+useEffect(()=> {
+
+
+},[cartData])
+
+const handleAddCart = (data) => {
+  var Color = JSON.parse(data.color)[activeColor];
+ var ColorName =ColorNamer(Color).basic[0].name;
+var Size = JSON.parse(data.size)[activeSize];
+if(Id) {
+
+mutate({
+color:ColorName,
+size:Size,
+productId:data.id,
+userId:Id,
+img:data.img,
+name:data.name,
+price:data.price,
+quantity:1,
+shipping:data.shipping
+})
+}
+  
+}
   return (
     <div className="Product_page">
       <div className="Main_info_box">
@@ -308,7 +365,7 @@ const Navigate = useNavigate();
           </div>
           <div className="Add_cart_box">
             <div className="Cart_btn">
-              <button>
+              <button onClick={()=> handleAddCart(data.product)}>
                 <svg
                   width="17"
                   height="16"
@@ -450,6 +507,32 @@ const Navigate = useNavigate();
     </div>
         <div className="Outlet_box"><Outlet/></div>
 </div>
+      </div>
+      <div className="Similar_box">
+        <div className="Title_box"><div className="Title">
+          <h1>Similar Products</h1>
+        </div></div>
+        <div className="Similars">
+          {similarData?.map((product)=> (
+              <div className='Similar'>
+              <div className='Img_box'><img src={product.img}/><div className="Like"><FontAwesomeIcon icon={faHeart}/></div></div>
+              <div className='Info_box'>
+              <Link  to={`/productPage/${product.id}`} onClick={()=> {
+              
+                QueryClient.invalidateQueries(`GetProduct${id}`)
+                window.scrollTo({
+                  top:0,
+                  behavior:'smooth'
+                })
+                
+              }} >
+        <div className="Title_box"><h1>{product.name.length > 20? product.name.substring(0,20)+'...': product.name}</h1></div>
+        <div className="Price"><span>${(product.price/10).toFixed(2)}</span></div>
+                </Link>
+              </div>
+          </div>
+          ))}
+        </div>
       </div>
     </div>
   );

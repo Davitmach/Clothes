@@ -57,6 +57,9 @@ function SetMyInfo() {
     const { data, mutate, isSuccess, error } = SetData(SetUserInfo, 'SetUserData');
     const { data: EditAddressData, mutate: EditAdressMutate, isSuccess: EditAddressSuccess, error: EditAddressError } = SetData(EditAddress, 'EditAddress');
     const UserId = localStorage.getItem('id');
+
+
+
     const HandleSubmit = (data) => {
 
         if (edit) {
@@ -81,6 +84,8 @@ function SetMyInfo() {
         
    if(data?.data == 'full') {
     Store.dispatch({type:'Submited'});
+   Navigate('/user/myInfo',{replace:true})
+    
 
     localStorage.removeItem(`${UserId}wait`);
 Store.dispatch({type:'Full'})
@@ -88,33 +93,41 @@ Store.dispatch({type:'Full'})
    }
         if (data?.data?.status == 'true_shipping') {
             Store.dispatch({ type: 'Submited' })
+            Navigate('/user/myInfo',{replace:true})
             localStorage.setItem(`${UserId}name`, data.data.name)
             localStorage.setItem(`${UserId}address`, 'shipping')
             localStorage.setItem(`${UserId}addressId`,data.data.addressId)
             localStorage.removeItem(`${UserId}wait`)
+   
         }
         else if (data?.data?.status == 'true_billing') {
 
 
             Store.dispatch({ type: 'Submited' })
+            Navigate('/user/myInfo',{replace:true})
             localStorage.setItem(`${UserId}name`, data.data.name)
             localStorage.setItem(`${UserId}address`, 'billing')
             localStorage.removeItem(`${UserId}wait`)
             localStorage.setItem(`${UserId}addressId`,data.data.addressId)
+      
         }
         else if (data?.data?.status == 'true_address') {
             Store.dispatch({ type: 'Submited' })
+            Navigate('/user/myInfo',{replace:true})
             localStorage.setItem(`${UserId}name`, data.data.name)
             localStorage.setItem(`${UserId}address`, 'address')
             localStorage.removeItem(`${UserId}wait`)
             localStorage.setItem(`${UserId}addressId`,data.data.addressId)
+            
         }
         else if (data?.data?.status == 'true_both') {
             Store.dispatch({ type: 'Submited' })
+            Navigate('/user/myInfo',{replace:true})
             localStorage.setItem(`${UserId}name`, data.data.name)
             localStorage.setItem(`${UserId}address`, 'shipping')
             localStorage.removeItem(`${UserId}wait`)
             localStorage.setItem(`${UserId}addressId`,data.data.addressId)
+           
         }
     }, [data])
     useEffect(() => {
@@ -124,11 +137,17 @@ Store.dispatch({type:'Full'})
             localStorage.removeItem(`${UserId}wait`);
             localStorage.setItem(`${UserId}submitInfo`,true)
             Store.dispatch({ type: 'Submited' });
+           
+        
+         
 Navigate('/user/myInfo',{replace:true})
 
         }
 
     }, [EditAddressData])
+
+
+
     return (
         <div className='Set_my_info_container'>
             <div className='Title_container'>
@@ -217,6 +236,7 @@ Navigate('/user/myInfo',{replace:true})
                             if (Wait) {
                                 localStorage.setItem(`${UserId}submitInfo`, true);
                                 localStorage.removeItem(`${UserId}wait`)
+                             
                             }
                         }}>Cancel</Link></div>
                     </div>

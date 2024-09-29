@@ -14,9 +14,13 @@ function MyInfo() {
     const UserId = localStorage.getItem('id');
     const Address = localStorage.getItem(`${UserId}address`);
     const AddressId = localStorage.getItem(`${UserId}addressId`);
+const Navigate = useNavigate();
+const Location = useLocation();
 
 
-    const Navigate = useNavigate();
+
+
+
     const { ref, inView, entry } = useInView({
         
         threshold: 0.6,
@@ -179,6 +183,8 @@ var Delay = 0;
             localStorage.removeItem(`${UserId}addressId`);
             localStorage.removeItem(`${UserId}name`);
             localStorage.removeItem(`${UserId}submitInfo`)
+            Navigate('/user/setMyInfo',{replace:true})
+            
         }
 
     }, [DeleteData])
@@ -281,7 +287,7 @@ var Delay = 0;
                             Store.dispatch({ type: 'NoSubmit' });
                             localStorage.removeItem(`${UserId}submitInfo`)
                             localStorage.setItem(`${UserId}wait`, UserId)
-                            Navigate('/user', { replace: true })
+                            Navigate('/user/setMyInfo', { replace: true })
                         }}>Add New</button></div>
                     </div>
                     <div className='Addresses_box' ref={ref}>
@@ -313,10 +319,12 @@ var Delay = 0;
                                                 <div className='Remove_btn'><button className='Btn' onClick={() => DeleteAddress(address.id, address.shipping ? 'shipping' : address.billing ? 'billing' : 'address')}>Remove</button></div>
                                                 <div className='Edit_btn'><button className='Btn' onClick={() => {
                                                     Store.dispatch({ type: 'NoSubmit' });
+                                                    
+                                                    
                                                     localStorage.removeItem(`${UserId}submitInfo`)
                                                     localStorage.setItem(`${UserId}wait`, UserId)
-                                                    Navigate('/user', { replace: true })
-                                                    Navigate(`/user/setMyInfo`, { replace: false, state: { address: address, currentAddress: address.shipping ? 'shipping' : address.billing ? 'billing' : 'address', addressId: address.id } })
+                                                  
+                                                    Navigate(`/user/setMyInfo`, { replace: true, state: { address: address, currentAddress: address.shipping ? 'shipping' : address.billing ? 'billing' : 'address', addressId: address.id } })
                                                 }}>Edit</button></div>
                                                 {!address.billing && !address.shipping ? (<div className='Set_default_btn'> <button onClick={() => setDefault(address.id)}>Set as default</button></div>) : ''}
                                             </div>

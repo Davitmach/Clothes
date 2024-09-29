@@ -21,8 +21,7 @@ mutate({
     }
 
     useEffect(()=> {
-   console.log(data);
-   
+
         
 if(data?.data?.status == 'true') {
     localStorage.setItem('AdminLog',true)

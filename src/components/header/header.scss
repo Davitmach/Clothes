@@ -5,7 +5,7 @@ header {
     align-items: center;
     border-bottom: 1px solid #BEBCBD;
     padding: 30px 100px;
-    overflow: hidden;
+    // overflow: hidden;
     position: relative;
     gap: 20px;
     background-color: white;
@@ -239,8 +239,55 @@ header {
         justify-content: center;
         height: 35px;
         transition: .4s;
-        overflow: hidden;
+        // overflow: hidden;
+position: relative;
+.Searches {
+    position: absolute;
+    z-index: 999999;
+    top: 40px;
+    background-color: white;
+    width: 100%;
+    left: 0;
+  display: flex;
 
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 12px;
+  gap: 20px;
+  padding: 30px 20px;
+  &>div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    a {
+width: 100%;
+text-decoration: none;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+gap: 20px;
+    
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+    }
+    h1 {
+     font-size: 17px;
+        font-weight: 600;
+        color: #3C4242;
+    }
+    span {
+        font-size: 15px;
+        font-weight: 600;
+        color: #3C4242;
+    }
+}
+  }
+}
         @media (min-width:320px) and (max-width:752px) {
 
             flex-shrink: 1;

@@ -27,7 +27,7 @@ function Comments() {
 const {data:commData} = GetData(()=>GetComments(id),'getComments');
   useEffect(() => {
     
-console.log(commData);
+
 
     
   }, [commData]);
@@ -55,10 +55,18 @@ console.log(commData);
 
 
   useEffect(() => {
-    console.log(setMessageData);
+   
   }, [setMessageData]);
 
-
+  useEffect(() => {
+    const commentsElement = document.querySelector('.Comments');
+    if (commentsElement) {
+      commentsElement.scrollTo({
+        top: commentsElement.scrollHeight, // Прокручиваем до конца списка
+        behavior: 'smooth',
+      });
+    }
+  }, [commData]);
   const handleAddMessage = () => {
     if (inputRef.current.value !== "") {
       if(Id) {
@@ -67,7 +75,11 @@ console.log(commData);
         message: inputRef.current.value,
         userId: Id,
        productId:id
-      });}
+      });
+    
+     
+    }
+
       else {
         Navigate('/login',{replace:true})
         
@@ -118,7 +130,11 @@ console.log(commData);
         <div className="Input_box">
           <input placeholder="Enter a comment" type="text" ref={inputRef} />
           <FontAwesomeIcon
-            onClick={() => handleAddMessage()}
+            onClick={() => {handleAddMessage()
+       
+            }
+             
+            }
             icon={faPaperPlane}
           />
         </div>

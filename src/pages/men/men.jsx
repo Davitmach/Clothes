@@ -39,8 +39,7 @@ import { Link,Outlet} from "react-router-dom";
         if(funcData?.data) {
         setDataLoad(true)
         }
-        console.log(funcData);
-        
+       
         
               },[funcData])
 
