@@ -292,9 +292,9 @@ var Delay = 0;
                     </div>
                     <div className='Addresses_box' ref={ref}>
                   
-                            {  groupedAddresses.map((group, index) => (
+                            {  groupedAddresses?.map((group, index) => (
                                 <div className="box" key={index}>
-                                    { group.map((address, idx) => (
+                                    { group?.map((address, idx) => (
                                        
                                         <div style={inView ?{animation:`FadeIn .5s ${Delay+=100}ms ease-in-out forwards`}: {animation:'none'}}  className="address" key={idx}>
                                          

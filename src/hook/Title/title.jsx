@@ -54,6 +54,9 @@ else if(Location.pathname.includes('productPage')) {
 else if(Location.pathname == '/cart') {
     document.title = 'Cart'
 }
+else if(Location.pathname == '/checkout') {
+     document.title = 'Checkout'
+}
         else {
             document.title = 'Not Found';
         }

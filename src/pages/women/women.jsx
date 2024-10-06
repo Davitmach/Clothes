@@ -7,10 +7,12 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { SetData } from "../../hook/setData/setData";
 import './women.scss'
 import { Link } from "react-router-dom";
+import useViewed from "../../hook/viewedProduct/viewedProduct";
  function Women() {
   const [type,setType] = useState('New');
   const [dataLoad,setDataLoad] = useState(false);
   const [rec,setRec] = useState([]);
+  const {SetProduct} = useViewed()
     const GetCategories= async (id) => {
         const { data } = await axios.get(`http://clothes/product/getCat.php?gender=women`);
         return data;
@@ -75,7 +77,7 @@ import { Link } from "react-router-dom";
                     <div className="Like_box"><FontAwesomeIcon icon={faHeart}/></div>
                   </div>
                   <div className="Info_box">
-                  <Link to={`/productPage/${product.id}`}>
+                  <Link to={`/productPage/${product.id}`} onClick={()=> SetProduct(product)}>
                     <div className="Name_box"><h1>{product.name.length > 16 ? product.name.substring(0,16)+'...' :product.name}</h1></div>
                     <div className="Price_box"><span>${(product.price/10).toFixed(2)}</span></div>
                   </Link>

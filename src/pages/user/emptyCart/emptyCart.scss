@@ -1,0 +1,58 @@
+.Empty_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 100px 0;
+    gap: 30px;
+    @media (min-width:320px) and (max-width:524px) {
+       gap: 20px;
+    }
+    svg {
+        @media (min-width:320px) and (max-width:600px) {
+            width: 200px;
+            height: 200px;
+        }
+    }
+    .Info_box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+        flex-direction: column;
+        h1 {
+            font-size: 34px;
+            font-weight: 600;
+            @media (min-width:320px) and (max-width:524px) {
+                font-size: 20px;
+            }
+        }
+        span {
+            color: #807D7E;
+            font-size: 16px;
+            font-weight: 400;
+        }
+    }
+    .Shop_btn {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a {
+            width: 246px;
+            height: 46px;
+            background-color: #8A33FD;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           text-decoration: none;
+           border-radius: 8px;
+           color: white;
+           font-size: 18px;
+           font-weight: 600;
+        }
+    }
+}

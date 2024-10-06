@@ -11,13 +11,14 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faHeart } from "@fortawesome/free-regular-svg-icons";
+import useViewed from "../../../hook/viewedProduct/viewedProduct";
 
 function UserPage() {
   const UserId = localStorage.getItem("id");
   const Navigate = useNavigate();
   const [ban, setBan] = useState(Store.getState().checkBan.ban);
   const Location = useLocation();
- 
+ const {SetProduct} = useViewed()
   useEffect(() => {
     const handleStateChange = () => {
       setBan(Store.getState().checkBan.ban);
@@ -44,6 +45,16 @@ function UserPage() {
   );
 
   const [activeLink, setActive] = useState("");
+  useEffect(()=> {
+    console.log(activeLink,'qaq');
+    
+if(Location.pathname.includes('myInfo')) {
+  setActive('myinfo')
+}
+else if(Location.pathname.includes('wishlist')) {
+  setActive('wishlist')
+}
+  },[Location])
   useEffect(() => {
     const handleStateChange = () => {
       setSubmit(Store.getState().userInfoSubmit.submited);
@@ -77,6 +88,13 @@ function UserPage() {
   const HandleActiveLink = (link) => {
     setActive(link);
   };
+var Data = localStorage.getItem('viewedProducts');
+var Parse = JSON.parse(Data);
+
+useEffect(()=> {
+console.log(activeLink);
+
+},[Location])
   return (
     <>
       <div className="User_page_container">
@@ -190,6 +208,44 @@ function UserPage() {
           </div>
         </div>
       </div>
+      {
+ Parse.length >0&&Location.pathname.includes('wishlist') ? (
+  <div className="Viewed_box">
+  <div className="Title_box"><div className="Title"><h1>Recently Viewed</h1></div></div>
+  <div className="Products">
+    {Parse.map((e)=> (
+         <div className="Recently">
+         <div className="Img_box">
+           <img src={e.img} />
+           <div className="Like">
+             <FontAwesomeIcon icon={faHeart} />
+           </div>
+         </div>
+         <div className="Info_box">
+           <Link
+             to={`/productPage/${e.id}`}
+             onClick={() => SetProduct(e)}
+           >
+             <div className="Title_box">
+               <h1>
+                 {e.name.length > 20
+                   ? e.name.substring(0, 20) + "..."
+                   : e.name}
+               </h1>
+             </div>
+             <div className="Price">
+               <span>${(e.price / 10).toFixed(2)}</span>
+             </div>
+           </Link>
+         </div>
+       </div>
+    ))}
+  </div>
+</div>
+) : ''
+
+      }
+ 
     </>
   );
 }

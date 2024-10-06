@@ -207,7 +207,11 @@ Navigate('/user/myInfo',{replace:true})
                     <div className='Phone_box'>
                         <div className='Label_box'><label>Phone*</label></div>
                         <div className="Input_box"><input  {...register('phone', {
-                            required: 'The phone field is empty!'
+                            required: 'The phone field is empty!',
+                            pattern: {
+                                value: /^\+?[1-9]\d{1,14}$/, 
+                                message: 'Введите корректный номер телефона'
+                              }
                         })} required type="text" placeholder='Phone' /></div>
                     </div>
                     <div className="Postal_code_box">

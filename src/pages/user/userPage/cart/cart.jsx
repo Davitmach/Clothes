@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import EmptyCart from "../../emptyCart/emptyCart";
 function Cart() {
   const Id = localStorage.getItem("id");
   var Logged = localStorage.getItem("logged");
@@ -47,8 +48,14 @@ mutate({
 })
 
 }
+if(data?.length == 0) {
+
+  return(<EmptyCart/>)
+}
+else {
   return (
     <div className="Cart_box">
+
       {!Logged ? (
         <div className="Login_box">
           <p>
@@ -103,7 +110,7 @@ mutate({
                 </tbody>
             </table>
         </div>
-        <div className="Pay_box">
+        {Logged ? (  <div className="Pay_box">
           <div className="Low_res">
           <div className="Coupon_box">
             <div className="Title_box">
@@ -119,7 +126,7 @@ mutate({
                 <div><h1>Sub Total </h1></div>
                 <div>
                   <span>
-  ${data?.length ? data.reduce((acc, curr) => acc + parseFloat((curr.price/10)*curr.quantity) || 0, 0).toFixed(2) : 'Loading...'}</span>  
+  {data?.length ? '$'+data.reduce((acc, curr) => acc + parseFloat((curr.price/10)*curr.quantity) || 0, 0).toFixed(2) : ''}</span>  
 </div>
 
 
@@ -128,23 +135,23 @@ mutate({
                 <div><h1>Shipping </h1></div>
                 <div>
                   <span>
-  ${data?.length
-    ? data.reduce((acc, curr) => {
+  {data?.length
+    ?  '$'+data.reduce((acc, curr) => {
         return acc + (curr.shipping === "true" ? 5 : 0);
       }, 0).toFixed(2) 
-    : 'Loading...'}</span>
+    : ''}</span>
 </div>
 
               </div>
               {coupon !== 0 ? (<div>
                 <div><h1>Saving</h1></div>
-                <div><span>${coupon}</span></div>
+                <div><span>{ '$'+coupon}</span></div>
               </div>) : ''}
               <div>
                 <div><h1 className="Grand">Grand Total </h1></div>
                 <div>
                   <span className="Grand">
-  ${data?.length
+  {data?.length
     ? (function() {
         const total = data.reduce(
           (acc, curr) =>
@@ -155,21 +162,22 @@ mutate({
             ) || 0,
           0
         );
-        return (coupon !== 0 ? total - (total * (coupon / 100)) : total).toFixed(2);
+        return  '$'+(coupon !== 0 ? total - (total * (coupon / 100)) : total).toFixed(2);
       })()
-    : 'Loading...'}
+    : ''}
     </span>
 </div>
 
 
               </div>
             </div>
-            <div className="Checkout_btn"><button>Proceed To Checkout</button></div>
+            <div className="Checkout_btn"><Link to={'/checkout'} state={{coupon:coupon,products:data  }}>Proceed To Checkout</Link></div>
           </div>
         </div>
-      </div>
+      </div>) : ''}
+      
     </div>
     </div>
-  );
+  );}
 }
 export default Cart;

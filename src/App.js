@@ -38,6 +38,7 @@ import Description from "./pages/productPage/description/description";
 import Comments from "./pages/productPage/comments/comment";
 import Questions from "./pages/productPage/questions/questions";
 import { useEffect } from "react";
+import Checkout from "./pages/user/userPage/checkout/checkout";
 function App() {
   
   useCheckBan();
@@ -63,13 +64,14 @@ function App() {
             <Route path="joggers" element={<Joggers />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
-
+            <Route path="checkout" element={<Checkout/>}/>  
             <Route path="user" element={<UserPage />}>
               <Route path="myInfo" element={<MyInfo />} />
               <Route path="signOut" element={<SignOut />} />
               <Route path="wishlist" element={<WishList />} />
               <Route path="cart" element={<Cart />} />
               <Route path="setMyInfo" element={<SetMyInfo />} />
+            
              
             </Route>
             <Route path="resetPass" element={<ResetPass />} />

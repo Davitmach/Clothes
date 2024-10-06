@@ -1,9 +1,10 @@
+import EmptyWish from '../../emptyWish/emptyWish';
 import './wishList.scss';
 
 
 function WishList() {
 return(
-    <div>Wishlist</div>
+  <EmptyWish/>
 )
 }
 export default WishList;

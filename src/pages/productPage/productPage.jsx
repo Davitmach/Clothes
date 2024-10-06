@@ -10,6 +10,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useQueryClient } from "@tanstack/react-query";
 import ColorNamer from "color-namer";
 import { SetData, SetDataWithQueryClient } from "../../hook/setData/setData";
+import useViewed from "../../hook/viewedProduct/viewedProduct";
 function ProductPage() {
   const [counterSlider, setCounter] = useState(0);
   const [transform, setTransform] = useState(0);
@@ -23,7 +24,7 @@ function ProductPage() {
 const Id = localStorage.getItem('id');
 const Navigate = useNavigate();
 
-
+const {SetProduct} = useViewed();
   const sliderRef = useRef(null);
   const [activeLink, setActiveLink] = useState('description'); 
 
@@ -383,7 +384,7 @@ shipping:data.shipping
                 Add to cart
               </button>
             </div>
-            <div className="Price_box">${data?.product?.price}</div>
+            <div className="Price_box">${data?.product?.price/10}</div>
           </div>
           <hr style={{ background: "#BEBCBD", height: "1px" }} />
           <div className="Ship_info_box">
@@ -518,7 +519,7 @@ shipping:data.shipping
               <div className='Img_box'><img src={product.img}/><div className="Like"><FontAwesomeIcon icon={faHeart}/></div></div>
               <div className='Info_box'>
               <Link  to={`/productPage/${product.id}`} onClick={()=> {
-              
+          SetProduct(product)
                 QueryClient.invalidateQueries(`GetProduct${id}`)
                 window.scrollTo({
                   top:0,
