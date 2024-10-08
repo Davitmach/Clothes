@@ -13,6 +13,7 @@ function LeftBar(props) {
   const Info = props.info;
   const Mutate = props.mutate;
   const rangeRef = useRef(null);
+  var userId = props.id;
   const prices = Info.map((e) => Number(e.price) / 10);
 const Location = useLocation();
 
@@ -105,7 +106,8 @@ const Location = useLocation();
     Mutate({
  
       state: state,
-gender:gender
+gender:gender,
+userId:userId
     });
   };
   const HandleOpenMenu = (payload) => {

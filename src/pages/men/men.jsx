@@ -5,15 +5,17 @@ import axios from "axios";
 import "./men.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { SetData } from "../../hook/setData/setData";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { SetData, SetDataWithQueryClient } from "../../hook/setData/setData";
 import { Link, Outlet } from "react-router-dom";
 import useViewed from "../../hook/viewedProduct/viewedProduct";
-
+import colorNamer from "color-namer";
+import ProductComponent from "../productComponent/productComponent";
 function Men() {
   const [type, setType] = useState("New");
   const [dataLoad, setDataLoad] = useState(false);
   const [rec, setRec] = useState([]);
-  const {SetProduct } = useViewed();
+  const { SetProduct } = useViewed();
 
   const GetCategories = async (id) => {
     const { data } = await axios.get(
@@ -21,9 +23,12 @@ function Men() {
     );
     return data;
   };
+  var userId = localStorage.getItem("id");
 
   const Products = async (id) => {
-    const { data } = await axios.get(`http://clothes/product/getProducts.php`);
+    const { data } = await axios.get(
+      `http://clothes/product/getProducts.php?id=${id}`
+    );
     return data;
   };
   const ProductsRec = async (id) => {
@@ -39,12 +44,31 @@ function Men() {
       },
     });
   };
+  const Like = async (info) => {
+    return await axios.post("http://clothes/product/Like.php", info, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+  };
+
+  const { mutate: likeMutate, data: likeData } = SetDataWithQueryClient(
+    Like,
+    "like",
+    'ProductFunc'
+  );
+useEffect(()=> {
+console.log(likeData,'likeData');
+
+
+},[likeData])
   const { data, isSuccess, error } = GetData(GetCategories, "getMenCar");
   const {
     data: productData,
     isSuccess: productSuccess,
     error: productError,
-  } = GetData(Products, "getManProduct");
+  } = GetData(() => Products(userId), "getManProduct");
+
   const {
     data: recData,
     isSuccess: recSuccess,
@@ -52,6 +76,8 @@ function Men() {
   } = GetData(ProductsRec, "getRecProduct");
   const { mutate, data: funcData } = SetData(FuncProduct, "ProductFunc");
   useEffect(() => {
+    console.log(funcData,'funcData');
+
     if (funcData?.data) {
       setDataLoad(true);
     }
@@ -65,11 +91,14 @@ function Men() {
   const Product =
     type == "Recommended" ? rec : dataLoad ? funcData?.data : productData;
 
-
   return (
     <div className="Men_container">
       <div className="Product_container">
-        {data ? <LeftBar mutate={mutate} info={data} gender="men" /> : ""}
+        {data ? (
+          <LeftBar mutate={mutate} id={userId} info={data} gender="men" />
+        ) : (
+          ""
+        )}
         <div className="Man_products">
           <div className="Title_box">
             <div className="Name_box">
@@ -100,31 +129,7 @@ function Men() {
           </div>
           <div className="Products">
             {Product?.map((product) => (
-              <div className="Product_box">
-                <div className="Img_box">
-                  <img src={product.img} />
-                  <div className="Like_box">
-                    <FontAwesomeIcon icon={faHeart} />
-                  </div>
-                </div>
-                <div className="Info_box">
-                  <Link
-                    to={`/productPage/${product.id}`}
-                    onClick={() =>SetProduct(product)}
-                  >
-                    <div className="Name_box">
-                      <h1>
-                        {product.name.length > 16
-                          ? product.name.substring(0, 16) + "..."
-                          : product.name}
-                      </h1>
-                    </div>
-                    <div className="Price_box">
-                      <span>${(product.price / 10).toFixed(2)}</span>
-                    </div>
-                  </Link>
-                </div>
-              </div>
+<ProductComponent  likeMutate={likeMutate}  product={product} likeData={likeData} gender={'male'}/>
             ))}
           </div>
         </div>

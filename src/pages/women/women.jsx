@@ -4,15 +4,17 @@ import axios from "axios";
 import { useEffect ,useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { SetData } from "../../hook/setData/setData";
+import { SetData, SetDataWithQueryClient } from "../../hook/setData/setData";
 import './women.scss'
 import { Link } from "react-router-dom";
 import useViewed from "../../hook/viewedProduct/viewedProduct";
+import ProductComponent from "../productComponent/productComponent";
  function Women() {
   const [type,setType] = useState('New');
   const [dataLoad,setDataLoad] = useState(false);
   const [rec,setRec] = useState([]);
-  const {SetProduct} = useViewed()
+  const {SetProduct} = useViewed();
+
     const GetCategories= async (id) => {
         const { data } = await axios.get(`http://clothes/product/getCat.php?gender=women`);
         return data;
@@ -33,6 +35,21 @@ import useViewed from "../../hook/viewedProduct/viewedProduct";
           },
         });
       };
+
+      const Like = async (info) => {
+        return await axios.post("http://clothes/product/Like.php", info, {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        });
+      };
+    
+      const { mutate: likeMutate, data: likeData } = SetDataWithQueryClient(
+        Like,
+        "likeWomen",
+        'ProductFunc'
+      );
+
       const {data:productData,isSuccess:productSuccess,error:productError} = GetData(Products,'getWomenProduct');
       const {mutate,data:funcData} = SetData(FuncProduct,'ProductFunc')
       const {data:recData,isSuccess:recSuccess,error:recError} = GetData(ProductsRec,'getRecProduct')
@@ -40,10 +57,13 @@ import useViewed from "../../hook/viewedProduct/viewedProduct";
         if(funcData?.data) {
         setDataLoad(true)
         }
-        console.log(funcData);
+        console.log(funcData,'funcdatq');
+        console.log(productData,'productdata');
+        console.log(recData,'recdata');
         
         
-              },[funcData])
+        
+              },[funcData,productData,recData])
 
               useEffect(()=> {
           
@@ -70,20 +90,12 @@ import useViewed from "../../hook/viewedProduct/viewedProduct";
                   }}>Recommended</button></div>
                 </div>
               </div>
-              <div className="Products">{Product?.map((product)=> (
-                <div className="Product_box">
-                  <div className="Img_box">
-                    <img src={product.img}/>
-                    <div className="Like_box"><FontAwesomeIcon icon={faHeart}/></div>
-                  </div>
-                  <div className="Info_box">
-                  <Link to={`/productPage/${product.id}`} onClick={()=> SetProduct(product)}>
-                    <div className="Name_box"><h1>{product.name.length > 16 ? product.name.substring(0,16)+'...' :product.name}</h1></div>
-                    <div className="Price_box"><span>${(product.price/10).toFixed(2)}</span></div>
-                  </Link>
-                  </div>
-                </div>
-              ))}</div>
+              <div className="Products">
+                {Product?.map((product)=> (
+              
+                <ProductComponent product={product} likeData={likeData} likeMutate={likeMutate} gender={'female'}  />
+              ))}
+              </div>
             </div>
             </div>
             <div className="Info_box"></div>

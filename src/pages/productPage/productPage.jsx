@@ -22,6 +22,9 @@ function ProductPage() {
   const { id } = useParams();
   const Location = useLocation();
 const Id = localStorage.getItem('id');
+useEffect(()=> {
+  document.querySelector('.Product_page').scrollIntoView({ behavior: 'smooth' });
+},[])
 const Navigate = useNavigate();
 
 const {SetProduct} = useViewed();
