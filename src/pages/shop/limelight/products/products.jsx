@@ -45,7 +45,7 @@ const ProductComponent = ({ product, likeData,likeMutate }) => {
                       handleLike()
                       likeMutate({
                         payload:
-                        Array.isArray(likeData?.data) ?  likeData?.data.find((e)=> parseInt(e.productId) == parseInt(product.id))? 'delLike' : 'setLike'  :product.isLiked == "true" ? "delLike" : "setLike",
+                        product.isLiked == "true" ? "delLike" : "setLike",
                         likeId: product.likeId,
                         productId: product.id,
                         userId: userId,
@@ -58,7 +58,7 @@ const ProductComponent = ({ product, likeData,likeMutate }) => {
                         color:colorNamer(JSON.parse(product.color)[0]).basic[0]?.name
                       });
 
-                 
+                 window.location.reload()
                     }}
                   >
                   

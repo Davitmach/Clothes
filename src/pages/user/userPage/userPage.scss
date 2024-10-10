@@ -194,6 +194,16 @@ opacity: 0;
     flex-direction: column;
     padding: 0 100px;
     gap: 30px;
+    @media (min-width:320px) and (max-width:843px) {
+        padding: 0 60px;
+           }
+ 
+    @media (min-width:320px) and (max-width:713px) {
+        padding: 0 50px;
+    }
+    @media (min-width:320px) and (max-width:343px) {
+        padding: 0 20px;
+    } 
     .Title_box {
         width: 100%;
         display: flex;
@@ -227,6 +237,10 @@ opacity: 0;
         flex-wrap: wrap;
         gap: 50px;
         padding: 50px 0;
+        @media (min-width:320px) and (max-width:1145px) {
+  justify-content: flex-start;
+  gap: 25px;
+        }
         &>div {
             width: 282px;
             height: auto;
@@ -235,7 +249,10 @@ opacity: 0;
            justify-content: center;
            flex-direction: column;
            gap: 15px;
-           @media (min-width:320px) and (max-width:806px) {
+           @media (min-width:320px) and (max-width:688px) {
+           width: 250px;
+               }
+           @media (min-width:320px) and (max-width:643px) {
             width:100%;
         }
             .Img_box {

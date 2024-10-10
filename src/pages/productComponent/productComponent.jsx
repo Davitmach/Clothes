@@ -6,6 +6,10 @@ import colorNamer from 'color-namer';
 import { Link } from 'react-router-dom';
 import useViewed from '../../hook/viewedProduct/viewedProduct';
 const ProductComponent = ({ product, likeData,likeMutate,gender }) => {
+useEffect(()=> {
+
+
+},[likeData])
     var userId = localStorage.getItem('id')
     const { SetProduct } = useViewed();
   const [isLiked, setIsLiked] = useState(
@@ -25,7 +29,11 @@ const ProductComponent = ({ product, likeData,likeMutate,gender }) => {
   }, [likeData, product.id]);
 
   const handleLike = () => {
+    console.log(likeData);
+    
+    
     const newLikeState = !isLiked;
+  
     setIsLiked(newLikeState);
 
 
@@ -42,11 +50,11 @@ const ProductComponent = ({ product, likeData,likeMutate,gender }) => {
                  <div
                     className="Like_box"
                     onClick={() => {
-                      
+
                       handleLike()
                       likeMutate({
                         payload:
-                        Array.isArray(likeData?.data) ?  likeData?.data.find((e)=> parseInt(e.productId) == parseInt(product.id))? 'delLike' : 'setLike'  :product.isLiked == "true" ? "delLike" : "setLike",
+                        product.isLiked == "true" ? "delLike" : "setLike",
                         likeId: product.likeId,
                         productId: product.id,
                         userId: userId,
@@ -58,7 +66,7 @@ const ProductComponent = ({ product, likeData,likeMutate,gender }) => {
                         size:JSON.parse(product.size)[0],
                         color:colorNamer(JSON.parse(product.color)[0]).basic[0]?.name
                       });
-
+                      window.location.reload()
                  
                     }}
                   >

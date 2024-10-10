@@ -1,4 +1,10 @@
-import { Link, Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import "./productPage.scss";
 import axios from "axios";
 import GetData from "../../hook/getData/getData";
@@ -11,6 +17,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import ColorNamer from "color-namer";
 import { SetData, SetDataWithQueryClient } from "../../hook/setData/setData";
 import useViewed from "../../hook/viewedProduct/viewedProduct";
+
+import Component from "./component/component";
 function ProductPage() {
   const [counterSlider, setCounter] = useState(0);
   const [transform, setTransform] = useState(0);
@@ -21,39 +29,49 @@ function ProductPage() {
   const SizeRef = useRef(null);
   const { id } = useParams();
   const Location = useLocation();
-const Id = localStorage.getItem('id');
-useEffect(()=> {
-  document.querySelector('.Product_page').scrollIntoView({ behavior: 'smooth' });
-},[])
-const Navigate = useNavigate();
+  const Id = localStorage.getItem("id");
 
-const {SetProduct} = useViewed();
+  const Navigate = useNavigate();
+
+  const { SetProduct } = useViewed();
   const sliderRef = useRef(null);
-  const [activeLink, setActiveLink] = useState('description'); 
-
-
-
+  const [activeLink, setActiveLink] = useState("description");
+var userId = localStorage.getItem('id');
   useEffect(() => {
-   
-    if (Location.pathname.includes('description')) {
-      setActiveLink('description');
-    } else if (Location.pathname.includes('comments')) {
-      setActiveLink('comments');
-    } else if (Location.pathname.includes('questions')) {
-      setActiveLink('questions');
+    if (Location.pathname.includes("description")) {
+      setActiveLink("description");
+    } else if (Location.pathname.includes("comments")) {
+      setActiveLink("comments");
+    } else if (Location.pathname.includes("questions")) {
+      setActiveLink("questions");
     }
   }, [Location]);
 
   useEffect(() => {
-    const activeElement = document.querySelector(`.Product_page .Menu_box .Active`);
-    if (activeElement && sliderRef.current) {  
+    const activeElement = document.querySelector(
+      `.Product_page .Menu_box .Active`
+    );
+    if (activeElement && sliderRef.current) {
       sliderRef.current.style.left = `${activeElement.offsetLeft}px`;
-      sliderRef.current.style.width = `${activeElement.offsetWidth /2}px`;
+      sliderRef.current.style.width = `${activeElement.offsetWidth / 2}px`;
     }
   }, [activeLink]);
 
+  const Like = async (info) => {
+    return await axios.post("http://clothes/product/Like.php", info, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+  };
 
-  var QueryClient = useQueryClient();
+  const { mutate: likeMutate, data: likeData } = SetDataWithQueryClient(
+    Like,
+    "like",
+    'ProductFunc'
+  );
+
+
 
   const GetProduct = async (id) => {
     const { data } = await axios.get(
@@ -61,48 +79,36 @@ const {SetProduct} = useViewed();
     );
     return data;
   };
-  
- 
+
   const { data, isSuccess, error } = GetData(
     () => GetProduct(id),
     `GetProduct${id}`
   );
   useEffect(() => {
     if (data) {
- 
-     
     }
   }, [data]);
 
-
-
   const GetSimilarProduct = async (id) => {
     const { data } = await axios.get(
-      `http://clothes/product/similarProduct.php?id=${id}`
+      `http://clothes/product/similarProduct.php?info=${id}/${userId}`
     );
     return data;
   };
 
   const AddCart = async (info) => {
     return await axios.post("http://clothes/product/addCart.php", info, {
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
     });
-};
-  const { data:similarData} = GetData(
-    ()=>  GetSimilarProduct(id),
+  };
+  const { data: similarData } = GetData(
+    () => GetSimilarProduct(id),
     `GetSimilarProduct`
   );
 
-useEffect(()=> {
-
-},[similarData])
-
-
-
-
-
+  useEffect(() => {}, [similarData]);
 
   const handleNavigation = (side) => {
     if (side == "prev") {
@@ -142,32 +148,34 @@ useEffect(()=> {
     setActiveSize(e.target.dataset.size);
   };
 
-const {data:cartData,mutate} = SetDataWithQueryClient(AddCart,'AddCart','GetCartProduct');
-useEffect(()=> {
+  const { data: cartData, mutate } = SetDataWithQueryClient(
+    AddCart,
+    "AddCart",
+    "GetCartProduct"
+  );
+  useEffect(() => {
+console.log(similarData,'similar');
 
+  }, [similarData]);
 
-},[cartData])
-
-const handleAddCart = (data) => {
-  var Color = JSON.parse(data.color)[activeColor];
- var ColorName =ColorNamer(Color).basic[0].name;
-var Size = JSON.parse(data.size)[activeSize];
-if(Id) {
-
-mutate({
-color:ColorName,
-size:Size,
-productId:data.id,
-userId:Id,
-img:data.img,
-name:data.name,
-price:data.price,
-quantity:1,
-shipping:data.shipping
-})
-}
-  
-}
+  const handleAddCart = (data) => {
+    var Color = JSON.parse(data.color)[activeColor];
+    var ColorName = ColorNamer(Color).basic[0].name;
+    var Size = JSON.parse(data.size)[activeSize];
+    if (Id) {
+      mutate({
+        color: ColorName,
+        size: Size,
+        productId: data.id,
+        userId: Id,
+        img: data.img,
+        name: data.name,
+        price: data.price,
+        quantity: 1,
+        shipping: data.shipping,
+      });
+    }
+  };
   return (
     <div className="Product_page">
       <div className="Main_info_box">
@@ -227,75 +235,81 @@ shipping:data.shipping
             <h1>{data?.product?.name}</h1>
           </div>
           <div className="Rating_box">
-            {data?.ratings.length !== 0  ?(
-            <div className="Stars_box">
-              <div className="Stars">
-                {data?.ratings.length === 1 ? (
-                  <>
-                    {Array.from(
-                      { length: Math.round(data.ratings[0].rating) },
-                      (_, i) => (
-                        <FontAwesomeIcon
-                          key={i}
-                          style={{ color: "#EDD146" }}
-                          icon={faStar}
-                        />
-                      )
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {data?.ratings.length > 0 && (
-                      <>
-                        {Array.from(
-                          {
-                            length: Math.round(
-                              data.ratings.reduce(
-                                (acc, rating) => acc + Number(rating.rating),
-                                0
-                              ) / data.ratings.length
-                            ),
-                          },
-                          (_, i) => (
-                            <FontAwesomeIcon
-                              key={i}
-                              style={{ color: "#EDD146" }}
-                              icon={faStar}
-                            />
-                          )
-                        )}
-                      </>
-                    )}
-                  </>
-                )}
-              </div>
-              <div className="Rating">
-                {data?.ratings.length > 0 ? (
-                  data?.ratings.length === 1 ? (
-                    <span>{Number(data?.ratings[0].rating).toFixed(1)}</span>
+            {data?.ratings.length !== 0 ? (
+              <div className="Stars_box">
+                <div className="Stars">
+                  {data?.ratings.length === 1 ? (
+                    <>
+                      {Array.from(
+                        { length: Math.round(data.ratings[0].rating) },
+                        (_, i) => (
+                          <FontAwesomeIcon
+                            key={i}
+                            style={{ color: "#EDD146" }}
+                            icon={faStar}
+                          />
+                        )
+                      )}
+                    </>
                   ) : (
                     <>
-                      <span>
-                        {(
-                          data?.ratings?.reduce(
-                            (acc, rating) => acc + Number(rating.rating),
-                            0
-                          ) / data?.ratings.length
-                        ).toFixed(1)}
-                      </span>
+                      {data?.ratings.length > 0 && (
+                        <>
+                          {Array.from(
+                            {
+                              length: Math.round(
+                                data.ratings.reduce(
+                                  (acc, rating) => acc + Number(rating.rating),
+                                  0
+                                ) / data.ratings.length
+                              ),
+                            },
+                            (_, i) => (
+                              <FontAwesomeIcon
+                                key={i}
+                                style={{ color: "#EDD146" }}
+                                icon={faStar}
+                              />
+                            )
+                          )}
+                        </>
+                      )}
                     </>
-                  )
-                ) : (
-                  ""
-                )}
+                  )}
+                </div>
+                <div className="Rating">
+                  {data?.ratings.length > 0 ? (
+                    data?.ratings.length === 1 ? (
+                      <span>{Number(data?.ratings[0].rating).toFixed(1)}</span>
+                    ) : (
+                      <>
+                        <span>
+                          {(
+                            data?.ratings?.reduce(
+                              (acc, rating) => acc + Number(rating.rating),
+                              0
+                            ) / data?.ratings.length
+                          ).toFixed(1)}
+                        </span>
+                      </>
+                    )
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
-            </div>) : ''
-}
-            <div className="Comments_box" onClick={()=> {
-              Navigate('comments',{replace:true})
-              document.querySelector('.Description_box').scrollIntoView({ behavior: 'smooth' });
-
-            }}>
+            ) : (
+              ""
+            )}
+            <div
+              className="Comments_box"
+              onClick={() => {
+                Navigate("comments", { replace: true });
+                document
+                  .querySelector(".Description_box")
+                  .scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               <svg
                 width="23"
                 height="20"
@@ -369,7 +383,7 @@ shipping:data.shipping
           </div>
           <div className="Add_cart_box">
             <div className="Cart_btn">
-              <button onClick={()=> handleAddCart(data.product)}>
+              <button onClick={() => handleAddCart(data.product)}>
                 <svg
                   width="17"
                   height="16"
@@ -387,7 +401,7 @@ shipping:data.shipping
                 Add to cart
               </button>
             </div>
-            <div className="Price_box">${data?.product?.price/10}</div>
+            <div className="Price_box">${data?.product?.price / 10}</div>
           </div>
           <hr style={{ background: "#BEBCBD", height: "1px" }} />
           <div className="Ship_info_box">
@@ -484,57 +498,58 @@ shipping:data.shipping
       </div>
       <div className="Description_box">
         <div className="Title_box">
-          <div className="Title"><h1>Product Description</h1></div>
+          <div className="Title">
+            <h1>Product Description</h1>
+          </div>
         </div>
         <div className="Description">
-     
-        <div className="Menu_box">
-      <div>
-        <Link  to="description"  className={activeLink === 'description' ? 'Active' : 'Disable'}>
-          Description
-        </Link>
-      </div>
-      <div>
-        <Link to="comments"  className={activeLink === 'comments' ? 'Active' : 'Disable'}>
-          User comments
-        </Link>
-      <span> {data?.ratings?.length ? data?.ratings?.length : 0}</span> 
-      </div>
-      <div>
-        <Link to="questions" className={activeLink === 'questions' ? 'Active' : 'Disable'}>
-          Question & Answer
-        </Link>
-        <span>{data?.questions?.length ?data?.questions?.length : 0 }</span>
-      </div>
+          <div className="Menu_box">
+            <div>
+              <Link
+                to="description"
+                className={activeLink === "description" ? "Active" : "Disable"}
+              >
+                Description
+              </Link>
+            </div>
+            <div>
+              <Link
+                to="comments"
+                className={activeLink === "comments" ? "Active" : "Disable"}
+              >
+                User comments
+              </Link>
+              <span> {data?.ratings?.length ? data?.ratings?.length : 0}</span>
+            </div>
+            <div>
+              <Link
+                to="questions"
+                className={activeLink === "questions" ? "Active" : "Disable"}
+              >
+                Question & Answer
+              </Link>
+              <span>
+                {data?.questions?.length ? data?.questions?.length : 0}
+              </span>
+            </div>
 
-      <div className="Slider" ref={sliderRef}></div>
-    </div>
-        <div className="Outlet_box"><Outlet/></div>
-</div>
+            <div className="Slider" ref={sliderRef}></div>
+          </div>
+          <div className="Outlet_box">
+            <Outlet />
+          </div>
+        </div>
       </div>
       <div className="Similar_box">
-        <div className="Title_box"><div className="Title">
-          <h1>Similar Products</h1>
-        </div></div>
-        <div className="Similars">
-          {similarData?.map((product)=> (
-              <div className='Similar'>
-              <div className='Img_box'><img src={product.img}/><div className="Like"><FontAwesomeIcon icon={faHeart}/></div></div>
-              <div className='Info_box'>
-              <Link  to={`/productPage/${product.id}`} onClick={()=> {
-          SetProduct(product)
-                QueryClient.invalidateQueries(`GetProduct${id}`)
-                window.scrollTo({
-                  top:0,
-                  behavior:'smooth'
-                })
-                
-              }} >
-        <div className="Title_box"><h1>{product.name.length > 20? product.name.substring(0,20)+'...': product.name}</h1></div>
-        <div className="Price"><span>${(product.price/10).toFixed(2)}</span></div>
-                </Link>
-              </div>
+        <div className="Title_box">
+          <div className="Title">
+            <h1>Similar Products</h1>
           </div>
+        </div>
+        <div className="Similars">
+          {Array.isArray(similarData) &&  similarData?.map((product) => (
+        
+            <Component likeData={likeData} likeMutate={likeMutate} id={id} product={product}/>
           ))}
         </div>
       </div>

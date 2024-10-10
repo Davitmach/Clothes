@@ -14,18 +14,18 @@ import ProductComponent from "../productComponent/productComponent";
   const [dataLoad,setDataLoad] = useState(false);
   const [rec,setRec] = useState([]);
   const {SetProduct} = useViewed();
-
+var userId = localStorage.getItem('id');
     const GetCategories= async (id) => {
-        const { data } = await axios.get(`http://clothes/product/getCat.php?gender=women`);
+        const { data } = await axios.get(`http://clothes/product/getCat.php?info=women/${userId}`);
         return data;
       };
       const {data,isSuccess,error} = GetData(GetCategories,'getWomenCar');
       const Products= async (id) => {
-        const { data } = await axios.get(`http://clothes/product/getWomenProducts.php`);
+        const { data } = await axios.get(`http://clothes/product/getWomenProducts.php?id=${userId}`);
         return data;
       };
       const ProductsRec= async (id) => {
-        const { data } = await axios.get(`http://clothes/product/getProductsRec.php?gender=female`);
+        const { data } = await axios.get(`http://clothes/product/getProductsRec.php?info=female/${userId}`);
         return data;
       };
       const FuncProduct = async (info) => {
@@ -46,7 +46,7 @@ import ProductComponent from "../productComponent/productComponent";
     
       const { mutate: likeMutate, data: likeData } = SetDataWithQueryClient(
         Like,
-        "likeWomen",
+        "like",
         'ProductFunc'
       );
 
@@ -77,7 +77,7 @@ import ProductComponent from "../productComponent/productComponent";
       return(
         <div className="Women_container">
           <div className="Product_container">
-            {data ? (<LeftBar mutate={mutate}  info={data} gender="women"/>) : ''}
+            {data ? (<LeftBar mutate={mutate}  info={data} gender="female" id={userId}/>) : ''}
             <div className="Women_products">
               <div className="Title_box">
                 <div className="Name_box"><h1>Women’s Clothing</h1></div>

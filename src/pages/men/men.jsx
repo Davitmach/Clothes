@@ -3,27 +3,24 @@ import GetData from "../../hook/getData/getData";
 import LeftBar from "../leftBar/leftBar";
 import axios from "axios";
 import "./men.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+
 import { SetData, SetDataWithQueryClient } from "../../hook/setData/setData";
 import { Link, Outlet } from "react-router-dom";
-import useViewed from "../../hook/viewedProduct/viewedProduct";
-import colorNamer from "color-namer";
+
 import ProductComponent from "../productComponent/productComponent";
 function Men() {
   const [type, setType] = useState("New");
   const [dataLoad, setDataLoad] = useState(false);
   const [rec, setRec] = useState([]);
-  const { SetProduct } = useViewed();
-
+  
+  var userId = localStorage.getItem("id");
   const GetCategories = async (id) => {
     const { data } = await axios.get(
-      `http://clothes/product/getCat.php?gender=men`
+      `http://clothes/product/getCat.php?info=men/${userId}`
     );
     return data;
   };
-  var userId = localStorage.getItem("id");
+
 
   const Products = async (id) => {
     const { data } = await axios.get(
@@ -33,7 +30,7 @@ function Men() {
   };
   const ProductsRec = async (id) => {
     const { data } = await axios.get(
-      `http://clothes/product/getProductsRec.php?gender=male`
+      `http://clothes/product/getProductsRec.php?info=male/${userId}`
     );
     return data;
   };
@@ -57,11 +54,7 @@ function Men() {
     "like",
     'ProductFunc'
   );
-useEffect(()=> {
-console.log(likeData,'likeData');
 
-
-},[likeData])
   const { data, isSuccess, error } = GetData(GetCategories, "getMenCar");
   const {
     data: productData,
@@ -75,21 +68,33 @@ console.log(likeData,'likeData');
     error: recError,
   } = GetData(ProductsRec, "getRecProduct");
   const { mutate, data: funcData } = SetData(FuncProduct, "ProductFunc");
-  useEffect(() => {
-    console.log(funcData,'funcData');
 
+useEffect(()=> {
+console.log(data,'categires');
+console.log(productData,'product');
+console.log(recData,'recData');
+console.log(funcData,'func');
+
+
+
+
+},[data,productData,recData,funcData])
+
+  useEffect(() => {
+    
     if (funcData?.data) {
       setDataLoad(true);
     }
   }, [funcData]);
 
   useEffect(() => {
+    console.log(recData,'rec');
+    
     if (type == "Recommended") {
       setRec(recData);
     }
   }, [type, recData]);
-  const Product =
-    type == "Recommended" ? rec : dataLoad ? funcData?.data : productData;
+  const Product = type == "Recommended" ? rec : dataLoad ? funcData?.data : productData;
 
   return (
     <div className="Men_container">

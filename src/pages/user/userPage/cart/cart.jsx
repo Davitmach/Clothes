@@ -84,12 +84,14 @@ else {
                     {data?.map((e)=> (
                         <tr>
                             <td>
+                              <Link to={`/productPage/${e.productId}`}>
                                 <div className="Img_box"><img src={e.img} alt="" /></div>
                                 <div className="Info_box">
                                     <div><h1>{e.name}</h1></div>
                                     <div><span>Color : {e.color}</span></div>
                                     <div><span>Size : {e.size}</span></div>
                                 </div>
+                                </Link>
                             </td>
                             <td><h1>${parseFloat(e.price/10).toFixed(2)}</h1></td>
                             <td>

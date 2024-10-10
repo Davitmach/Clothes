@@ -92,7 +92,12 @@ var Data = localStorage.getItem('viewedProducts');
 var Parse = JSON.parse(Data);
 
 useEffect(()=> {
-console.log(activeLink);
+if(Location.pathname.includes('wishlist')) {
+ HandleActiveLink('wishlist')
+}
+else if(Location.pathname.includes('cart')) {
+  HandleActiveLink('cart')
+}
 
 },[Location])
   return (
