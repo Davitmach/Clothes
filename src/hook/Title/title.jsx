@@ -32,10 +32,12 @@ else if(Location.pathname == '/resetVerif') {
 else if(Location.pathname == '/signup') {
     document.title = 'Sign Up'
 }
-else if(Location.pathname == '/user' ||Location.pathname == '/user/wishlist' || Location.pathname == '/user/cart' || Location.pathname == '/user/myInfo' ||Location.pathname == '/user/setMyInfo') {
+// else if(Location.pathname == '/user/order' ||Location.pathname == '/user' ||Location.pathname == '/user/wishlist' || Location.pathname == '/user/cart' || Location.pathname == '/user/myInfo' ||Location.pathname == '/user/setMyInfo') {
+//     document.title = 'User'
+// }
+else if(Location.pathname.includes('user')) {
     document.title = 'User'
 }
-
 else if(Location.pathname == '/resetPass') {
     document.title = 'Reset Password'
 }
@@ -56,6 +58,9 @@ else if(Location.pathname == '/cart') {
 }
 else if(Location.pathname == '/checkout') {
      document.title = 'Checkout'
+}
+else if(Location.pathname == '/orderPlaced') {
+    document.title = 'Order Placed'
 }
         else {
             document.title = 'Not Found';

@@ -1,0 +1,159 @@
+.Cancel_order_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px 0;
+    &>div {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 30px;
+        .Order_info {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            background-color: #F6F6F6;
+            border-radius: 8px;
+            padding: 28px 47px;
+            .Delivery_info {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 7px;
+                .Order_number {
+                    margin-bottom: 7px;
+                    h1 {
+                        color: #3C4242;
+                        font-size: 20px;
+                        font-weight: 600;
+                    }
+                }
+                .Order_date,.Delivery_date {
+                    span {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #3C4242;
+                        font-size: 14px;
+                        font-weight: 600;
+                        h2 {
+                            color: #BEBCBD;
+                            font-size: 14px;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+            .Status_box {
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+                span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #3C4242;
+                    font-size: 14px;
+                    font-weight: 600;
+                    h2 {
+                        font-size: 14px;
+                    font-weight: 600;
+                        color: #BEBCBD;
+                    }
+                }
+            }
+        }
+        .Product_info {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .First_column {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 25px;
+                img {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    border-radius: 4px;
+                }
+                .Info_box {
+                    display: flex;
+                    align-items: start;
+                    flex-direction: column;
+                    gap: 5px;
+                    .Title_box {
+                        margin-bottom: 5px;
+                     h1 {
+                        color: #3C4242;
+                        font-size: 16px;
+                        font-weight: 600;
+                    }}
+                    .Color_box h1 {
+                        color: #3C4242;
+                        font-size: 14px;
+                        font-weight: 600;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        h2 {
+                            color: #BEBCBD;
+                            font-size: 14px;
+                            font-weight: 600;
+                        }
+                    }
+                    .Quantity_box h1 {
+                         color: #3C4242;
+                        font-size: 14px;
+                        font-weight: 600;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        h2 {
+                            color: #BEBCBD;
+                            font-size: 14px;
+                            font-weight: 600;
+                        }
+                    }
+                    .Total_box h1  {
+color: #807D7E;
+font-size: 14px;
+font-weight: 600;
+display: flex;
+align-items: center;
+justify-content: center;
+
+                    }
+                }
+            }
+            .View_box {
+                a {
+                    text-decoration: none;
+                    background-color: #8A33FD;
+                    color: white;
+                    border-radius: 8px;
+                    font-size: 18px;
+                    font-weight: 500;
+                    width: 144px;
+                    height: 50px;
+                    display: block;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+        }
+    }
+}

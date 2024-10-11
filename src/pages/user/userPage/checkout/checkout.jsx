@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./checkout.scss";
 import { useEffect, useRef, useState } from "react";
 import GetData from "../../../../hook/getData/getData";
@@ -82,7 +82,6 @@ const Card_form = (props) => {
 
     return true;
   };
-
 
   const Handle = (data) => {
     if (data) {
@@ -346,35 +345,30 @@ const Card_form = (props) => {
       </div>
       <div className="Cards_box">
         {cardData?.map((e) => (
-          <div className={`Card_box ${card == e.id ?'Active' : ''}`}  
-         
-          >
-            <div className="Info"  onClick={()=> {
-            setCard(e.id);
-            console.log(card);
-            
-            
-          }}>
-            <div className="Card_number">Cart Number: {e.number}</div>
-            <div className="Card_date">Date: {e.date}</div>
-            <div className="Card_name">Name: {e.name}</div>
+          <div className={`Card_box ${card == e.id ? "Active" : ""}`}>
+            <div
+              className="Info"
+              onClick={() => {
+                setCard(e.id);
+                console.log(card);
+              }}
+            >
+              <div className="Card_number">Cart Number: {e.number}</div>
+              <div className="Card_date">Date: {e.date}</div>
+              <div className="Card_name">Name: {e.name}</div>
             </div>
-            <button onClick={() => {
-                  if(card == e.id) {
-                   setCard(null)
-                    
-                    
-                    
-                  }
-                  mutate({
-                    status: "del",
-                    id: e.id,
-                  });
-                }}>
-              <FontAwesomeIcon
-                
-                icon={faXmark}
-              />
+            <button
+              onClick={() => {
+                if (card == e.id) {
+                  setCard(null);
+                }
+                mutate({
+                  status: "del",
+                  id: e.id,
+                });
+              }}
+            >
+              <FontAwesomeIcon icon={faXmark} />
             </button>
           </div>
         ))}
@@ -384,6 +378,7 @@ const Card_form = (props) => {
 };
 
 function Checkout() {
+  const Navigate = useNavigate();
   const Location = useLocation();
   const [delivery, setDelivery] = useState();
   const [diffAddress, setDiff] = useState("same");
@@ -402,6 +397,19 @@ function Checkout() {
     return data;
   };
 
+  const SetOrder = async (info) => {
+    return await axios.post("http://clothes/product/setOrder.php", info, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+  };
+  const { data: orderData, mutate } = SetData(SetOrder, "setOrder");
+  useEffect(() => {
+    if(orderData?.data == 'order') {
+Navigate('/orderPlaced',{replace:true})
+    }
+  }, [orderData]);
   const { data } = GetData(() => CheckAddress(Id), "checkAddress");
 
   const GetRandomDate = () => {
@@ -422,21 +430,90 @@ function Checkout() {
     setRandomDate(GetRandomDate());
   }, []);
 
-const HandlePay = ()=> {
-  if(pay == 'card') {
-  if(card !==null) {
+  const HandlePay = () => {
+    console.log(card, "card");
+    var date = new Date();
     
-    
-    
-    
-  }
-}
-else {
-  console.log('pay');
-  
-}
-  
-}
+
+    const randomDays = Math.floor(Math.random() * 5) + 1;
+
+    var DeliveryDate = new Date();
+    DeliveryDate.setDate(DeliveryDate.getDate() + randomDays);
+    if (pay == "card") {
+      if (card !== "") {
+        if (data?.shipping !== "false" && data?.billing !== "false") {
+          for (
+            let Product = 0;
+            Product < Location.state?.products.length;
+            Product++
+          ) {
+            mutate({
+              payMethod: "card",
+              cardId: card,
+              productId: Location.state.products[Product].productId,
+              userId: Location.state.products[Product].userId,
+              total:
+                Location.state?.coupon && parseInt(Location.state?.coupon) !== 0
+                  ? parseInt(Location.state.products[Product].price / 10) -
+                    (parseInt(Location.state.products[Product].price / 10) *
+                      parseInt(Location.state.coupon)) /
+                      100
+                  : parseInt(Location.state.products[Product].price / 10),
+              date: date.toLocaleString('en-CA', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false // 24-часовой формат
+              }),
+              deliveryDate: DeliveryDate.toLocaleString('en-CA', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+              }),
+              quantity: Location.state.products[Product].quantity,
+              color: Location.state.products[Product].color,
+              size: Location.state.products[Product].size,
+              status: "placed",
+
+            });
+          }
+        }
+      }
+    } else {
+      for (
+        let Product = 0;
+        Product < Location.state?.products.length;
+        Product++
+      ) {
+        mutate({
+              payMethod: "delivery",
+              productId: Location.state.products[Product].productId,
+              userId: Location.state.products[Product].userId,
+              total:
+                Location.state?.coupon && parseInt(Location.state?.coupon) !== 0
+                  ? parseInt(Location.state.products[Product].price / 10) -
+                    (parseInt(Location.state.products[Product].price / 10) *
+                      parseInt(Location.state.coupon)) /
+                      100
+                  : parseInt(Location.state.products[Product].price / 10),
+              date: date,
+              deliveryDate: date.setDate(date.getDate() + randomDays),
+              quantity: Location.state.products[Product].quantity,
+              color: Location.state.products[Product].color,
+              size: Location.state.products[Product].size,
+              status: "placed",
+              
+            });
+      }
+    }
+  };
   return (
     <div className="Checkout_container">
       <div className="Set_info">
@@ -564,7 +641,11 @@ else {
                     <p>We accept all major credit cards.</p>
                   </div>
                 </div>
-                {pay == "card" ? <Card_form card={card} setCard={setCard} /> : ""}
+                {pay == "card" ? (
+                  <Card_form card={card} setCard={setCard} />
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className="On_delivery_box">
@@ -589,7 +670,9 @@ else {
             </div>
           </div>
         </div>
-        <div className="Pay_button" onClick={()=> HandlePay()}><button>Pay Now</button></div>
+        <div className="Pay_button" onClick={() => HandlePay()}>
+          <button>Pay Now</button>
+        </div>
       </div>
 
       <div className="Orders_list">

@@ -98,6 +98,9 @@ if(Location.pathname.includes('wishlist')) {
 else if(Location.pathname.includes('cart')) {
   HandleActiveLink('cart')
 }
+else if(Location.pathname.includes('order')) {
+  HandleActiveLink('order')
+}
 
 },[Location])
   return (
@@ -118,9 +121,9 @@ else if(Location.pathname.includes('cart')) {
           <div className="Change_page_box">
             <div>
               <Link
-                className={`${activeLink == "cart" ? "Active" : ""}`}
-                onClick={() => HandleActiveLink("cart")}
-                to={"/cart"}
+                className={`${activeLink == "order" ? "Active" : ""}`}
+                onClick={() => HandleActiveLink("order")}
+                to={"order"}
               >
                 <div className="Icon_box">
                   <FontAwesomeIcon icon={faBagShopping} />

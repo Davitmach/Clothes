@@ -39,10 +39,13 @@ import Comments from "./pages/productPage/comments/comment";
 import Questions from "./pages/productPage/questions/questions";
 import { useEffect } from "react";
 import Checkout from "./pages/user/userPage/checkout/checkout";
+import Order from "./pages/user/userPage/order/order";
+import OrderPlaced from "./pages/orderPlaced/orderPlaced";
+import Active from "./pages/user/userPage/order/active/active";
+import Cancel from "./pages/user/userPage/order/cancel/cancel";
+import Complete from "./pages/user/userPage/order/complete/complete";
 function App() {
-  
   useCheckBan();
-
 
   return (
     <>
@@ -51,7 +54,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index path="/" element={<Shop />} />
             <Route path="men" element={<Men />} />
-
+            <Route path="orderPlaced" element={<OrderPlaced />} />
             <Route path="/productPage/:id" element={<ProductPage />}>
               <Route index element={<Navigate to="description" replace />} />
               <Route path="description" element={<Description />} />
@@ -59,20 +62,24 @@ function App() {
               <Route path="questions" element={<Questions />} />
             </Route>
             <Route path="women" element={<Women />} />
-            <Route path="cart" element={<Cart/>}/>
+            <Route path="cart" element={<Cart />} />
             <Route path="combos" element={<Combos />} />
             <Route path="joggers" element={<Joggers />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="checkout" element={<Checkout/>}/>  
+            <Route path="checkout" element={<Checkout />} />
             <Route path="user" element={<UserPage />}>
               <Route path="myInfo" element={<MyInfo />} />
               <Route path="signOut" element={<SignOut />} />
               <Route path="wishlist" element={<WishList />} />
               <Route path="cart" element={<Cart />} />
               <Route path="setMyInfo" element={<SetMyInfo />} />
-            
-             
+              <Route path="order" element={<Order />} >
+              <Route index element={<Navigate to="active" replace />} />
+              <Route path="active" element={<Active/>}/>
+              <Route path="cancel" element={<Cancel/>}/>
+              <Route path="complete" element={<Complete/>}/>
+              </Route>
             </Route>
             <Route path="resetPass" element={<ResetPass />} />
             <Route path="checkMail" element={<CheckMail />} />
@@ -89,7 +96,6 @@ function App() {
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
-      
       </BrowserRouter>
     </>
   );

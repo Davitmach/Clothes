@@ -78,6 +78,8 @@ font-size: 18px;
 padding: 10px 40px ;
 border-left: 2px solid 
 transparent;
+border-top-right-radius: 8px;
+border-bottom-right-radius: 8px;
 white-space: nowrap;
 transition: .4s;
 &:active {
