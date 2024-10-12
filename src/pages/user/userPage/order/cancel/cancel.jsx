@@ -62,14 +62,7 @@ function Cancel() {
                           </h2>
                         </span>
                       </div>
-                      <div className="Delivery_date">
-                        <span>
-                          Estimated Delivery Date :{" "}
-                          <h2>
-                            {<GetDate type={"del"} data={e.deliveryDate} />}
-                          </h2>
-                        </span>
-                      </div>
+                   
                     </div>
                     <div className="Status_box">
                       <div>
@@ -115,9 +108,7 @@ function Cancel() {
                         </div>
                       </div>
                     </div>
-                    <div className="View_box">
-                      <Link >View Detail</Link>
-                    </div>
+                    
                   </div>
                 </div>
               </div>

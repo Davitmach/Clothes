@@ -47,7 +47,7 @@ function Complete() {
       {Array.isArray(data) && data
         ? data.map((e) => {
             return (
-              <div className="Cancel_order_box">
+              <div className="Complete_order_box">
                 <div className="Order" key={e.id}>
                   <div className="Order_info">
                     <div className="Delivery_info">
@@ -115,9 +115,7 @@ function Complete() {
                         </div>
                       </div>
                     </div>
-                    <div className="View_box">
-                      <Link >View Detail</Link>
-                    </div>
+   
                   </div>
                 </div>
               </div>

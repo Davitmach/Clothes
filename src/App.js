@@ -44,9 +44,24 @@ import OrderPlaced from "./pages/orderPlaced/orderPlaced";
 import Active from "./pages/user/userPage/order/active/active";
 import Cancel from "./pages/user/userPage/order/cancel/cancel";
 import Complete from "./pages/user/userPage/order/complete/complete";
+import Details from "./pages/user/userPage/order/details/details";
+import axios from "axios";
+import GetData from "./hook/getData/getData";
 function App() {
   useCheckBan();
 
+  const id = localStorage.getItem('id');
+  const GetOrderDate = async (id) => {
+    const { data } = await axios.get(
+      `http://clothes/order/checkStatus.php?id=${id}`
+    );
+    return data;
+  };
+  const {data} = GetData(()=> GetOrderDate(id),'getOrderDate');
+  useEffect(()=> {
+console.log(data,'qqa');
+
+  },[data])
   return (
     <>
       <BrowserRouter basename="/">
@@ -75,6 +90,7 @@ function App() {
               <Route path="cart" element={<Cart />} />
               <Route path="setMyInfo" element={<SetMyInfo />} />
               <Route path="order" element={<Order />} >
+              <Route path="details/:id" element={<Details/>}/>
               <Route index element={<Navigate to="active" replace />} />
               <Route path="active" element={<Active/>}/>
               <Route path="cancel" element={<Cancel/>}/>

@@ -406,8 +406,8 @@ function Checkout() {
   };
   const { data: orderData, mutate } = SetData(SetOrder, "setOrder");
   useEffect(() => {
-    if(orderData?.data == 'order') {
-Navigate('/orderPlaced',{replace:true})
+    if (orderData?.data == "order") {
+      Navigate("/orderPlaced", { replace: true });
     }
   }, [orderData]);
   const { data } = GetData(() => CheckAddress(Id), "checkAddress");
@@ -431,9 +431,8 @@ Navigate('/orderPlaced',{replace:true})
   }, []);
 
   const HandlePay = () => {
-    console.log(card, "card");
+    console.log(pay,'pay');
     var date = new Date();
-    
 
     const randomDays = Math.floor(Math.random() * 5) + 1;
 
@@ -459,58 +458,74 @@ Navigate('/orderPlaced',{replace:true})
                       parseInt(Location.state.coupon)) /
                       100
                   : parseInt(Location.state.products[Product].price / 10),
-              date: date.toLocaleString('en-CA', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false // 24-часовой формат
+              date: date.toLocaleString("en-CA", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false, // 24-часовой формат
               }),
-              deliveryDate: DeliveryDate.toLocaleString('en-CA', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false
+              deliveryDate: DeliveryDate.toLocaleString("en-CA", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false,
               }),
               quantity: Location.state.products[Product].quantity,
               color: Location.state.products[Product].color,
               size: Location.state.products[Product].size,
-              status: "placed",
-
+              status: "Placed",
             });
           }
         }
       }
     } else {
+   
+      
       for (
         let Product = 0;
         Product < Location.state?.products.length;
         Product++
       ) {
         mutate({
-              payMethod: "delivery",
-              productId: Location.state.products[Product].productId,
-              userId: Location.state.products[Product].userId,
-              total:
-                Location.state?.coupon && parseInt(Location.state?.coupon) !== 0
-                  ? parseInt(Location.state.products[Product].price / 10) -
-                    (parseInt(Location.state.products[Product].price / 10) *
-                      parseInt(Location.state.coupon)) /
-                      100
-                  : parseInt(Location.state.products[Product].price / 10),
-              date: date,
-              deliveryDate: date.setDate(date.getDate() + randomDays),
-              quantity: Location.state.products[Product].quantity,
-              color: Location.state.products[Product].color,
-              size: Location.state.products[Product].size,
-              status: "placed",
-              
-            });
+          payMethod: "delivery",
+          productId: Location.state.products[Product].productId,
+          userId: Location.state.products[Product].userId,
+          total:
+            Location.state?.coupon && parseInt(Location.state?.coupon) !== 0
+              ? parseInt(Location.state.products[Product].price / 10) -
+                (parseInt(Location.state.products[Product].price / 10) *
+                  parseInt(Location.state.coupon)) /
+                  100
+              : parseInt(Location.state.products[Product].price / 10),
+              date: date.toLocaleString("en-CA", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false, // 24-часовой формат
+              }),
+              deliveryDate: DeliveryDate.toLocaleString("en-CA", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false,
+              }),
+          quantity: Location.state.products[Product].quantity,
+          color: Location.state.products[Product].color,
+          size: Location.state.products[Product].size,
+          status: "Placed",
+        });
       }
     }
   };

@@ -1,0 +1,181 @@
+.Complete_order_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px 0;
+    border-bottom: 1px solid #EDEEF2;
+    & > div {
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 30px;
+      .Order_info {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        background-color: #f6f6f6;
+        border-radius: 8px;
+        padding: 28px 47px;
+        @media (min-width: 320px) and (max-width: 1061px) {
+          padding: 28px 20px;
+          gap: 20px;
+        }
+        @media (min-width: 320px) and (max-width:524px) {
+       flex-direction: column;
+       align-items: start;
+        }
+        .Delivery_info {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          gap: 7px;
+          .Order_number {
+            margin-bottom: 7px;
+            h1 {
+              color: #3c4242;
+              font-size: 20px;
+              font-weight: 600;
+            }
+          }
+          .Order_date,
+          .Delivery_date {
+            span {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: #3c4242;
+              font-size: 14px;
+              font-weight: 600;
+              h2 {
+                color: #bebcbd;
+                font-size: 14px;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+        .Status_box {
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          @media (min-width: 320px) and (max-width:524px) {
+            align-items: start;
+               }
+          span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3c4242;
+            font-size: 14px;
+            font-weight: 600;
+            h2 {
+              font-size: 14px;
+              font-weight: 600;
+              color: #bebcbd;
+            }
+          }
+        }
+      }
+      .Product_info {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .First_column {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 25px;
+          @media (min-width:320px) and (max-width:456px) {
+           gap: 10px;
+              }
+          img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+          }
+          .Info_box {
+            display: flex;
+            align-items: start;
+            flex-direction: column;
+            gap: 5px;
+            .Title_box {
+              margin-bottom: 5px;
+              h1 {
+                color: #3c4242;
+                font-size: 16px;
+                font-weight: 600;
+              }
+            }
+            .Color_box h1 {
+              color: #3c4242;
+              font-size: 14px;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              h2 {
+                color: #bebcbd;
+                font-size: 14px;
+                font-weight: 600;
+              }
+            }
+            .Quantity_box h1 {
+              color: #3c4242;
+              font-size: 14px;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              h2 {
+                color: #bebcbd;
+                font-size: 14px;
+                font-weight: 600;
+              }
+            }
+            .Total_box h1 {
+              color: #807d7e;
+              font-size: 14px;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+        .View_box {
+          a {
+            text-decoration: none;
+            background-color: #8a33fd;
+            color: white;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            width: 144px;
+            height: 50px;
+            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+  
+            @media (min-width:320px) and (max-width:456px) {
+           font-size: 15px;
+           width: 100px;
+           height: 35px;
+           }
+          }
+        }
+      }
+    }
+  }
+  

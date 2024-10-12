@@ -13,13 +13,7 @@ function Active() {
     return data;
   };
 
-  //   const AddCart = async (info) => {
-  //     return await axios.post(  `http://clothes/order/getActiveOrder.php?id=${UserId}`, info, {
-  //       headers: {
-  //         "Content-Type": "application/x-www-form-urlencoded",
-  //       },
-  //     });
-  //   };
+    
   const GetDate = ({ data, type }) => {
     const orderDate = new Date(data);
 
@@ -116,7 +110,7 @@ function Active() {
                       </div>
                     </div>
                     <div className="View_box">
-                      <Link >View Detail</Link>
+                      <Link to={`/user/order/details/${e.id}`} state={{orderId:e.id,orderPlaced:e.orderDate,total:e.total,quantity:e.quantity,img:e.img,color:e.color,name:e.name}}>View Detail</Link>
                     </div>
                   </div>
                 </div>
